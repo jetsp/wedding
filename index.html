@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wedding RSVP</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Quicksand:wght@300;500;700&display=swap"
+    rel="stylesheet"/>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap"
+    rel="stylesheet"/>
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- ─── SLIDE 1 · HERO ─── -->
+  <section class="slide active hero" id="slide-hero">
+    <div class="overlay"></div>
+    <div class="slide-inner center">
+      <h1 class="names">Jerome <span>&amp;</span> Juvelyn</h1>
+      <p class="tagline">invite you to celebrate their wedding</p>
+      <p class="date">30 • 11 • 2025 — Dubai, UAE</p>
+
+      <div class="nav-wrap">
+  <button class="btn-nav next" aria-label="Next slide">&#8594;</button>
+</div>
+    </div>
+  </section>
+
+  <!-- ─── SLIDE 2 · STORY ─── -->
+  <section class="slide" id="slide-story">
+    <div class="slide-inner center-content">
+      <h2>Our Story</h2>
+      <p class="lead">A chance coffee-shop encounter sparked a forever adventure.</p>
+
+      <div class="gallery">
+        <img src="images/bite.jpg" alt="Story 1" />
+        <img src="https://picsum.photos/seed/story2/800/600" alt="Story 2" />
+        <img src="https://picsum.photos/seed/story3/800/600" alt="Story 3" />
+      </div>
+
+      <div class="nav-wrap">
+  <button class="btn-nav prev" aria-label="Previous slide">&#8592;</button>
+  <button class="btn-nav next" aria-label="Next slide">&#8594;</button>
+</div>
+    </div>
+  </section>
+
+  <!-- ─── SLIDE 3 · DETAILS ─── -->
+  <section class="slide alt" id="slide-details">
+    <div class="slide-inner">
+      <h2>Wedding Day</h2>
+      <ul class="timeline">
+        <li>
+          <span class="time">4:00 PM</span> ✧ Ceremony at
+          <strong>Dubai Creek Harbour Garden</strong>
+        </li>
+        <li><span class="time">5:30 PM</span> ✧ Sunset Cocktails</li>
+        <li><span class="time">7:00 PM</span> ✧ Dinner &amp; Dancing</li>
+      </ul>
+
+<div class="nav-wrap">
+  <button class="btn-nav prev" aria-label="Previous slide">&#8592;</button>
+  <button class="btn-nav next" aria-label="Next slide">&#8594;</button>
+</div>
+    </div>
+  </section>
+
+  <!-- ─── SLIDE 4 · RSVP ACCESS ─── -->
+  <section class="slide" id="slide-rsvp">
+    <div class="slide-inner center">
+      <h2>Kindly RSVP</h2>
+      <p class="lead">We’d love to know if you can join us.</p>
+      <button id="rsvp-open" class="btn-primary">Open RSVP Form</button>
+
+      <div class="nav-wrap">
+  <button class="btn-nav prev" aria-label="Previous slide">&#8592;</button>
+  <button class="btn-nav next" aria-label="Next slide">&#8594;</button>
+</div>
+
+    </div>
+  </section>
+
+  <!-- ─── SLIDE 5 · ATTIRE ─── -->
+  <section class="slide alt start-top" id="slide-attire">
+    <div class="slide-inner">
+      <h2>Attire Guide</h2>
+      <p class="lead">Dress to celebrate! Each group’s palette is shown below.</p>
+
+      <div class="attire-list">
+        <!-- Guest of Honour -->
+        <div class="attire-card">
+          <img
+            class="attire-img"
+            src="https://picsum.photos/seed/honour/240/240"
+            alt="Guest of Honour attire"
+          />
+          <div class="attire-info">
+            <h3>
+              Guests of Honour <span class="swatch" style="background:#C37D4A;"></span>
+            </h3>
+            <p>Elegant formal &mdash; long gowns / tuxedos in rich rust&nbsp;(#C37D4A).</p>
+          </div>
+        </div>
+        <!-- Bridesmaids -->
+        <div class="attire-card">
+          <img
+            class="attire-img"
+            src="https://picsum.photos/seed/bridesmaid/240/240"
+            alt="Bridesmaid attire"
+          />
+          <div class="attire-info">
+            <h3>
+              Bridesmaids <span class="swatch" style="background:#737B64;"></span>
+            </h3>
+            <p>Sage-green dresses (#737B64) to compliment the garden setting.</p>
+          </div>
+        </div>
+        <!-- Groomsmen -->
+        <div class="attire-card">
+          <img
+            class="attire-img"
+            src="https://picsum.photos/seed/groomsmen/240/240"
+            alt="Groomsmen attire"
+          />
+          <div class="attire-info">
+            <h3>
+              Groomsmen <span class="swatch" style="background:#94421D;"></span>
+            </h3>
+            <p>Charcoal suits with rust-tone ties (#94421D) &amp; boutonnieres.</p>
+          </div>
+        </div>
+        <!-- General Guests -->
+        <div class="attire-card">
+          <img
+            class="attire-img"
+            src="https://picsum.photos/seed/guest/240/240"
+            alt="Guest attire"
+          />
+          <div class="attire-info">
+            <h3>
+              All Guests <span class="swatch" style="background:#AE6F5E;"></span>
+            </h3>
+            <p>Garden-chic: cocktail dresses or smart linen suits (avoid white).</p>
+          </div>
+        </div>
+      </div>
+
+    <div class="nav-wrap">
+  <button class="btn-nav prev" aria-label="Previous slide">&#8592;</button>
+  <button class="btn-nav next" aria-label="Next slide">&#8594;</button>
+</div>
+    </div>
+  </section>
+
+  <!-- ─── SLIDE 6 · MAP ─── -->
+  <section class="slide" id="slide-map">
+    <div class="slide-inner">
+      <h2>Venue · Dubai Creek Harbour Garden</h2>
+      <p class="lead">
+        Nestled by the water, surrounded by the skyline — the perfect spot for
+        “I do”.
+      </p>
+
+      <div class="map-box">
+        <iframe
+          title="Venue Map"
+          loading="lazy"
+          allowfullscreen
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4512.179630277088!2d55.353711!3d25.205793!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f43f21e18b6b9%3A0xabc123abc123abc1!2sDubai%20Creek%20Harbour%20Garden!5e0!3m2!1sen!2sae!4v0000000000000"
+        ></iframe>
+      </div>
+
+      <div class="nav-wrap">
+  <button class="btn-nav prev" aria-label="Previous slide">&#8592;</button>
+  <button class="btn-nav next" aria-label="Next slide">&#8594;</button>
+</div>
+    </div>
+  </section>
+
+  <!-- ─── SLIDE 7 · THANK YOU ─── -->
+  <section class="slide hero-thanks" id="slide-thanks">
+    <div class="overlay"></div>
+    <div class="slide-inner center">
+      <h2>Thank You!</h2>
+      <p class="lead">We can’t wait to celebrate with you.</p>
+
+      <div class="nav-wrap">
+  <button class="btn-nav prev" aria-label="Previous slide">&#8592;</button>
+  <button class="btn-nav next" aria-label="Next slide">&#8594;</button>
+</div>
+    </div>
+  </section>
+
+  <!-- ─── RSVP MODAL ─── -->
+  <div id="rsvp-modal" class="modal">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <span id="modal-close" class="modal-close">&times;</span>
+      <h2>Please Fill Out this Form:</h2>
+      <form id="rsvp-form">
+        <label>
+          Full Name
+          <input type="text" name="name" required />
+        </label>
+        <label>
+          Email
+          <input type="email" name="email" required />
+        </label>
+        <label>
+          Will you join us?
+          <select name="attendance" required>
+            <option value="yes">Joyfully Accepts</option>
+            <option value="no">Regretfully Declines</option>
+          </select>
+        </label>
+        <button type="submit" class="btn-primary">Submit</button>
+        <p id="form-status" class="status"></p>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

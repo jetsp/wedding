@@ -1,0 +1,400 @@
+/* ───────────────────────────────────────────────────────────────── */
+/*                           STYLES.CSS                             */
+/* ───────────────────────────────────────────────────────────────── */
+
+/* COLOURS & FONTS */
+:root {
+  --c1: #C37D4A;   /* rust accent */
+  --c2: #94421D;   /* dark rust */
+  --c3: #737B64;   /* sage */
+  --c4: #AE6F5E;   /* muted rose */
+  --c5: #D7BBA3;   /* light beige (main bg) */
+  --bg: var(--c5);
+  --text: #2e2e2e;
+
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Quicksand', sans-serif;
+}
+
+/* RESET & BASICS */
+* { box-sizing: border-box; margin:0; padding:0 }
+html, body {
+  width:100%; height:100%;
+  overflow-x:hidden;
+  font-family:var(--font-body);
+  color:var(--text);
+  background:var(--bg);
+}
+h1,h2,h3 { font-family:var(--font-heading) }
+img { display:block; max-width:100% }
+.lead {
+  max-width:680px;
+  margin:0.5rem auto 2rem;
+  text-align:center;
+}
+.center { text-align:center }
+
+/* ─── SLIDE SETUP ───────────────────────────────────────────────── */
+.slide {
+  position:absolute; inset:0;
+  display:flex; flex-direction:column;
+  justify-content:center; align-items:center;
+  height:100vh; padding:4rem 1.25rem;
+  overflow-y:auto;
+  background:var(--bg);
+  transform:translateX(100%); opacity:0;
+  transition:transform .8s ease, opacity .8s ease;
+  scrollbar-width:none; -ms-overflow-style:none;
+}
+.slide::-webkit-scrollbar { display:none }
+.slide.active { transform:translateX(0); opacity:1; z-index:1; }
+
+/* HERO & THANK YOU BACKGROUNDS */
+.hero, .hero-thanks {
+  background: url("images/wedding.jpg")
+              center/cover no-repeat;
+}
+#slide-story {
+  justify-content: flex-start !important;
+  padding-top: 6rem !important; /* Optional: increase spacing from top */
+}
+.hero-thanks { background-position:center bottom }
+.overlay {
+  position:absolute; inset:0;
+  background:rgba(0,0,0,0.45); z-index:0;
+}
+.hero .slide-inner, .hero-thanks .slide-inner {
+  position:relative; z-index:1; color:#fff;
+}
+
+/* ATTIRE SLIDE TOP-ALIGN */
+#slide-attire {
+  justify-content:flex-start!important;
+}
+
+/* FADE-UP ANIMATION */
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(35px); }
+  to   { opacity:1; transform:none; }
+}
+.slide-inner > * {
+  opacity:0; transform:translateY(35px);
+}
+.slide.active .slide-inner > * {
+  animation:fadeUp .8s ease forwards;
+}
+
+/* SLIDE INNER WRAPPER */
+.slide-inner {
+  width:90%; max-width:1000px;
+  margin:0 auto;
+  display:flex; flex-direction:column;
+  align-items:center;
+}
+
+/* HEADINGS & TEXT */
+.names {
+  font-size:clamp(2.5rem,6vw,5rem);
+  margin-bottom:.25rem;
+}
+.names span {
+  font-family:var(--font-body);
+  font-weight:300;
+  font-size:.75em;
+  margin:0 .4rem;
+}
+.tagline {
+  font-size:clamp(1rem,2.5vw,1.5rem);
+  letter-spacing:.5px;
+}
+.date {
+  margin-top:.75rem;
+  font-size:1.1rem;
+}
+
+.nav-wrap {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.nav-wrap {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  width: 100%;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 1rem;
+}
+
+/* ─── ARROW-ONLY BUTTONS ───────────── */
+.btn-nav {
+  all: unset;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 4rem;
+  height: 4rem;
+  cursor: pointer;
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--c1); /* Replace with your desired color variable or hex code */
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.btn-nav:hover {
+  color: var(--c2);
+  transform: none;
+}
+
+
+.btn-nav.next {
+  position: absolute;
+  top: 50%;
+  right: 1rem;  /* <-- THIS makes it on the right */
+  transform: translateY(-50%);
+}
+
+.btn-nav.prev {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  transform: translateY(-50%);
+}
+
+
+
+/* GALLERY */
+.gallery {
+  display:grid; gap:1rem;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  margin-top:1.5rem;
+}
+.gallery img {
+  border-radius:8px;
+  animation:fadeUp .9s ease forwards;
+}
+
+/* TIMELINE */
+.timeline {
+  list-style:none;
+  text-align:left;
+  max-width:500px;
+  margin:2rem auto;
+}
+.timeline li {
+  margin:.6rem 0;
+  font-size:1.1rem;
+}
+.time {
+  font-weight:700;
+  margin-right:.4rem;
+  color:var(--c2);
+}
+
+/* ATTIRE GUIDE */
+.attire-list {
+  width:100%;
+  display:flex; flex-direction:column;
+  gap:1.25rem;
+  margin-top:1.5rem;
+}
+.attire-card {
+  display:flex; align-items:center; gap:1rem;
+  background:#fff;
+  border-radius:10px;
+  box-shadow:0 4px 12px rgba(0,0,0,.05);
+  animation:fadeUp 1s ease forwards;
+}
+.attire-img {
+  flex:0 0 120px;
+  height:auto;
+}
+.attire-info {
+  padding:.75rem 1rem;
+  text-align:left;
+}
+.attire-info h3 {
+  font-size:1.15rem;
+  color:var(--c1);
+  display:flex; align-items:center; gap:.4rem;
+}
+.attire-info p {
+  margin-top:.25rem;
+  font-size:.92rem;
+}
+.swatch {
+  width:18px; height:18px;
+  display:inline-block;
+  border-radius:3px;
+  border:1px solid #0003;
+}
+
+/* MAP BOX — MUCH BIGGER */
+.map-box {
+  margin: 2rem auto 0;
+  max-width: 1000px; /* restrict width to a nice wide box */
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  animation: fadeUp .9s ease forwards;
+}
+
+.map-box iframe {
+  border: 0;
+  width: 100%;
+  height: 400px; /* change from 70vh to a fixed shorter height */
+}
+
+/* RSVP MODAL */
+.modal {
+  position:fixed; inset:0;
+  display:none;
+  align-items:center; justify-content:center;
+  z-index:9999;
+}
+.modal.show { display:flex; }
+.modal-overlay {
+  position:absolute; inset:0;
+  background:rgba(0,0,0,0.6);
+}
+.modal-content {
+  position: relative;
+  z-index: 1;
+  background: #fff;
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  width: min(92%, 420px);
+  animation: pop 0.4s ease forwards;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  font-family: var(--font-body);
+}
+
+@keyframes pop {
+  from { transform:scale(.92); opacity:.3 }
+  to   { transform:scale(1);   opacity:1 }
+}
+.modal-close {
+  position:absolute; top:12px; right:14px;
+  font-size:1.5rem; color:var(--c2);
+  cursor:pointer;
+}
+label {
+  display: block;
+  text-align: left;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--c2);
+  margin: 0.75rem 0 0.4rem;
+  font-family: var(--font-body);
+}
+
+input, select {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  border: 2px solid var(--c1);
+  border-radius: 10px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  background: #fff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus, select:focus {
+  border-color: var(--c2);
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(195, 125, 74, 0.2);
+}
+
+.status {
+  font-size:.9rem; margin-top:.5rem;
+  color:var(--c2);
+}
+
+/* THANK YOU SLIDE */
+.hero-thanks h2 {
+  font-size:clamp(2.2rem,5vw,3.6rem);
+  margin-bottom:.75rem;
+}
+.small {
+  font-size:.85rem; margin-top:1.5rem;
+}
+
+/* RESPONSIVE TWEAKS */
+@media (min-width:768px) {
+  .slide-inner { padding:0 2rem }
+}
+
+#rsvp-open {
+  font-family: 'Merriweather', serif;
+  font-weight: 700;
+  font-size: 1.15rem;
+  padding: 0.8em 3em;
+  color: #C37D4A; /* rust/gold outline color */
+  background: transparent;
+  border: 2.5px solid #C37D4A;
+  border-radius: 40px;
+  cursor: pointer;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: 
+    background-color 0.3s ease, 
+    color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.2s ease;
+  box-shadow: none;
+}
+
+#rsvp-open:hover,
+#rsvp-open:focus {
+  background-color: #C37D4A;
+  color: #fff;
+  box-shadow: 0 6px 15px rgba(195, 125, 74, 0.6);
+  outline: none;
+  transform: translateY(-3px);
+}
+
+#rsvp-open:active {
+  transform: translateY(1px);
+  box-shadow: 0 4px 10px rgba(195, 125, 74, 0.4);
+}
+
+#rsvp-form button.btn-primary {
+  font-family: 'Merriweather', serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 0.85em 3em;
+  color: var(--c1);
+  background: transparent;
+  border: 2.5px solid var(--c1);
+  border-radius: 40px;
+  cursor: pointer;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.2s ease;
+  box-shadow: none;
+  margin-top: 1.5rem;
+}
+
+#rsvp-form button.btn-primary:hover,
+#rsvp-form button.btn-primary:focus {
+  background-color: var(--c1);
+  color: #fff;
+  box-shadow: 0 6px 15px rgba(195, 125, 74, 0.6);
+  outline: none;
+  transform: translateY(-3px);
+}
+
+#rsvp-form button.btn-primary:active {
+  transform: translateY(1px);
+  box-shadow: 0 4px 10px rgba(195, 125, 74, 0.4);
+}
+
