@@ -45,7 +45,7 @@ img { display:block; max-width:100% }
   align-items: center;
   height: 100vh;
   padding: 4rem 1.25rem;
-  width: 100vw;
+  width: 100%;
 
   /* Prevent horizontal scrolling inside each slide: */
   overflow-y: auto;       /* allow vertical scroll, if content is tall */
@@ -73,7 +73,10 @@ img { display:block; max-width:100% }
 /* HERO & THANK YOU BACKGROUNDS */
 .hero, .hero-thanks {
   background: url("images/wedding.jpg")
-              center/cover no-repeat;
+              center/cover no-repeat fixed;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
 #slide-story {
   justify-content: flex-start !important;
