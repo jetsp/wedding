@@ -2,14 +2,28 @@ document.addEventListener('DOMContentLoaded', () => {
   const slides = [...document.querySelectorAll('.slide')];
   let curr = 0;
 
-  function showSlide(idx) {
-    slides[curr].classList.remove('active');
-    curr = (idx + slides.length) % slides.length;
-    slides[curr].classList.add('active');
-    slides[curr].scrollTop = 0;
-    history.replaceState(null, '', `#${slides[curr].id}`);
-    console.log('Showing slide', curr, slides[curr].id);
-  }
+function showSlide(idx) {
+  const next = (idx + slides.length) % slides.length;
+  if (next === curr) return;
+
+  const direction = next > curr || (curr === slides.length - 1 && next === 0) ? 'left' : 'right';
+
+  const currentSlide = slides[curr];
+  const nextSlide = slides[next];
+
+  currentSlide.classList.remove('active');
+  currentSlide.classList.add(direction === 'left' ? 'to-left' : 'to-right');
+
+  nextSlide.classList.remove('to-left', 'to-right');
+  nextSlide.classList.add('active');
+
+  setTimeout(() => {
+    currentSlide.classList.remove('to-left', 'to-right');
+  }, 600); // match transition duration
+
+  curr = next;
+  history.replaceState(null, '', `#${nextSlide.id}`);
+}
 
 document.addEventListener('click', e => {
   // Try to find button with btn-nav class in clicked element or parents
@@ -36,20 +50,6 @@ document.addEventListener('click', e => {
   }
 });
 
-
-  /* swipe navigation 
-  let startX = null;
-  window.addEventListener('touchstart', e => {
-    startX = e.touches[0].clientX;
-  }, { passive: true });
-
-  window.addEventListener('touchend', e => {
-    if (startX === null) return;
-    const dx = e.changedTouches[0].clientX - startX;
-    if (dx < -50) showSlide(curr + 1);
-    if (dx > 50) showSlide(curr - 1);
-    startX = null;
-  }, { passive: true }); */
 
   /* RSVP modal */
   const modal = document.getElementById('rsvp-modal');
