@@ -70,26 +70,11 @@
     </div>
   </section>
 
-  <!-- ─── SLIDE 4 · RSVP ACCESS ─── -->
-  <section class="slide" id="slide-rsvp">
-    <div class="slide-inner center">
-      <h2>Kindly RSVP</h2>
-      <p class="lead">We’d love to know if you can join us.</p>
-      <button id="rsvp-open" class="btn-primary">Open RSVP Form</button>
-
-      <div class="nav-wrap">
-  <button class="btn-nav prev" aria-label="Previous slide">&#8592;</button>
-  <button class="btn-nav next" aria-label="Next slide">&#8594;</button>
-</div>
-
-    </div>
-  </section>
-
   <!-- ─── SLIDE 5 · ATTIRE ─── -->
   <section class="slide alt start-top" id="slide-attire">
     <div class="slide-inner">
       <h2>Attire Guide</h2>
-      <p class="lead">Dress to celebrate! Each group’s palette is shown below.</p>
+      <p class="lead">Dress to celebrate! Each group's palette is shown below.</p>
 
       <div class="attire-list">
         <!-- Guest of Honour -->
@@ -163,7 +148,7 @@
       <h2>Venue · Dubai Creek Harbour Garden</h2>
       <p class="lead">
         Nestled by the water, surrounded by the skyline — the perfect spot for
-        “I do”.
+        "I do".
       </p>
 
       <div class="map-box">
@@ -187,12 +172,28 @@
     <div class="overlay"></div>
     <div class="slide-inner center">
       <h2>Thank You!</h2>
-      <p class="lead">We can’t wait to celebrate with you.</p>
+      <p class="lead">We can't wait to celebrate with you.</p>
+      <p class="lead">Please proceed to the next page to RSVP for our wedding.</p>
 
       <div class="nav-wrap">
   <button class="btn-nav prev" aria-label="Previous slide">&#8592;</button>
   <button class="btn-nav next" aria-label="Next slide">&#8594;</button>
 </div>
+    </div>
+  </section>
+
+  <!-- ─── SLIDE 8 · RSVP ─── -->
+  <section class="slide" id="slide-rsvp">
+    <div class="slide-inner center">
+      <h2>Kindly RSVP</h2>
+      <p class="lead">We'd love to know if you can join us.</p>
+      <button id="rsvp-open" class="btn-primary">Open RSVP Form</button>
+
+      <div class="nav-wrap">
+  <button class="btn-nav prev" aria-label="Previous slide">&#8592;</button>
+  <button class="btn-nav next" aria-label="Next slide">&#8594;</button>
+</div>
+
     </div>
   </section>
 
@@ -202,23 +203,33 @@
     <div class="modal-content">
       <span id="modal-close" class="modal-close">&times;</span>
       <h2>Please Fill Out this Form:</h2>
-      <form id="rsvp-form">
+      <form id="rsvp-form" action="https://formspree.io/f/xrbkzrbz" method="POST">
         <label>
           Full Name
-          <input type="text" name="name" required />
+          <input type="text" name="name" required placeholder="Enter your full name" />
         </label>
         <label>
-          Email
-          <input type="email" name="email" required />
+          Email Address
+          <input type="email" name="email" required placeholder="Enter your email" />
         </label>
         <label>
           Will you join us?
           <select name="attendance" required>
+            <option value="">Select your response</option>
             <option value="yes">Joyfully Accepts</option>
             <option value="no">Regretfully Declines</option>
           </select>
         </label>
-        <button type="submit" class="btn-primary">Submit</button>
+        <label>
+          Will you bring a guest?
+          <select name="guest" required>
+            <option value="">Select your response</option>
+            <option value="no">No, just me</option>
+            <option value="yes">Yes, I'll bring one guest</option>
+          </select>
+          <small class="note">Note: You can bring one additional guest</small>
+        </label>
+        <button type="submit" class="btn-primary">Send RSVP</button>
         <p id="form-status" class="status"></p>
       </form>
     </div>

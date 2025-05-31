@@ -66,16 +66,20 @@ document.addEventListener('click', e => {
   const form = document.getElementById('rsvp-form');
   const status = document.getElementById('form-status');
 
-  if (form) form.addEventListener('submit', e => {
-    e.preventDefault();
-    status.textContent = 'Thank you! Your RSVP was noted.';
-    status.style.color = 'green';
-    form.reset();
-    setTimeout(() => {
-      status.textContent = '';
-      modal.classList.remove('show');
-    }, 1800);
-  });
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      // Let Formspree handle the submission
+      // We'll just show a success message after submission
+      status.textContent = 'Thank you! Your RSVP was sent successfully.';
+      status.style.color = 'green';
+      
+      // Close modal after a delay
+      setTimeout(() => {
+        status.textContent = '';
+        modal.classList.remove('show');
+      }, 2000);
+    });
+  }
 
   /* Start on hash or first slide */
   const startId = location.hash.slice(1);
