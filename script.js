@@ -82,3 +82,33 @@ document.addEventListener('click', e => {
   const idx = slides.findIndex(sl => sl.id === startId);
   showSlide(idx >= 0 ? idx : 0);
 });
+
+// ─── BLOCK HORIZONTAL SWIPES / BOUNCE ───────────────────────────
+let touchStartX = null;
+let touchStartY = null;
+
+document.addEventListener('touchstart', (e) => {
+  if (e.touches.length === 1) {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }
+}, { passive: true });
+
+document.addEventListener('touchmove', (e) => {
+  if (touchStartX === null || touchStartY === null) return;
+
+  const currentX = e.touches[0].clientX;
+  const currentY = e.touches[0].clientY;
+  const dx = currentX - touchStartX;
+  const dy = currentY - touchStartY;
+
+  // If horizontal movement is greater than vertical, prevent default (blocks horizontal pan/bounce)
+  if (Math.abs(dx) > Math.abs(dy)) {
+    e.preventDefault();
+  }
+}, { passive: false });
+
+document.addEventListener('touchend', () => {
+  touchStartX = null;
+  touchStartY = null;
+});
