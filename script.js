@@ -37,7 +37,7 @@ document.addEventListener('click', e => {
 });
 
 
-  /* swipe navigation */
+  /* swipe navigation 
   let startX = null;
   window.addEventListener('touchstart', e => {
     startX = e.touches[0].clientX;
@@ -49,7 +49,7 @@ document.addEventListener('click', e => {
     if (dx < -50) showSlide(curr + 1);
     if (dx > 50) showSlide(curr - 1);
     startX = null;
-  }, { passive: true });
+  }, { passive: true }); */
 
   /* RSVP modal */
   const modal = document.getElementById('rsvp-modal');
