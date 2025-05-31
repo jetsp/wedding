@@ -50,7 +50,7 @@ img { display:block; max-width:100% }
   padding: 4rem 1.25rem;
   width: 100vw;
 
-  /* ↓ Prevent horizontal scrolling inside each slide: */
+  /* Prevent horizontal scrolling inside each slide: */
   overflow-y: auto;       /* allow vertical scroll, if content is tall */
   overflow-x: hidden;     /* block any horizontal overflow */
   touch-action: pan-y;    /* prevent horizontal touch pan/bounce */
@@ -185,7 +185,6 @@ img { display:block; max-width:100% }
   left: 1rem;
   transform: translateY(-50%);
 }
-
 
 
 /* GALLERY */
@@ -417,4 +416,72 @@ input:focus, select:focus {
 #rsvp-form button.btn-primary:active {
   transform: translateY(1px);
   box-shadow: 0 4px 10px rgba(195, 125, 74, 0.4);
+}
+
+
+/* ───────────────────────────────────────────────────────────────── */
+/*                MOBILE FIXES (max‐width: 767px)                  */
+/* ───────────────────────────────────────────────────────────────── */
+
+@media (max-width: 767px) {
+  /* 1) CENTER “WEDDING DAY” SECTION CONTENT HORIZONTALLY */
+  #slide-details .slide-inner {
+    align-items: center;        /* center all child elements horizontally */
+    text-align: center;         /* make headings/text center by default */
+    padding: 2rem 1rem;         /* optionally reduce side padding if desired */
+  }
+
+  /* Center the timeline itself, and make its items centered */
+  #slide-details .timeline {
+    margin: 1.5rem auto;        /* auto left/right margin */
+    text-align: center;         /* center all <li> text */
+    max-width: 90%;             /* ensure it never exceeds viewport width */
+  }
+  #slide-details .timeline li {
+    text-align: center;         /* center each line of the timeline */
+    display: inline-block;      /* allow each <li> to wrap centrally if needed */
+    margin-bottom: 0.75rem;     /* add some vertical breathing room */
+    width: 100%;                /* ensure each item fills available width */
+    box-sizing: border-box;
+  }
+
+  /* 2) SHRINK & RE‐FLOW ATTIRE CARDS TO AVOID OVERFLOW */
+  .attire-list {
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  .attire-card {
+    /* Stack image above text instead of side‐by‐side on small screens */
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem;
+  }
+  .attire-img {
+    flex: 0 0 auto;
+    width: 100%;                /* fill container width */
+    max-width: 140px;           /* cap image width so it’s not too big */
+    height: auto;
+    margin-bottom: 0.75rem;     /* gap between image and text */
+  }
+  .attire-info {
+    width: 100%;
+    padding: 0 0.5rem;
+  }
+  .attire-info h3 {
+    font-size: 1rem;            /* slightly smaller heading */
+    gap: 0.3rem;                /* tighten gap between text and swatch */
+  }
+  .attire-info p {
+    font-size: 0.875rem;        /* slightly smaller paragraph text */
+    line-height: 1.3;
+    word-break: break-word;     /* avoid any long words overflowing */
+  }
+
+  /* 3) REDUCE SIDE PADDING FOR ALL SLIDES TO AVOID SQUEEZING */
+  .slide {
+    padding: 2rem 0.75rem;
+  }
+  .slide-inner {
+    width: 95%;
+  }
 }
