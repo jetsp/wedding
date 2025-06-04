@@ -59,6 +59,73 @@ window.addEventListener('DOMContentLoaded', setupFadeInHeroTitle);
 // window.addEventListener('resize', setupFadeInHeroTitle); // Could be added but might be too frequent
 
 
+/*********  Wedding Countdown Timer  *********/
+function initializeCountdown() {
+    const countdownDate = new Date("November 23, 2025 00:00:00").getTime();
+
+    const monthsEl = document.getElementById('months');
+    const daysEl = document.getElementById('days');
+    const hoursEl = document.getElementById('hours');
+    const minutesEl = document.getElementById('minutes');
+    const secondsEl = document.getElementById('seconds');
+
+    if (!monthsEl || !daysEl || !hoursEl || !minutesEl || !secondsEl) {
+        console.error('One or more countdown elements not found.');
+        return;
+    }
+
+    const updateCountdown = () => {
+        const now = new Date().getTime();
+        const distance = countdownDate - now;
+
+        if (distance < 0) {
+            // Optional: Handle what happens when the date is passed
+            document.querySelector('.countdown__timer').innerHTML = "<p style='font-size: 1.5rem; color: var(--clr-terracotta);'>The big day has arrived!</p>";
+            clearInterval(interval);
+            return;
+        }
+
+        // Time calculations for months, days, hours, minutes and seconds
+        // Note: Month calculation is an approximation as month lengths vary.
+        // For a more precise month countdown, a library might be better, or a more complex logic.
+        let remainingDistance = distance;
+
+        const approxMonths = Math.floor(remainingDistance / (1000 * 60 * 60 * 24 * 30.4375)); // Average days in month
+        remainingDistance -= approxMonths * (1000 * 60 * 60 * 24 * 30.4375);
+        
+        const days = Math.floor(remainingDistance / (1000 * 60 * 60 * 24));
+        remainingDistance %= (1000 * 60 * 60 * 24);
+        
+        const hours = Math.floor(remainingDistance / (1000 * 60 * 60));
+        remainingDistance %= (1000 * 60 * 60);
+        
+        const minutes = Math.floor(remainingDistance / (1000 * 60));
+        remainingDistance %= (1000 * 60);
+        
+        const seconds = Math.floor(remainingDistance / 1000);
+
+        // Display the result in the elements
+        monthsEl.textContent = String(approxMonths).padStart(2, '0');
+        daysEl.textContent = String(days).padStart(2, '0');
+        hoursEl.textContent = String(hours).padStart(2, '0');
+        minutesEl.textContent = String(minutes).padStart(2, '0');
+        secondsEl.textContent = String(seconds).padStart(2, '0');
+    };
+
+    updateCountdown(); // Initial call to display immediately
+    const interval = setInterval(updateCountdown, 1000); // Update every second
+}
+
+// Add to DOMContentLoaded if not already there, or call directly if DOM is ready
+// Assuming setupFadeInHeroTitle is also in DOMContentLoaded, we can add it there.
+// For safety, let's ensure it's called after the DOM is loaded.
+if (document.readyState === 'loading') { // DOM not yet ready
+    window.addEventListener('DOMContentLoaded', initializeCountdown);
+} else { // DOM is already ready
+    initializeCountdown();
+}
+
+
 /*********  Fade-in on scroll  *********/
 const faders   = document.querySelectorAll('.fade');
 const options  = {threshold:0.15};

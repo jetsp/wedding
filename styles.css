@@ -128,7 +128,130 @@ body {
   }
   .hero__img{width:50%;height:auto;border-radius:8px;margin-top:1rem;}
   
-  /* Galleries */
+  /* Countdown Timer Section */
+.countdown {
+  /* background-color: var(--clr-sand); -- Removed, section will be transparent to page background */
+  /* color: #fff; -- Removed, text colors will be specific */
+  padding-top: 0; /* Remove top padding to bring heading closer to hero */
+  padding-bottom: 3rem; /* Keep bottom padding */
+  padding-left: 1rem;
+  padding-right: 1rem;
+  /* Remove hero's bottom border if it exists and countdown is directly after */
+  /* This might need a more specific rule depending on overall structure */
+  border-top: none; /* Ensure no top border on countdown section itself */
+}
+
+/* Ensure hero section does not have a bottom border if countdown follows */
+.hero {
+    /* ... existing hero styles ... */
+    border-bottom: none !important; /* Force no bottom border on hero if it's followed by this */
+}
+
+.countdown .section__heading {
+  color: var(--clr-terracotta); /* Match other section headings */
+  margin-bottom: 0; /* Remove bottom margin to allow timer to 'hang' directly below */
+  padding-top: 2rem; /* Add some padding above heading if needed, since section top padding is 0 */
+  position: relative; /* For z-index if needed, and to be a positioning context */
+  z-index: 1; /* Ensure heading is above the timer's potential negative margin */
+}
+
+.countdown__timer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: var(--clr-terracotta); /* Timer container background - 'hanging part' */
+  padding: 2rem 1.5rem 1.5rem; /* Add padding, more at top for rounded effect */
+  border-radius: 20px 20px 8px 8px; /* Rounded top corners, less rounded bottom */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  margin-top: -1px; /* Pull it up slightly to overlap/connect with heading area, adjust as needed */
+  position: relative; /* Needed for z-index and potential pseudo-elements */
+  z-index: 0; /* Below heading if heading has z-index */
+}
+
+.countdown__item {
+  background-color: rgba(255, 255, 255, 0.15); /* Slightly transparent white boxes on the terracotta */
+  padding: 1.5rem;
+  border-radius: 8px;
+  text-align: center;
+  min-width: 100px; /* Minimum width for each item */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.countdown__value {
+  font-family: var(--ff-serif);
+  font-size: 2.8rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: #fff; /* Numbers are white */
+}
+
+.countdown__label {
+  font-family: var(--ff-sans);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 0.5rem;
+  color: rgba(255, 255, 255, 0.85); /* Labels are slightly transparent white */
+}
+
+/* Responsive adjustments for countdown timer */
+@media (max-width: 768px) {
+  .countdown__timer {
+    flex-wrap: nowrap; /* Keep items on one line */
+    gap: 0.5rem; /* Reduce gap between items */
+    padding-left: 0.5rem; /* Add some padding if items get too close to edge */
+    padding-right: 0.5rem;
+  }
+  .countdown__item {
+    flex: 1; /* Allow items to grow and shrink equally */
+    padding: 0.75rem 0.25rem; /* Reduce padding significantly */
+    min-width: auto; /* Remove fixed min-width to allow shrinking */
+    font-size: 0.9em; /* Adjust overall font size for the item */
+  }
+  .countdown__value {
+    font-size: 1.6rem; /* Reduce number font size */
+  }
+  .countdown__label {
+    font-size: 0.6rem; /* Reduce label font size */
+    margin-top: 0.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .countdown__timer {
+    /* flex-wrap: nowrap; is inherited from 768px query */
+    gap: 0.25rem; /* Further reduce gap */
+    padding: 1rem 0.5rem 0.5rem; /* Adjust padding for the timer box */
+    border-radius: 12px 12px 4px 4px;
+  }
+  .countdown__item {
+    /* flex: 1; is inherited */
+    padding: 0.5rem 0.15rem; /* Further reduce padding */
+    /* min-width: auto; is inherited */
+  }
+  .countdown__value {
+    font-size: 1.2rem; /* Further reduce number font size */
+  }
+  .countdown__label {
+    font-size: 0.5rem; /* Further reduce label font size */
+    letter-spacing: 0; /* Remove letter spacing if too tight */
+  }
+  .countdown .section__heading {
+    font-size: 1.8rem; /* Adjust heading size on mobile */
+    padding-top: 1.5rem;
+  }
+}
+
+
+/* Galleries */
   .gallery{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-top:2rem;}
   .gallery img{width:calc(33.333% - .67rem);border-radius:8px;object-fit:cover;}
   
