@@ -24,7 +24,7 @@ body {
     line-height:1.6;
     color:var(--clr-brick);
     background:
-      url('images/floral.jpg') left top / 100px 180px repeat,
+      url('images/floral.jpg') left top / 380px 180px repeat,
       var(--clr-sand);
   }
   

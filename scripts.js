@@ -1,16 +1,47 @@
 /*********  Typing effect (runs once)  *********/
 const typingTarget = document.getElementById('typing');
-const textToType   = 'Jerome  &  Juvelyn';
+let textToType = ''; // Will be set based on screen size
+const name1 = 'Jerome';
+const name2 = 'Juvelyn';
 let idx = 0;
 
 function type() {
-  if (idx < textToType.length) {
-    typingTarget.textContent += textToType.charAt(idx);
-    idx++;
-    setTimeout(type, 150);
+  if (typingTarget && idx < textToType.length) {
+    // Check if current character and next ones form a <br> or &nbsp;
+    if (textToType.substring(idx, idx + 4) === '<br>') {
+      typingTarget.innerHTML += '<br>';
+      idx += 4;
+    } else if (textToType.substring(idx, idx + 6) === '&nbsp;') {
+      typingTarget.innerHTML += '&nbsp;';
+      idx += 6;
+    } else {
+      typingTarget.innerHTML += textToType.charAt(idx);
+      idx++;
+    }
+    setTimeout(type, 100); // Adjusted typing speed slightly
+  } else if (typingTarget && idx >= textToType.length) {
+    // Optional: Add a class when typing is done, e.g., for a blinking cursor to stop
+    typingTarget.classList.add('typing-done');
   }
 }
-window.addEventListener('DOMContentLoaded', type);
+
+window.addEventListener('DOMContentLoaded', () => {
+  if (window.innerWidth <= 768) {
+    // Mobile: Names on separate lines with & in between
+    textToType = `${name1}<br>&<br>${name2}`;
+  } else {
+    // Desktop: Names on one line with extra spaces around &
+    textToType = `${name1}&nbsp;&nbsp;&nbsp;&&nbsp;&nbsp;&nbsp;${name2}`;
+  }
+  
+  if (typingTarget) {
+    typingTarget.innerHTML = ''; // Clear initial content if any
+    idx = 0; // Reset index
+    type(); // Start typing animation
+  } else {
+    console.error('Typing target element not found');
+  }
+});
 
 
 /*********  Fade-in on scroll  *********/
