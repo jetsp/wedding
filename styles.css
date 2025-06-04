@@ -181,7 +181,15 @@ body {
       background-attachment: scroll; /* Better for mobile performance/compatibility */
       /* Optional: Add a background color if 'contain' leaves empty space */
       /* background-color: var(--clr-sand); */ 
-      min-height: 60vh; /* Adjust height as needed, may need to be taller to show full image height */
+      min-height: 100vh; /* Full viewport height */
+    }
+
+    .hero__subtitle {
+      max-width: 85%; /* Constrain width to encourage wrapping */
+      margin-left: auto; /* Center the subtitle */
+      margin-right: auto;
+      font-size: 1.15rem; /* Adjust font size for mobile if needed */
+      line-height: 1.5; /* Adjust line height for wrapped text */
     }
   }
   
