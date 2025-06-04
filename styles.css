@@ -173,6 +173,17 @@ body {
       padding: 0 1rem;
     }
   }
+
+  /* Hero mobile adjustments */
+  @media (max-width: 768px) {
+    .hero {
+      background-size: contain; /* Show whole image */
+      background-attachment: scroll; /* Better for mobile performance/compatibility */
+      /* Optional: Add a background color if 'contain' leaves empty space */
+      /* background-color: var(--clr-sand); */ 
+      min-height: 50vh; /* Adjust height as needed for 'contain' */
+    }
+  }
   
   /* Calendar */
   .calendar__wrap{display:flex;flex-direction:column;align-items:center;gap:1rem;}
