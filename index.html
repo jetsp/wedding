@@ -2,239 +2,209 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
-  <title>Wedding RSVP</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Wedding</title>
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.gstatic.com" />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Quicksand:wght@300;500;700&display=swap"
-    rel="stylesheet"/>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap"
-    rel="stylesheet"/>
-
+  <!--  Google Fonts  -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+  <!--  Main Styles  -->
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>u56
-  <!-- ─── SLIDE 1 · HERO ─── -->
-  <section class="slide active hero" id="slide-hero">
-    <div class="overlay"></div>
-    <div class="slide-inner center">
-      <h1 class="names">Jerome <span>&amp;</span> Juvelyn</h1>
-      <p class="tagline">invite you to celebrate their wedding</p>
-      <p class="date">30 • 11 • 2025 — Dubai, UAE</p>
+<body>
+  <main class="book">
 
-      <div class="nav-wrap">
-  <button class="btn-nav next" aria-label="Next slide">&#8594;</button>
-</div>
-    </div>
-  </section>
+    <!-- Landing / Hero -->
+    <section class="section hero" id="hero">
+      <h1 class="hero__title">
+        <span id="typing"></span>
+      </h1>
+      <p class="hero__subtitle fade">We joyfully invite you to celebrate our marriage</p>
+    </section>
 
-  <!-- ─── SLIDE 2 · STORY ─── -->
-  <section class="slide" id="slide-story">
-    <div class="slide-inner center-content">
-      <h2>Our Story</h2>
-      <p class="lead">A chance coffee-shop encounter sparked a forever adventure.</p>
-
-      <div class="gallery">
-        <img src="images/bite.jpg" alt="Story 1" />
-        <img src="https://picsum.photos/seed/story2/800/600" alt="Story 2" />
-        <img src="https://picsum.photos/seed/story3/800/600" alt="Story 3" />
-      </div>
-
-      <div class="nav-wrap">
-  <button class="btn-nav prev" aria-label="Previous slide">&#8592;</button>
-  <button class="btn-nav next" aria-label="Next slide">&#8594;</button>
-</div>
-    </div>
-  </section>
-
-  <!-- ─── SLIDE 3 · DETAILS ─── -->
-  <section class="slide alt" id="slide-details">
-    <div class="slide-inner">
-      <h2>Wedding Day</h2>
-      <ul class="timeline">
-        <li>
-          <span class="time">4:00 PM</span> ✧ Ceremony at
-          <strong>Dubai Creek Harbour Garden</strong>
-        </li>
-        <li><span class="time">5:30 PM</span> ✧ Sunset Cocktails</li>
-        <li><span class="time">7:00 PM</span> ✧ Dinner &amp; Dancing</li>
-      </ul>
-
-<div class="nav-wrap">
-  <button class="btn-nav prev" aria-label="Previous slide">&#8592;</button>
-  <button class="btn-nav next" aria-label="Next slide">&#8594;</button>
-</div>
-    </div>
-  </section>
-
-  <!-- ─── SLIDE 5 · ATTIRE ─── -->
-  <section class="slide alt start-top" id="slide-attire">
-    <div class="slide-inner">
-      <h2>Attire Guide</h2>
-      <p class="lead">Dress to celebrate! Each group's palette is shown below.</p>
-
-      <div class="attire-list">
-        <!-- Guest of Honour -->
-        <div class="attire-card">
-          <img
-            class="attire-img"
-            src="images/attire/1.png"
-            alt="Guest of Honour attire"
-          />
-          <div class="attire-info">
-            <h3>
-              Guests of Honour <span class="swatch" style="background:#C37D4A;"></span>
-            </h3>
-            <p>Elegant formal &mdash; long gowns / tuxedos in rich rust&nbsp;(#C37D4A).</p>
-          </div>
-        </div>
-        <!-- Bridesmaids -->
-        <div class="attire-card">
-          <img
-            class="attire-img"
-            src="images/attire/2.png"
-            alt="Bridesmaid attire"
-          />
-          <div class="attire-info">
-            <h3>
-              Bridesmaids <span class="swatch" style="background:#737B64;"></span>
-            </h3>
-            <p>Sage-green dresses (#737B64) to compliment the garden setting.</p>
-          </div>
-        </div>
-        <!-- Groomsmen -->
-        <div class="attire-card">
-          <img
-            class="attire-img"
-            src="https://picsum.photos/seed/groomsmen/240/240"
-            alt="Groomsmen attire"
-          />
-          <div class="attire-info">
-            <h3>
-              Groomsmen <span class="swatch" style="background:#94421D;"></span>
-            </h3>
-            <p>Charcoal suits with rust-tone ties (#94421D) &amp; boutonnieres.</p>
-          </div>
-        </div>
-        <!-- General Guests -->
-        <div class="attire-card">
-          <img
-            class="attire-img"
-            src="https://picsum.photos/seed/guest/240/240"
-            alt="Guest attire"
-          />
-          <div class="attire-info">
-            <h3>
-              All Guests <span class="swatch" style="background:#AE6F5E;"></span>
-            </h3>
-            <p>Garden-chic: cocktail dresses or smart linen suits (avoid white).</p>
-          </div>
-        </div>
-      </div>
-
-    <div class="nav-wrap">
-  <button class="btn-nav prev" aria-label="Previous slide">&#8592;</button>
-  <button class="btn-nav next" aria-label="Next slide">&#8594;</button>
-</div>
-    </div>
-  </section>
-
-  <!-- ─── SLIDE 6 · MAP ─── -->
-  <section class="slide" id="slide-map">
-    <div class="slide-inner">
-      <h2>Venue · Dubai Creek Harbour Garden</h2>
-      <p class="lead">
-        Nestled by the water, surrounded by the skyline — the perfect spot for
-        "I do".
+    <!-- Story  -->
+    <section class="section story" id="story">
+      <h2 class="section__heading">Our Story</h2>
+      <p class="story__text fade">
+        From the first coffee to forever – here’s a glimpse of the journey that led us to today.
       </p>
 
-      <div class="map-box">
-        <iframe
-          title="Venue Map"
-          loading="lazy"
-          allowfullscreen
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4512.179630277088!2d55.353711!3d25.205793!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f43f21e18b6b9%3A0xabc123abc123abc1!2sDubai%20Creek%20Harbour%20Garden!5e0!3m2!1sen!2sae!4v0000000000000"
-        ></iframe>
+      <div class="gallery">
+        <img src="images/kidmonkey.jpg" class="fade" alt="Couple 1" />
+        <img src="images/couple.jpg" class="fade" alt="Couple 2" />
+        <img src="images/images.jpg" class="fade" alt="Couple 3" />
+      </div>
+    </section>
+
+    <!-- Attire  -->
+    <section class="section attire" id="attire">  
+      <h2 class="section__heading">Dress Code</h2>
+      <div class="attire__wrap fade">
+        <div class="attire__men">
+          <img src="images/godfather.png" alt="Men’s attire" class="attire__img" />
+          <div class="attire__desc">
+            <p>Men's Attire<br>
+            Semi-formal garden attire<br>
+            Think muted earth tones, tailored suits, and classic elegance</p>
+          </div>
+        </div>
+        <div class="attire__women">
+          <img src="images/godmother.png" alt="Women’s attire" class="attire__img" />
+          <div class="attire__desc">
+            <p>Women's Attire<br>
+            Semi-formal garden attire<br>
+            Think flowy fabrics, muted earth tones, and elegant gowns</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Timeline  -->
+    <section class="section timeline" id="timeline">
+      <h2 class="section__heading">Day of Timeline</h2>
+      <div class="timeline__wrap fade">
+        <div class="timeline__items">
+          <div class="timeline__item">
+            <span class="timeline__time">15:30</span>
+            <p class="timeline__desc">Guests arrive and welcome drinks</p>
+          </div>
+          <div class="timeline__item">
+            <span class="timeline__time">16:00</span>
+            <p class="timeline__desc">Ceremony begins</p>
+          </div>
+          <div class="timeline__item">
+            <span class="timeline__time">17:00</span>
+            <p class="timeline__desc">Cocktail hour and photos</p>
+          </div>
+          <div class="timeline__item">
+            <span class="timeline__time">18:00</span>
+            <p class="timeline__desc">Reception dinner</p>
+          </div>
+          <div class="timeline__item">
+            <span class="timeline__time">21:00</span>
+            <p class="timeline__desc">Dancing and celebration</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Calendar  -->
+    <section class="section calendar" id="calendar">
+      <h2 class="section__heading">Save the Date</h2>
+      <div class="calendar__wrap fade">
+        <!-- simple handcrafted calendar -->
+        <table class="cal">
+          <caption>October&nbsp;2025</caption>
+          <thead>
+            <tr><th>Su</th><th>Mo</th><th>Tu</th><th>We</th><th>Th</th><th>Fr</th><th>Sa</th></tr>
+          </thead>
+          <tbody>
+            <tr><td></td><td class="cal__day">1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td></tr>
+            <tr><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td></tr>
+            <tr><td>14</td><td>15</td><td>16</td><td>17</td><td class="cal__day--mark">18</td><td>19</td><td>20</td></tr>
+            <tr><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td></tr>
+            <tr><td>28</td><td>29</td><td>30</td><td>31</td><td></td><td></td><td></td></tr>
+          </tbody>
+        </table>
+        <p class="calendar__note">Ceremony &amp; reception • 4:30 PM</p>
+      </div>
+    </section>
+
+    <!-- Location  -->
+    <section class="section location" id="location">
+      <h2 class="section__heading">Venue</h2>
+      <div class="location__wrap">
+        <p class="fade">Villa Serena Gardens<br>
+           123 Palm Avenue<br>
+           Dubai, UAE
+        </p>
+        <iframe class="location__map fade"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3609.736662604454!2d55.2744!3d25.1972!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!
+          4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjXCsDExJzQ5LjkiTiA1NcKwMTYnMjcuOCJF!5e0!3m2!1sen!2sae!4v1598653412345"
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </section>
+
+    <!-- Favors / Etiquette -->
+    <section class="section favors" id="favors">
+      <h2 class="section__heading">Little Favors</h2>
+      <ul class="favors__list fade">
+        <li>Please arrive 30 minutes early – we’d hate for you to miss the vows.</li>
+        <li>Kindly switch phones to silent during the ceremony.</li>
+        <li>We love little ones, but we kindly ask for no children under 8 to ensure a smooth experience for all guests.</li>
+        <li>Out of respect for the ceremony, we kindly ask that guests remain seated and avoid moving around once it begins.</li>
+        <li>We kindly ask our guests to avoid wearing white — The bride has claimed white for the day.</li>
+      </ul>
+    </section>
+
+    <!-- Thank you -->
+    <section class="section thanks" id="thanks">
+      <h2 class="section__heading">Thank You</h2>
+      <p class="fade">
+        Your presence is the greatest gift we could ask for. We can’t wait to celebrate together!
+      </p>
+    </section>
+
+    <!-- RSVP trigger section -->
+    <section class="section rsvp-call" id="rsvp">
+      <h2 class="section__heading">Ready to RSVP?</h2>
+      <p class="fade">
+        Let us know if you’ll be sharing our special day.
+      </p>
+      <button id="openRsvp" class="btn fade">Send RSVP</button>
+    </section>
+
+  </main>
+
+  <!-- RSVP Modal -->
+  <div id="overlay" class="overlay hidden"></div>
+  <div id="modal" class="modal hidden">
+    <button id="closeRsvp" class="modal__close">&times;</button>
+    <h3 class="modal__heading">RSVP</h3>
+
+    <!--  Replace the action URL with your Formspree endpoint -->
+    <form action="https://formspree.io/f/mqabablb" method="POST" class="modal__form">
+      <label>
+        Full Name
+        <input type="text" name="name" required />
+      </label>
+
+      <label>
+        Will you attend?
+        <select name="attendance" id="attendanceSelect" required>
+          <option value="">— Choose —</option>
+          <option value="yes">Joyfully Accepts</option>
+          <option value="no">Regretfully Declines</option>
+        </select>
+      </label>
+
+      <div id="plusOneSection" class="plus-one-section">
+        <label>
+          Bringing a guest?
+        <select name="plusone" id="plusOneSelect" required>
+          <option value="">— Choose —</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+        <small>(One additional guest max.)</small>
+      </label>
+
+      <label id="guestNameField" class="guest-name-field">
+        Guest's Full Name
+        <input type="text" name="guestName" />
+      </label>
       </div>
 
-      <div class="nav-wrap">
-  <button class="btn-nav prev" aria-label="Previous slide">&#8592;</button>
-  <button class="btn-nav next" aria-label="Next slide">&#8594;</button>
-</div>
-    </div>
-  </section>
+      <label>
+        Message <em>(optional)</em>
+        <textarea name="message" rows="3" placeholder="Add a note…"></textarea>
+      </label>
 
-  <!-- ─── SLIDE 7 · THANK YOU ─── -->
-  <section class="slide hero-thanks" id="slide-thanks">
-    <div class="overlay"></div>
-    <div class="slide-inner center">
-      <h2>Thank You!</h2>
-      <p class="lead">We can't wait to celebrate with you.</p>
-      <p class="lead">Please proceed to the next page to RSVP for our wedding.</p>
-
-      <div class="nav-wrap">
-  <button class="btn-nav prev" aria-label="Previous slide">&#8592;</button>
-  <button class="btn-nav next" aria-label="Next slide">&#8594;</button>
-</div>
-    </div>
-  </section>
-
-  <!-- ─── SLIDE 8 · RSVP ─── -->
-  <section class="slide" id="slide-rsvp">
-    <div class="slide-inner center">
-      <h2>Kindly RSVP</h2>
-      <p class="lead">We'd love to know if you can join us.</p>
-      <button id="rsvp-open" class="btn-primary">Open RSVP Form</button>
-
-      <div class="nav-wrap">
-  <button class="btn-nav prev" aria-label="Previous slide">&#8592;</button>
-  <button class="btn-nav next" aria-label="Next slide">&#8594;</button>
-</div>
-
-    </div>
-  </section>
-
-  <!-- ─── RSVP MODAL ─── -->
-  <div id="rsvp-modal" class="modal">
-    <div class="modal-overlay"></div>
-    <div class="modal-content">
-      <span id="modal-close" class="modal-close">&times;</span>
-      <h2>Please Fill Out this Form:</h2>
-      <form id="rsvp-form" action="https://formspree.io/f/xrbkzrbz" method="POST">
-        <label>
-          Full Name
-          <input type="text" name="name" required placeholder="Enter your full name" />
-        </label>
-        <label>
-          Email Address
-          <input type="email" name="email" required placeholder="Enter your email" />
-        </label>
-        <label>
-          Will you join us?
-          <select name="attendance" required>
-            <option value="">Select your response</option>
-            <option value="yes">Joyfully Accepts</option>
-            <option value="no">Regretfully Declines</option>
-          </select>
-        </label>
-        <label>
-          Will you bring a guest?
-          <select name="guest" required>
-            <option value="">Select your response</option>
-            <option value="no">No, just me</option>
-            <option value="yes">Yes, I'll bring one guest</option>
-          </select>
-          <small class="note">Note: You can bring one additional guest</small>
-        </label>
-        <button type="submit" class="btn-primary">Send RSVP</button>
-        <p id="form-status" class="status"></p>
-      </form>
-    </div>
+      <button type="submit" class="btn btn--submit">Submit</button>
+    </form>
   </div>
 
-  <script src="script.js" defer></script>
+  <!-- Scripts -->
+  <script src="scripts.js"></script>
 </body>
 </html>
