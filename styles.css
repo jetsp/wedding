@@ -92,7 +92,13 @@ body {
     opacity: 0; /* Start fully transparent */
     animation: fadeInLetter 0.5s forwards; /* 'forwards' keeps it visible after animation */
     display: inline-block; /* Ensures &nbsp; takes up space and behaves predictably */
+    margin-right: 0.1em; /* Adjust this value for desired spacing, e.g., 5px or 0.1em */
   }
+
+  /* Optional: Remove margin from the very last character of the entire title if needed,
+     though typically the container's alignment handles this. 
+     This is more complex with dynamic content and multiple lines. 
+     For now, the uniform margin-right is simpler and often sufficient. */
 
   @keyframes fadeInLetter {
     to {
