@@ -177,11 +177,11 @@ body {
   /* Hero mobile adjustments */
   @media (max-width: 768px) {
     .hero {
-      background-size: contain; /* Show whole image */
+      background-size: auto 100%; /* Show full height, crop width if necessary */
       background-attachment: scroll; /* Better for mobile performance/compatibility */
       /* Optional: Add a background color if 'contain' leaves empty space */
       /* background-color: var(--clr-sand); */ 
-      min-height: 50vh; /* Adjust height as needed for 'contain' */
+      min-height: 60vh; /* Adjust height as needed, may need to be taller to show full image height */
     }
   }
   
