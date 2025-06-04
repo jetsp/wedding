@@ -87,6 +87,19 @@ body {
     z-index: 1; /* Place overlay behind content */
   }
 
+  /* Hero Title Fade-in Animation */
+  .hero-title-fade-char {
+    opacity: 0; /* Start fully transparent */
+    animation: fadeInLetter 0.5s forwards; /* 'forwards' keeps it visible after animation */
+    display: inline-block; /* Ensures &nbsp; takes up space and behaves predictably */
+  }
+
+  @keyframes fadeInLetter {
+    to {
+      opacity: 1; /* Fade to fully opaque */
+    }
+  }
+
   /* Ensure hero content (title, subtitle) is above the overlay */
   .hero > * {
     position: relative;

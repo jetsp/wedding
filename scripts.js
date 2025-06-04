@@ -1,47 +1,62 @@
-/*********  Typing effect (runs once)  *********/
-const typingTarget = document.getElementById('typing');
-let textToType = ''; // Will be set based on screen size
-const name1 = 'Jerome';
-const name2 = 'Juvelyn';
-let idx = 0;
-
-function type() {
-  if (typingTarget && idx < textToType.length) {
-    // Check if current character and next ones form a <br> or &nbsp;
-    if (textToType.substring(idx, idx + 4) === '<br>') {
-      typingTarget.innerHTML += '<br>';
-      idx += 4;
-    } else if (textToType.substring(idx, idx + 6) === '&nbsp;') {
-      typingTarget.innerHTML += '&nbsp;';
-      idx += 6;
-    } else {
-      typingTarget.innerHTML += textToType.charAt(idx);
-      idx++;
+/*********  Fade-in Letter Animation for Hero Title  *********/
+function setupFadeInHeroTitle() {
+    const typingTarget = document.getElementById('typing');
+    if (!typingTarget) {
+        console.error('Typing target element not found for fade-in effect.');
+        return;
     }
-    setTimeout(type, 100); // Adjusted typing speed slightly
-  } else if (typingTarget && idx >= textToType.length) {
-    // Optional: Add a class when typing is done, e.g., for a blinking cursor to stop
-    typingTarget.classList.add('typing-done');
-  }
+
+    const name1 = 'Jerome';
+    const name2 = 'Juvelyn';
+    let textToDisplay = '';
+
+    if (window.innerWidth <= 768) {
+        textToDisplay = `${name1}<br>&<br>${name2}`;
+    } else {
+        textToDisplay = `${name1}&nbsp;&nbsp;&nbsp;&&nbsp;&nbsp;&nbsp;${name2}`;
+    }
+
+    typingTarget.innerHTML = ''; // Clear previous content
+
+    const animatableUnits = [];
+    let current = 0;
+    while (current < textToDisplay.length) {
+        let unit = '';
+        let consumedLength = 0;
+        if (textToDisplay.substring(current, current + 4).toLowerCase() === '<br>') {
+            unit = '<br>';
+            consumedLength = 4;
+        } else if (textToDisplay.substring(current, current + 6).toLowerCase() === '&nbsp;') {
+            unit = '&nbsp;';
+            consumedLength = 6;
+        } else {
+            unit = textToDisplay[current];
+            consumedLength = 1;
+        }
+        animatableUnits.push(unit);
+        current += consumedLength;
+    }
+
+    const totalAnimationDuration = 3000; // Target total duration in milliseconds
+    const delayPerUnit = animatableUnits.length > 0 ? totalAnimationDuration / animatableUnits.length : 0;
+
+    animatableUnits.forEach((unit, index) => {
+        const span = document.createElement('span');
+        span.innerHTML = unit; // Use innerHTML to render <br> and &nbsp; correctly
+        
+        // <br> tags themselves don't fade but contribute to the timing of subsequent items.
+        // Other units (letters, &nbsp;) get the animation class.
+        if (unit !== '<br>') {
+            span.classList.add('hero-title-fade-char'); 
+            span.style.animationDelay = `${index * delayPerUnit}ms`;
+        }
+        typingTarget.appendChild(span);
+    });
 }
 
-window.addEventListener('DOMContentLoaded', () => {
-  if (window.innerWidth <= 768) {
-    // Mobile: Names on separate lines with & in between
-    textToType = `${name1}<br>&<br>${name2}`;
-  } else {
-    // Desktop: Names on one line with extra spaces around &
-    textToType = `${name1}&nbsp;&nbsp;&nbsp;&&nbsp;&nbsp;&nbsp;${name2}`;
-  }
-  
-  if (typingTarget) {
-    typingTarget.innerHTML = ''; // Clear initial content if any
-    idx = 0; // Reset index
-    type(); // Start typing animation
-  } else {
-    console.error('Typing target element not found');
-  }
-});
+window.addEventListener('DOMContentLoaded', setupFadeInHeroTitle);
+// Consider resize events if the text should change dynamically without a page reload
+// window.addEventListener('resize', setupFadeInHeroTitle); // Could be added but might be too frequent
 
 
 /*********  Fade-in on scroll  *********/
