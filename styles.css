@@ -93,28 +93,26 @@ body {
 
   /* Hero Title Fade-in Animation */
   .hero-title-fade-char {
-    opacity: 0; /* Start fully transparent */
-    animation: fadeInLetter 0.5s forwards; /* 'forwards' keeps it visible after animation */
-    display: inline-block; /* Ensures &nbsp; takes up space and behaves predictably */
-    margin-right: 0.1em; /* Adjust this value for desired spacing, e.g., 5px or 0.1em */
-    padding: 0 0.05em; /* Add tiny horizontal padding */
-    /* Font smoothing attempts */
-    -webkit-font-smoothing: antialiased; /* Improve font rendering on WebKit */
-    -moz-osx-font-smoothing: grayscale; /* Improve font rendering on Firefox */
+    opacity: 0;
+    animation: fadeInLetter 0.3s ease-out forwards; /* Adjusted timing and easing */
+    display: inline-block;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Add a very subtle transform to potentially improve layer promotion without causing clipping */
+    transform: translateZ(0.1px); 
   }
-
-  /* Optional: Remove margin from the very last character of the entire title if needed,
-     though typically the container's alignment handles this. 
-     This is more complex with dynamic content and multiple lines. 
-     For now, the uniform margin-right is simpler and often sufficient. */
 
   @keyframes fadeInLetter {
+    from {
+      opacity: 0;
+      /* Optional: slight transform from left if desired for 'left-to-right' feel per letter */
+      /* transform: translateX(-5px); */ 
+    }
     to {
-      opacity: 1; /* Fade to fully opaque */
+      opacity: 1;
+      /* transform: translateX(0); */
     }
   }
-
-  /* Ensure hero content (title, subtitle) is above the overlay */
 
 /* Wedding Party Section */
 .wedding-party .section__heading {

@@ -6,29 +6,35 @@ function setupFadeInHeroTitle() {
         return;
     }
 
-    const name1 = 'Jerome';
-    const name2 = 'Juvelyn';
+    const name1 = 'Jerome'; // Corrected name
+    const name2 = 'Juvelyn'; // Corrected name
     let textToDisplay = '';
 
+    // Responsive text layout
     if (window.innerWidth <= 768) {
         textToDisplay = `${name1}<br>&<br>${name2}`;
     } else {
-        textToDisplay = `${name1}&nbsp;&nbsp;&nbsp;&&nbsp;&nbsp;&nbsp;${name2}`;
+        // Using more non-breaking spaces for better visual separation on wider screens
+        textToDisplay = `${name1}&nbsp;&nbsp;&nbsp;&nbsp;&&nbsp;&nbsp;&nbsp;&nbsp;${name2}`;
     }
 
-    typingTarget.innerHTML = ''; // Clear previous content
+    typingTarget.innerHTML = ''; // Clear previous content to prevent duplication on resize/reload
 
+    // Create an array of units to animate (characters, <br>, &nbsp;)
     const animatableUnits = [];
     let current = 0;
     while (current < textToDisplay.length) {
         let unit = '';
         let consumedLength = 0;
+        // Check for <br> tag
         if (textToDisplay.substring(current, current + 4).toLowerCase() === '<br>') {
             unit = '<br>';
             consumedLength = 4;
+        // Check for &nbsp; entity (case-insensitive for robustness, though typically lowercase)
         } else if (textToDisplay.substring(current, current + 6).toLowerCase() === '&nbsp;') {
             unit = '&nbsp;';
             consumedLength = 6;
+        // Regular character
         } else {
             unit = textToDisplay[current];
             consumedLength = 1;
@@ -37,18 +43,21 @@ function setupFadeInHeroTitle() {
         current += consumedLength;
     }
 
-    const totalAnimationDuration = 3000; // Target total duration in milliseconds
-    const delayPerUnit = animatableUnits.length > 0 ? totalAnimationDuration / animatableUnits.length : 0;
+    const totalAnimationDuration = 2000; // Target total duration for all letters to appear (e.g., 2 seconds)
+    const delayPerUnit = animatableUnits.filter(u => u !== '<br>').length > 0 
+        ? totalAnimationDuration / animatableUnits.filter(u => u !== '<br>').length 
+        : 0;
 
-    animatableUnits.forEach((unit, index) => {
+    let currentDelay = 0;
+    animatableUnits.forEach((unit) => {
         const span = document.createElement('span');
-        span.innerHTML = unit; // Use innerHTML to render <br> and &nbsp; correctly
+        span.innerHTML = unit; // Use innerHTML to correctly render <br> and &nbsp;
         
-        // <br> tags themselves don't fade but contribute to the timing of subsequent items.
-        // Other units (letters, &nbsp;) get the animation class.
+        // Only apply animation class and delay to actual characters/entities, not <br>
         if (unit !== '<br>') {
-            span.classList.add('hero-title-fade-char'); 
-            span.style.animationDelay = `${index * delayPerUnit}ms`;
+            span.classList.add('hero-title-fade-char');
+            span.style.animationDelay = `${currentDelay}ms`;
+            currentDelay += delayPerUnit;
         }
         typingTarget.appendChild(span);
     });
