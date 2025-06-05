@@ -645,4 +645,185 @@ body {
   
   /* Intersection Observer toggles .visible */
   .visible{animation:fadeInUp .9s ease forwards;}
+
+/* Vertical Story Timeline */
+.vertical-timeline {
+  position: relative;
+  margin: 2rem auto;
+  padding: 2rem 0; /* Padding for top/bottom */
+  width: 90%;
+  max-width: 800px;
+  overflow: hidden; /* To contain floats */
+}
+
+.vertical-timeline::before { /* The actual timeline line */
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 100%;
+  background-color: var(--clr-sand);
+  z-index: 1; /* Behind items but above timeline background */
+}
+
+.vertical-timeline > .timeline-item {
+  display: block; /* Ensure block-level for float */
+  position: relative;
+  margin-bottom: 3rem; /* Increased vertical spacing */
+  width: 50%;
+  box-sizing: border-box;
+  z-index: 2; /* Above the line */
+  padding: 1rem 60px; /* Horizontal padding for space from center line */
+  clear: both; /* Each item clears previous floats, taking its own line */
+}
+
+.vertical-timeline > .timeline-item:nth-child(odd) {
+  float: left;
+  /* clear: left; */ /* Redundant due to clear: both on parent */
+  text-align: right; /* Text inside aligns right */
+}
+
+.vertical-timeline > .timeline-item:nth-child(even) {
+  float: right;
+  /* clear: right; */ /* Redundant due to clear: both on parent */
+  text-align: left; /* Text inside aligns left */
+}
+
+/* Clearfix for the .vertical-timeline container to contain the floats */
+.vertical-timeline::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Dot on the timeline */
+.vertical-timeline > .timeline-item::after { /* The dot */
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  box-sizing: border-box; /* Border is inside the width/height */
+  border-radius: 50%;
+  background-color: white;
+  border: 4px solid var(--clr-terracotta);
+  top: 20px; /* Adjust vertical position of dot */
+  z-index: 3; /* Above item's background, on the line */
+}
+
+.vertical-timeline > .timeline-item:nth-child(odd)::after {
+  /* With box-sizing: border-box, dot's visual width is 20px. Half is 10px. */
+  /* To center, its right edge should be 10px left of the item's right edge. */
+  right: -10px; 
+}
+
+
+.vertical-timeline > .timeline-item:nth-child(even)::after {
+  /* With box-sizing: border-box, dot's visual width is 20px. Half is 10px. */
+  /* To center, its left edge should be 10px right of the item's left edge. */
+  left: -10px;
+}
+
+
+.timeline-item__image { 
+  margin-bottom: 0.5rem; 
+  /* text-align is inherited from .timeline-item */ 
+}
+
+.timeline-item__image img { 
+  max-width: 100%; 
+  height: auto; 
+  border-radius: 8px; 
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+}
+
+.timeline-item__content { 
+  background-color: #fff; 
+  padding: 1rem; 
+  border-radius: 6px; 
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05); 
+  max-width: 350px; /* Constrain content width */ 
+  display: inline-block; /* Allows text-align from parent to work well and respects max-width */
+}
+
+.timeline-item__title {
+  font-family: var(--ff-script);
+  font-size: 1.8rem;
+  color: var(--clr-blush);
+  margin-bottom: 0.25rem;
+}
+
+.timeline-item__date {
+  font-family: var(--ff-sans);
+  font-size: 0.9rem;
+  color: var(--clr-sage);
+  margin-bottom: 0.5rem;
+  font-style: italic;
+}
+
+.timeline-item__content p:not(.timeline-item__date) {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--clr-brick);
+}
+
+
+/* Responsive adjustments for vertical timeline */
+@media (max-width: 768px) {
+  .vertical-timeline > .timeline-item {
+    width: 100%;
+    float: none !important; /* Override desktop floats */
+    clear: both !important; /* Ensure stacking */
+    padding-left: 50px; /* Space for line and dot */
+    padding-right: 20px;
+    text-align: left !important; /* Reset text-align from desktop */
+  }
+  .vertical-timeline > .timeline-item:nth-child(odd),
+  .vertical-timeline > .timeline-item:nth-child(even) {
+    float: none;
+    clear: both;
+    text-align: left;
+  }
+  .vertical-timeline > .timeline-item::after { /* Dot positioning for mobile */
+    left: 15px; /* Position dot relative to the new line position */
+    transform: translateX(-50%);
+    right: auto; /* Reset right positioning from desktop */
+  }
+  .vertical-timeline > .timeline-item:nth-child(odd)::after,
+  .vertical-timeline > .timeline-item:nth-child(even)::after {
+    left: 15px; /* Ensure all dots align to the left line on mobile */
+    transform: translateX(-50%);
+    right: auto;
+  }
+  .vertical-timeline::before {
+    left: 15px; /* Move line to the left */
+    transform: translateX(0);
+  }
+
+  .timeline-item,
+  .timeline-item:nth-child(odd),
+  .timeline-item:nth-child(even) {
+    width: 100%;
+    left: 0;
+    padding-left: 50px; /* Space for line and dot */
+    padding-right: 1rem;
+    text-align: left; /* All text left aligned on mobile */
+  }
+  
+  .timeline-item:nth-child(odd) .timeline-item__content,
+  .timeline-item:nth-child(even) .timeline-item__content {
+    text-align: left;
+  }
+
+  .timeline-item::after,
+  .timeline-item:nth-child(odd)::after,
+  .timeline-item:nth-child(even)::after {
+    left: 5px; /* Position dot on the line (which is now at 15px - 10px half dot) */
+    transform: translateX(0);
+  }
+  .timeline-item__image {
+    text-align: left;
+  }
+}
   
