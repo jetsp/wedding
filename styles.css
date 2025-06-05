@@ -48,8 +48,12 @@ body {
   .section__heading{
     font-family:var(--ff-script);
     font-size:2.5rem;
-    color:var(--clr-blush);
+    color:var(--clr-brick);
     margin-bottom:1.5rem;
+  }
+
+  .hero .section__heading {
+    color: var(--clr-blush); /* Keep original color for hero headings */
   }
   
   /* Hero */
