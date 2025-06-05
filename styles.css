@@ -1,4 +1,8 @@
 /*  ----------  Theme  ----------  */
+html {
+  scroll-behavior: smooth;
+}
+
 :root{
     --clr-terracotta:#C37D4A;
     --clr-brick:#94421D;
@@ -22,7 +26,7 @@ body {
   body{
     font-family:var(--ff-sans);
     line-height:1.6;
-    color:var(--clr-brick);
+    color:var(--clr-terracotta); /* Changed from --clr-brick for general content text */
     background:
       url('images/floral.jpg') left top / 380px 180px repeat,
       var(--clr-sand);
@@ -44,7 +48,7 @@ body {
   .section__heading{
     font-family:var(--ff-script);
     font-size:2.5rem;
-    color:var(--clr-terracotta);
+    color:var(--clr-blush);
     margin-bottom:1.5rem;
   }
   
@@ -107,6 +111,177 @@ body {
   }
 
   /* Ensure hero content (title, subtitle) is above the overlay */
+
+/* Wedding Party Section */
+.wedding-party .section__heading {
+  margin-bottom: 2rem; /* More space after heading */
+}
+
+.party-cards__wrap {
+  display: flex;
+  justify-content: center;
+  gap: 2rem; /* Space between Best Man and Maid of Honor cards */
+  margin-bottom: 2rem;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens if needed */
+}
+
+.party-card {
+  background: #fff;
+  border: 1px solid var(--clr-sand);
+  border-radius: 8px;
+  padding: 1.5rem;
+  width: 280px; /* Fixed width for cards */
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.party-card__img {
+  width: 120px; /* Or your desired size */
+  height: 120px; /* Or your desired size */
+  border-radius: 50%; /* Makes the image circular */
+  object-fit: cover; /* Ensures the image covers the area, cropping if necessary, without distortion */
+  margin-bottom: 1rem;
+  border: 3px solid var(--clr-sand-dark); /* Optional: adds a border like the placeholder had */
+}
+
+.party-card__name {
+  font-family: var(--ff-serif);
+  font-size: 1.5rem;
+  color: var(--clr-brick);
+  margin-bottom: 0.25rem;
+}
+
+.party-card__title {
+  font-size: 1rem;
+  color: var(--clr-terracotta);
+}
+
+.party-buttons__wrap {
+  display: flex;
+  justify-content: center;
+  gap: 1rem; /* Space between the two modal buttons */
+  flex-wrap: wrap;
+}
+
+/* Modal Toggle Buttons */
+.modal-toggle__wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+  border: 1px solid var(--clr-sand);
+  border-radius: 50px; /* Pill shape for the wrap */
+  overflow: hidden; /* To make children conform to border-radius */
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.modal-toggle__btn {
+  background-color: #fff;
+  color: var(--clr-terracotta);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  cursor: pointer;
+  font-family: var(--ff-sans);
+  font-size: 0.9rem;
+  transition: background-color 0.3s, color 0.3s;
+  flex-grow: 1; /* Make buttons take equal space if needed */
+}
+
+.modal-toggle__btn:not(:last-child) {
+  border-right: 1px solid var(--clr-sand); /* Separator line */
+}
+
+.modal-toggle__btn.active {
+  background-color: var(--clr-terracotta);
+  color: #fff;
+}
+
+.modal-toggle__btn:hover:not(.active) {
+  background-color: var(--clr-sand);
+}
+
+/* Modal Lists */
+.modal-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto 1rem auto; /* Centering the list block if it's narrower than modal content */
+  text-align: center;
+  display: none; /* Hidden by default, JS will show active list */
+  max-height: 300px; /* Adjust as needed - max height before scrolling */
+  overflow-y: auto; /* Enable vertical scroll if content exceeds max-height */
+  width: 90%; /* Ensure it doesn't touch modal edges, adjust as needed */
+  box-sizing: border-box; /* Include padding in width calculation */
+}
+
+.modal-list.active {
+  display: block; /* Show active list */
+}
+
+.modal-list li {
+  padding: 0.5rem 0.5rem; /* Added some horizontal padding */
+  font-size: 1.1rem;
+  color: var(--clr-brick);
+  text-align: left; /* Align names to the left within the list for readability */
+  padding-left: 20%; /* Indent list items a bit, adjust as needed */
+}
+
+.modal-list li:not(:last-child) {
+  border-bottom: 1px dashed var(--clr-sand); /* Dashed separator for list items */
+}
+
+/* Custom scrollbar for webkit browsers (optional, for aesthetics) */
+.modal-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-list::-webkit-scrollbar-track {
+  background: var(--clr-sand);
+  border-radius: 4px;
+}
+
+.modal-list::-webkit-scrollbar-thumb {
+  background: var(--clr-terracotta);
+  border-radius: 4px;
+}
+
+.modal-list::-webkit-scrollbar-thumb:hover {
+  background: var(--clr-brick);
+}
+
+/* Timeline Adjustments */
+.timeline__items {
+  display: flex;
+  flex-direction: column; /* Stack timeline events vertically */
+  align-items: center;   /* Center items if they don't take full width */
+  gap: 0.5rem;           /* Space between timeline events */
+}
+
+.timeline__item {
+  width: 100%; /* Allow timeline items to take available width if needed by text content */
+  max-width: 600px; /* Optional: constrain max width of timeline items */
+}
+
+.timeline__event {
+  text-align: center; /* Center the text (time | description) within each event paragraph */
+  font-size: 1.1rem;  /* Adjust font size as desired */
+  line-height: 1.5;
+  padding: 0.25rem 0; /* Add a little vertical padding */
+}
+
+.timeline__event strong {
+  font-weight: 600; /* Ensure the time part is sufficiently bold */
+  margin-right: 0.5em; /* Space before the pipe */
+}
+
+/* Optional: Add a separator line between timeline items if desired, can be removed if not needed */
+/*
+.timeline__item:not(:last-child) {
+  border-bottom: 1px solid var(--clr-sand); 
+  padding-bottom: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+*/
   .hero > * {
     position: relative;
     z-index: 2;
@@ -148,7 +323,7 @@ body {
 }
 
 .countdown .section__heading {
-  color: var(--clr-terracotta); /* Match other section headings */
+  color: var(--clr-blush); /* Match other section headings */
   margin-bottom: 0; /* Remove bottom margin to allow timer to 'hang' directly below */
   padding-top: 2rem; /* Add some padding above heading if needed, since section top padding is 0 */
   position: relative; /* For z-index if needed, and to be a positioning context */
@@ -258,10 +433,10 @@ body {
   /* Attire */
   .attire__wrap {
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap; /* Allow items to wrap to the next line */
     justify-content: center;
     gap: 2rem;
-    max-width: 1000px;
+    max-width: 620px; /* Adjusted max-width to better fit two items (280px*2 + 2rem gap + padding) */
     margin: 2rem auto;
     padding: 0 1rem;
   }
@@ -271,9 +446,10 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 1.5rem;
-    flex: 1;
-    min-width: 250px;
-    max-width: 280px;
+    flex: 0 1 calc(50% - 1rem); /* Flex-grow:0, Flex-shrink:1, Basis: 50% minus half the gap */
+    min-width: 250px; /* Keep a minimum width */
+    max-width: 280px; /* Max width for an individual item */
+    box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
   }
   .attire__img {
     width: 100%; /* Image will take full width of its parent */
@@ -338,7 +514,7 @@ body {
   /* Calendar */
   .calendar__wrap{display:flex;flex-direction:column;align-items:center;gap:1rem;}
   .cal{border-collapse:collapse;font-family:var(--ff-sans);font-size:.9rem;}
-  .cal caption{font-family:var(--ff-serif);font-weight:700;font-size:1.2rem;margin-bottom:.5rem;color:var(--clr-blush);}
+  .cal caption{font-family:var(--ff-serif);font-weight:700;font-size:1.2rem;margin-bottom:.5rem;color:var(--clr-terracotta);}
   .cal th,.cal td{border:1px solid var(--clr-sand);padding:.35rem;width:2.2rem;height:2.2rem;text-align:center;}
   .cal__day--mark{background:var(--clr-terracotta);color:#fff;font-weight:700;border-color:var(--clr-terracotta);}
   .calendar__note{font-style:italic;color:var(--clr-sage);}
@@ -397,8 +573,9 @@ body {
   .modal__heading{
     font-family:var(--ff-script);
     font-size:2rem;
-    color:var(--clr-terracotta);
+    color:var(--clr-blush);
     margin-bottom:1rem;
+    text-align: center;
   }
   .modal__form label{
     display:block;text-align:left;font-family:var(--ff-serif);margin:.8rem 0;

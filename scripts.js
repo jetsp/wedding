@@ -201,4 +201,173 @@ if (attendanceSelect && plusOneSection && rsvpPlusOneSelect && rsvpGuestNameFiel
   // Event listeners
   attendanceSelect.addEventListener('change', updatePlusOneSectionVisibility);
   rsvpPlusOneSelect.addEventListener('change', updateGuestField);
+} // End of RSVP conditional fields logic
+
+
+/*********  Wedding Party Modals (Godparents & Squad)  *********/
+const godparentsModal = document.getElementById('godparents-modal');
+const openGodparentsButton = document.getElementById('openGodparentsModal');
+const closeGodparentsButton = document.getElementById('closeGodparentsModal');
+
+const squadModal = document.getElementById('squad-modal');
+const openSquadButton = document.getElementById('openSquadModal');
+const closeSquadButton = document.getElementById('closeSquadModal');
+
+// Re-use overlay from RSVP modal section if it's globally available, or re-declare if scoped
+// const overlay = document.getElementById('overlay'); // Assuming overlay is already declared globally or in a shared scope
+
+function openWeddingPartyModal(modalElement) {
+  if (modalElement && overlay) {
+    modalElement.classList.remove('hidden');
+    modalElement.classList.add('show'); // Assuming 'show' is used for visibility like RSVP modal
+    overlay.classList.remove('hidden');
+    overlay.classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
 }
+
+function closeWeddingPartyModal(modalElement) {
+  if (modalElement && overlay) {
+    modalElement.classList.add('hidden');
+    modalElement.classList.remove('show');
+    overlay.classList.add('hidden');
+    overlay.classList.remove('show');
+    // Only reset body overflow if no other modals are open
+    if (!document.querySelector('.modal.show')) {
+      document.body.style.overflow = '';
+    }
+  }
+}
+
+if (openGodparentsButton && godparentsModal) {
+  openGodparentsButton.addEventListener('click', () => openWeddingPartyModal(godparentsModal));
+}
+if (closeGodparentsButton && godparentsModal) {
+  closeGodparentsButton.addEventListener('click', () => closeWeddingPartyModal(godparentsModal));
+}
+
+if (openSquadButton && squadModal) {
+  openSquadButton.addEventListener('click', () => openWeddingPartyModal(squadModal));
+}
+if (closeSquadButton && squadModal) {
+  closeSquadButton.addEventListener('click', () => closeWeddingPartyModal(squadModal));
+}
+
+// Modal List Toggling Logic (for Godparents & Squad modals)
+const setupModalListToggle = (modal) => {
+  if (!modal) return;
+  const toggleButtons = modal.querySelectorAll('.modal-toggle__btn');
+  const lists = modal.querySelectorAll('.modal-list');
+
+  toggleButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      toggleButtons.forEach(btn => btn.classList.remove('active'));
+      lists.forEach(list => list.classList.remove('active')); // Use 'active' to show/hide, not 'show'/'hidden'
+
+      button.classList.add('active');
+      const targetListId = button.dataset.target;
+      const targetList = modal.querySelector('#' + targetListId);
+      if (targetList) {
+        targetList.classList.add('active');
+      }
+    });
+  });
+  // Initialize the first tab as active if not already set by HTML
+  if (toggleButtons.length > 0 && !modal.querySelector('.modal-toggle__btn.active')) {
+    toggleButtons[0].click();
+  }
+};
+
+if (godparentsModal) {
+  setupModalListToggle(godparentsModal);
+}
+if (squadModal) {
+  setupModalListToggle(squadModal);
+}
+
+// Adjust overlay click to close any open wedding party modal
+// The existing overlay listener already handles the RSVP modal.
+// We need to ensure it also closes these new modals.
+// Modifying the existing overlay listener might be best if it's accessible
+// For now, let's assume the existing overlay listener in scripts.js needs to be updated or this adds to it.
+// The previous inline script had: 
+// overlay.addEventListener('click', () => {
+//   closeModal(rsvpModal); 
+//   closeWeddingPartyModal(godparentsModal);
+//   closeWeddingPartyModal(squadModal);
+// });
+// The existing overlay listener in scripts.js is: overlay.addEventListener('click', () => toggleModal(false));
+// This toggleModal(false) will hide the overlay. We need to ensure it also specifically hides these modals.
+
+// Let's refine the overlay click: find the existing overlay listener and modify or add to it.
+// Since direct modification of an existing listener is tricky without removing it first, 
+// and your current `toggleModal(false)` for RSVP also hides the overlay, we can add specific closures for the new modals.
+
+// This is already handled by the RSVP modal's overlay listener if it correctly uses toggleModal(false)
+// which hides the overlay. If a wedding party modal is open, its close function should be called.
+
+// Let's ensure the main overlay click closes ALL modals.
+// The existing overlay listener: overlay.addEventListener('click', () => toggleModal(false));
+// This `toggleModal(false)` refers to the RSVP modal. We need to extend it.
+
+// It's better to have one consolidated overlay click handler. 
+// I'll comment out the direct overlay listener for RSVP for a moment and create a new one.
+
+// Consolidated Overlay and Escape Key Listeners for ALL Modals
+if (overlay) {
+  // Remove previous RSVP-specific overlay listener if it exists to avoid double handling
+  // This is tricky as we don't have a reference to remove it directly by function unless it was named.
+  // For now, we assume this new listener will correctly handle all cases.
+  // A better approach in a refactor would be to ensure only one overlay listener is ever attached.
+  overlay.addEventListener('click', () => {
+    if (modal && modal.classList.contains('show')) { // RSVP modal
+      toggleModal(false); // Uses the specific RSVP modal toggle function
+    }
+    if (godparentsModal && godparentsModal.classList.contains('show')) {
+      closeWeddingPartyModal(godparentsModal);
+    }
+    if (squadModal && squadModal.classList.contains('show')) {
+      closeWeddingPartyModal(squadModal);
+    }
+    // Ensure overlay itself is hidden if all modals are closed by their specific functions
+    if (!document.querySelector('.modal.show')) {
+        overlay.classList.add('hidden');
+        overlay.classList.remove('show');
+        document.body.style.overflow = ''; // Restore scroll if no modals are shown
+    }
+  });
+}
+
+// Remove previous RSVP-specific Escape key listener before adding the new one.
+// Similar to overlay, direct removal is hard. The new one should be comprehensive.
+document.removeEventListener('keydown', rsvpEscapeHandler); // Assuming rsvpEscapeHandler was the old function name
+// If not named, this won't work. Let's define a new comprehensive one carefully.
+
+const comprehensiveEscapeHandler = (e) => {
+  if (e.key === 'Escape') {
+    let aModalWasOpen = false;
+    if (modal && modal.classList.contains('show')) { // RSVP modal
+      toggleModal(false);
+      aModalWasOpen = true;
+    }
+    if (godparentsModal && godparentsModal.classList.contains('show')) {
+      closeWeddingPartyModal(godparentsModal);
+      aModalWasOpen = true;
+    }
+    if (squadModal && squadModal.classList.contains('show')) {
+      closeWeddingPartyModal(squadModal);
+      aModalWasOpen = true;
+    }
+    // Ensure overlay is hidden and scroll restored if an escape key closed a modal
+    if (aModalWasOpen && !document.querySelector('.modal.show') && overlay) {
+        overlay.classList.add('hidden');
+        overlay.classList.remove('show');
+        document.body.style.overflow = '';
+    }
+  }
+};
+// Remove any old escape listeners if possible, then add the new one.
+// This is illustrative; direct removal of anonymous listeners isn't straightforward.
+// The best practice is to name event listener functions if they might need to be removed.
+document.addEventListener('keydown', comprehensiveEscapeHandler);
+

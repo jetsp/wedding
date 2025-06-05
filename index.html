@@ -62,22 +62,75 @@
       </div>
     </section>
 
+    <!-- Wedding Party -->
+    <section class="section wedding-party" id="wedding-party">
+      <h2 class="section__heading">Meet the Wedding Party</h2>
+      <div class="party-cards__wrap fade">
+        <div class="party-card">
+          <img src="images/mickey.jpg" alt="Photo of Best Man" class="party-card__img">
+          <h3 class="party-card__name">Mickey Mouse</h3>
+          <p class="party-card__title">Best Man</p>
+        </div>
+        <div class="party-card">
+          <img src="images/roach.jpg" alt="Photo of Jewel E. San Pedro" class="party-card__img">
+          <h3 class="party-card__name">Jewel E. San Pedro</h3>
+          <p class="party-card__title">Maid of Honor</p>
+        </div>
+      </div>
+      <div class="party-buttons__wrap fade">
+        <button class="btn" id="openGodparentsModal">Meet the Godparents</button>
+        <button class="btn" id="openSquadModal">Meet the Entourage</button>
+      </div>
+    </section>
+
     <!-- Attire  -->
     <section class="section attire" id="attire">  
       <h2 class="section__heading">Dress Code</h2>
       <div class="attire__wrap fade">
         <div class="attire__men">
-          <img src="images/godfather.png" alt="Men’s attire" class="attire__img" />
+          <img src="images/godfather.png" alt="Bestman’s attire" class="attire__img" />
           <div class="attire__desc">
-            <p>Men's Attire<br>
+            <p><b>Bestman's Attire</b><br>
             Semi-formal garden attire<br>
             Think muted earth tones, tailored suits, and classic elegance</p>
           </div>
         </div>
         <div class="attire__women">
-          <img src="images/godmother.png" alt="Women’s attire" class="attire__img" />
+          <img src="images/godmother.png" alt="Maid of Honor’s attire" class="attire__img" />
           <div class="attire__desc">
-            <p>Women's Attire<br>
+            <p><b>Maid Of Honor's Attire</b><br>
+            Semi-formal garden attire<br>
+            Think flowy fabrics, muted earth tones, and elegant gowns</p>
+          </div>
+        </div>
+        <div class="attire__men">
+          <img src="images/godfather.png" alt="Godfather’s attire" class="attire__img" />
+          <div class="attire__desc">
+            <p><b>Godfather's Attire</b><br>
+            Semi-formal garden attire<br>
+            Think muted earth tones, tailored suits, and classic elegance</p>
+          </div>
+        </div>
+        <div class="attire__women">
+          <img src="images/godmother.png" alt="Godmother’s attire" class="attire__img" />
+          <div class="attire__desc">
+            <p><b>Godmother's Attire</b><br>
+            Semi-formal garden attire<br>
+            Think flowy fabrics, muted earth tones, and elegant gowns</p>
+          </div>
+        </div>
+        <div class="attire__men">
+          <img src="images/groomsmen.png" alt="Groomsmen’s attire" class="attire__img" />
+          <div class="attire__desc">
+            <p><b>Groomsmen's Attire</b><br>
+            Semi-formal garden attire<br>
+            Think muted earth tones, tailored suits, and classic elegance</p>
+          </div>
+        </div>
+        <div class="attire__women">
+          <img src="images/bridesmaid.png" alt="Bridesmaid’s attire" class="attire__img" />
+          <div class="attire__desc">
+            <p><b>Bridesmaid's Attire</b><br>
             Semi-formal garden attire<br>
             Think flowy fabrics, muted earth tones, and elegant gowns</p>
           </div>
@@ -91,24 +144,19 @@
       <div class="timeline__wrap fade">
         <div class="timeline__items">
           <div class="timeline__item">
-            <span class="timeline__time">15:30</span>
-            <p class="timeline__desc">Guests arrive and welcome drinks</p>
+            <p class="timeline__event"><strong>15:30</strong> | Guests arrive and welcome drinks</p>
           </div>
           <div class="timeline__item">
-            <span class="timeline__time">16:00</span>
-            <p class="timeline__desc">Ceremony begins</p>
+            <p class="timeline__event"><strong>16:00</strong> | Ceremony begins</p>
           </div>
           <div class="timeline__item">
-            <span class="timeline__time">17:00</span>
-            <p class="timeline__desc">Cocktail hour and photos</p>
+            <p class="timeline__event"><strong>17:00</strong> | Cocktail hour and photos</p>
           </div>
           <div class="timeline__item">
-            <span class="timeline__time">18:00</span>
-            <p class="timeline__desc">Reception dinner</p>
+            <p class="timeline__event"><strong>18:00</strong> | Reception dinner</p>
           </div>
           <div class="timeline__item">
-            <span class="timeline__time">21:00</span>
-            <p class="timeline__desc">Dancing and celebration</p>
+            <p class="timeline__event"><strong>21:00</strong> | Dancing and celebration</p>
           </div>
         </div>
       </div>
@@ -182,6 +230,110 @@
     </section>
 
   </main>
+
+  <!-- Godparents Modal -->
+  <div id="godparents-modal" class="modal hidden">
+    <button class="modal__close" id="closeGodparentsModal">&times;</button>
+    <h3 class="modal__heading">The Godparents</h3>
+    <div class="modal-toggle__wrap">
+      <button class="modal-toggle__btn active" data-target="godmothers-list">Godmothers</button>
+      <button class="modal-toggle__btn" data-target="godfathers-list">Godfathers</button>
+    </div>
+    <ul id="godmothers-list" class="modal-list active">
+      <li>Minnie Mouse</li>
+      <li>Daisy Duck</li>
+      <li>Clarabelle Cow</li>
+      <li>Wilma Flintstone</li>
+      <li>Betty Rubble</li>
+      <li>Marge Simpson</li>
+      <li>Lois Griffin</li>
+      <li>Turanga Leela</li>
+      <li>Wonder Woman (Diana Prince)</li>
+      <li>Storm (Ororo Munroe)</li>
+      <li>Jean Grey</li>
+      <li>Bulma Brief</li>
+      <li>Chi-Chi</li>
+      <li>Android 18</li>
+      <li>Nami (One Piece)</li>
+      <li>Nico Robin</li>
+      <li>Sakura Haruno</li>
+      <li>Hinata Hyuga</li>
+      <li>Queen Serenity</li>
+    </ul>
+    <ul id="godfathers-list" class="modal-list">
+      <li>Mickey Mouse</li>
+      <li>Goofy</li>
+      <li>Donald Duck</li>
+      <li>Fred Flintstone</li>
+      <li>Barney Rubble</li>
+      <li>Homer Simpson</li>
+      <li>Peter Griffin</li>
+      <li>Philip J. Fry</li>
+      <li>Superman (Clark Kent)</li>
+      <li>Cyclops (Scott Summers)</li>
+      <li>Wolverine (Logan)</li>
+      <li>Vegeta</li>
+      <li>Goku</li>
+      <li>Piccolo</li>
+      <li>Monkey D. Luffy</li>
+      <li>Roronoa Zoro</li>
+      <li>Sanji Vinsmoke</li>
+      <li>Kakashi Hatake</li>
+      <li>Naruto Uzumaki</li>
+    </ul>
+  </div>
+
+  <!-- Wedding Squad Modal -->
+  <div id="squad-modal" class="modal hidden">
+    <button class="modal__close" id="closeSquadModal">&times;</button>
+    <h3 class="modal__heading">The Entourage</h3>
+    <div class="modal-toggle__wrap">
+      <button class="modal-toggle__btn active" data-target="bridesmaids-list">Bridesmaids</button>
+      <button class="modal-toggle__btn" data-target="groomsmen-list">Groomsmen</button>
+    </div>
+    <ul id="bridesmaids-list" class="modal-list active">
+      <li>Lola Bunny</li>
+      <li>Petunia Pig</li>
+      <li>Tina Russo Duck</li>
+      <li>Daphne Blake</li>
+      <li>Velma Dinkley</li>
+      <li>Lisa Simpson</li>
+      <li>Meg Griffin</li>
+      <li>Amy Wong</li>
+      <li>Hawkgirl (Shayera Hol)</li>
+      <li>Rogue (Anna Marie)</li>
+      <li>Jubilee (Jubilation Lee)</li>
+      <li>Videl Satan</li>
+      <li>Princess Peach</li>
+      <li>Princess Daisy</li>
+      <li>Chun-Li</li>
+      <li>Cammy White</li>
+      <li>Asuna Yuuki (Sword Art Online)</li>
+      <li>Lucy Heartfilia (Fairy Tail)</li>
+      <li>Erza Scarlet (Fairy Tail)</li>
+    </ul>
+    <ul id="groomsmen-list" class="modal-list">
+      <li>Bugs Bunny</li>
+      <li>Daffy Duck</li>
+      <li>Porky Pig</li>
+      <li>Shaggy Rogers</li>
+      <li>Fred Jones</li>
+      <li>Bart Simpson</li>
+      <li>Stewie Griffin</li>
+      <li>Bender Rodriguez</li>
+      <li>The Flash (Barry Allen)</li>
+      <li>Gambit (Remy LeBeau)</li>
+      <li>Iceman (Bobby Drake)</li>
+      <li>Krillin</li>
+      <li>Mario</li>
+      <li>Luigi</li>
+      <li>Ken Masters</li>
+      <li>Ryu (Street Fighter)</li>
+      <li>Kirito (Kazuto Kirigaya)</li>
+      <li>Natsu Dragneel (Fairy Tail)</li>
+      <li>Gray Fullbuster (Fairy Tail)</li>
+    </ul>
+  </div>
 
   <!-- RSVP Modal -->
   <div id="overlay" class="overlay hidden"></div>
