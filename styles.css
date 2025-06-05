@@ -97,6 +97,7 @@ body {
     animation: fadeInLetter 0.5s forwards; /* 'forwards' keeps it visible after animation */
     display: inline-block; /* Ensures &nbsp; takes up space and behaves predictably */
     margin-right: 0.1em; /* Adjust this value for desired spacing, e.g., 5px or 0.1em */
+    padding: 0 0.05em; /* Add tiny horizontal padding */
     /* Font smoothing attempts */
     -webkit-font-smoothing: antialiased; /* Improve font rendering on WebKit */
     -moz-osx-font-smoothing: grayscale; /* Improve font rendering on Firefox */
