@@ -78,6 +78,7 @@ body {
     position: relative; /* For the overlay */
     color: #ffffff; /* White text color for hero content */
     text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Subtle shadow for text readability */
+    /* Reverted torn paper effect */
   }
 
   .hero::before {
@@ -156,15 +157,8 @@ body {
   color: var(--clr-terracotta);
 }
 
-.party-buttons__wrap {
-  display: flex;
-  justify-content: center;
-  gap: 1rem; /* Space between the two modal buttons */
-  flex-wrap: wrap;
-}
-
-/* Modal Toggle Buttons */
-.modal-toggle__wrap {
+/* Entourage Toggle Buttons (replaces old modal-toggle styles) */
+.entourage-toggle__wrap {
   display: flex;
   justify-content: center;
   margin-bottom: 1rem;
@@ -176,7 +170,7 @@ body {
   margin-right: auto;
 }
 
-.modal-toggle__btn {
+.entourage-toggle__btn {
   background-color: #fff;
   color: var(--clr-terracotta);
   border: none;
@@ -188,66 +182,64 @@ body {
   flex-grow: 1; /* Make buttons take equal space if needed */
 }
 
-.modal-toggle__btn:not(:last-child) {
+.entourage-toggle__btn:not(:last-child) {
   border-right: 1px solid var(--clr-sand); /* Separator line */
 }
 
-.modal-toggle__btn.active {
+.entourage-toggle__btn.active {
   background-color: var(--clr-terracotta);
   color: #fff;
 }
 
-.modal-toggle__btn:hover:not(.active) {
+.entourage-toggle__btn:hover:not(.active) {
   background-color: var(--clr-sand);
 }
 
-/* Modal Lists */
-.modal-list {
-  list-style: none;
-  padding: 0;
-  margin: 0 auto 1rem auto; /* Centering the list block if it's narrower than modal content */
-  text-align: center;
-  display: none; /* Hidden by default, JS will show active list */
-  max-height: 300px; /* Adjust as needed - max height before scrolling */
-  overflow-y: auto; /* Enable vertical scroll if content exceeds max-height */
-  overscroll-behavior-y: contain; /* Prevent scroll chaining on the Y-axis */
-  width: 90%; /* Ensure it doesn't touch modal edges, adjust as needed */
-  box-sizing: border-box; /* Include padding in width calculation */
+/* Styles for newly added entourage lists */
+.additional-entourage {
+  margin-top: 2.5rem; /* Space above the sponsors section */
+  text-align: center; /* Center the subheadings and lists */
 }
 
-.modal-list.active {
+.section__subheading {
+  font-family: var(--ff-script); /* Consistent with section headings */
+  font-size: 2rem; /* Slightly smaller than main section heading */
+  color: var(--clr-blush); /* Consistent color */
+  margin-top: 2rem; /* Space above each main sponsor type */
+  margin-bottom: 1rem;
+}
+
+.entourage-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto 1.5rem auto; /* Center list and add bottom margin */
+  max-width: 400px; /* Control width of the list */
+  display: none; /* Hidden by default, JS will show active list */
+}
+
+.entourage-list.active {
   display: block; /* Show active list */
 }
 
-.modal-list li {
-  padding: 0.5rem 0.5rem; /* Added some horizontal padding */
-  font-size: 1.1rem;
-  color: var(--clr-brick);
-  text-align: left; /* Align names to the left within the list for readability */
-  padding-left: 20%; /* Indent list items a bit, adjust as needed */
+.entourage-list li {
+  padding: 0.3rem 0;
+  font-size: 1rem;
+  color: var(--clr-terracotta);
+  text-align: center; /* Center names in the list */
 }
 
-.modal-list li:not(:last-child) {
-  border-bottom: 1px dashed var(--clr-sand); /* Dashed separator for list items */
+.entourage-list li:not(:last-child) {
+  border-bottom: 1px dashed var(--clr-sand);
 }
 
-/* Custom scrollbar for webkit browsers (optional, for aesthetics) */
-.modal-list::-webkit-scrollbar {
-  width: 8px;
-}
-
-.modal-list::-webkit-scrollbar-track {
-  background: var(--clr-sand);
-  border-radius: 4px;
-}
-
-.modal-list::-webkit-scrollbar-thumb {
-  background: var(--clr-terracotta);
-  border-radius: 4px;
-}
-
-.modal-list::-webkit-scrollbar-thumb:hover {
-  background: var(--clr-brick);
+/* Ensure party cards and new lists stack nicely on smaller screens */
+@media (max-width: 768px) {
+  .additional-entourage {
+    margin-top: 2rem;
+  }
+  .entourage-list {
+    max-width: 90%; /* Allow more width on smaller screens */
+  }
 }
 
 /* Timeline Adjustments */

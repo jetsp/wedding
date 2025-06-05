@@ -15,8 +15,8 @@
 
     <!-- Landing / Hero -->
     <section class="section hero" id="hero">
-      <h1 class="hero__title" id="typing"></h1>
-      <p class="hero__subtitle fade">We joyfully invite you to celebrate our marriage</p>
+        <h1 class="hero__title" id="typing"></h1>
+        <p class="hero__subtitle fade">We joyfully invite you to celebrate our marriage</p>
     </section>
 
     <!-- Countdown Timer -->
@@ -121,7 +121,23 @@
 
     <!-- Wedding Party -->
     <section class="section wedding-party" id="wedding-party">
-      <h2 class="section__heading">Meet the Wedding Party</h2>
+      <!-- Parents Section -->
+      <h2 class="section__heading fade">With Grateful Hearts, Our Parents</h2>
+      <div class="party-cards__wrap fade">
+        <div class="party-card">
+          <img src="images/car.jpg" alt="Parents of the Groom" class="party-card__img">
+          <h3 class="party-card__name">Mr. Groom's Father & Mrs. Groom's Mother</h3>
+          <p class="party-card__title">Parents of the Groom</p>
+        </div>
+        <div class="party-card">
+          <img src="images/seal.jpg" alt="Parents of the Bride" class="party-card__img">
+          <h3 class="party-card__name">Mr. Bride's Father & Mrs. Bride's Mother</h3>
+          <p class="party-card__title">Parents of the Bride</p>
+        </div>
+      </div>
+      <!-- End Parents Section -->
+
+      <h2 class="section__heading">Meet the Entourage!</h2>
       <div class="party-cards__wrap fade">
         <div class="party-card">
           <img src="images/mickey.jpg" alt="Photo of Best Man" class="party-card__img">
@@ -134,9 +150,110 @@
           <p class="party-card__title">Maid of Honor</p>
         </div>
       </div>
-      <div class="party-buttons__wrap fade">
-        <button class="btn" id="openGodparentsModal">Meet the Godparents</button>
-        <button class="btn" id="openSquadModal">Meet the Entourage</button>
+      <div class="additional-entourage fade">
+        <h3 class="section__subheading">Principal Sponsors</h3>
+        <div class="entourage-toggle__wrap" data-group="principal-sponsors">
+          <button class="entourage-toggle__btn active" data-target="godmothers-list">Godmothers</button>
+          <button class="entourage-toggle__btn" data-target="godfathers-list">Godfathers</button>
+        </div>
+        <div class="sponsors-category">
+          <ul class="entourage-list active" id="godmothers-list">
+            <li>Minnie Mouse</li>
+            <li>Daisy Duck</li>
+            <li>Clarabelle Cow</li>
+            <li>Wilma Flintstone</li>
+            <li>Betty Rubble</li>
+            <li>Marge Simpson</li>
+            <li>Lois Griffin</li>
+            <li>Turanga Leela</li>
+            <li>Wonder Woman (Diana Prince)</li>
+            <li>Storm (Ororo Munroe)</li>
+            <li>Jean Grey</li>
+            <li>Bulma Brief</li>
+            <li>Chi-Chi</li>
+            <li>Android 18</li>
+            <li>Nami (One Piece)</li>
+            <li>Nico Robin</li>
+            <li>Sakura Haruno</li>
+            <li>Hinata Hyuga</li>
+            <li>Queen Serenity</li>
+          </ul>
+        </div>
+        <div class="sponsors-category">
+          <ul class="entourage-list" id="godfathers-list">
+            <li>Mickey Mouse</li>
+            <li>Goofy</li>
+            <li>Donald Duck</li>
+            <li>Fred Flintstone</li>
+            <li>Barney Rubble</li>
+            <li>Homer Simpson</li>
+            <li>Peter Griffin</li>
+            <li>Philip J. Fry</li>
+            <li>Superman (Clark Kent)</li>
+            <li>Cyclops (Scott Summers)</li>
+            <li>Wolverine (Logan)</li>
+            <li>Vegeta</li>
+            <li>Goku</li>
+            <li>Piccolo</li>
+            <li>Monkey D. Luffy</li>
+            <li>Roronoa Zoro</li>
+            <li>Sanji Vinsmoke</li>
+            <li>Kakashi Hatake</li>
+            <li>Naruto Uzumaki</li>
+          </ul>
+        </div>
+
+        <h3 class="section__subheading">Secondary Sponsors</h3>
+        <div class="entourage-toggle__wrap" data-group="secondary-sponsors">
+          <button class="entourage-toggle__btn active" data-target="bridesmaids-list">Bridesmaids</button>
+          <button class="entourage-toggle__btn" data-target="groomsmen-list">Groomsmen</button>
+        </div>
+        <div class="sponsors-category">
+          <ul class="entourage-list active" id="bridesmaids-list">
+            <li>Lola Bunny</li>
+            <li>Petunia Pig</li>
+            <li>Tina Russo Duck</li>
+            <li>Daphne Blake</li>
+            <li>Velma Dinkley</li>
+            <li>Lisa Simpson</li>
+            <li>Meg Griffin</li>
+            <li>Amy Wong</li>
+            <li>Hawkgirl (Shayera Hol)</li>
+            <li>Rogue (Anna Marie)</li>
+            <li>Jubilee (Jubilation Lee)</li>
+            <li>Videl Satan</li>
+            <li>Princess Peach</li>
+            <li>Princess Daisy</li>
+            <li>Chun-Li</li>
+            <li>Cammy White</li>
+            <li>Asuna Yuuki (Sword Art Online)</li>
+            <li>Lucy Heartfilia (Fairy Tail)</li>
+            <li>Erza Scarlet (Fairy Tail)</li>
+          </ul>
+        </div>
+        <div class="sponsors-category">
+          <ul class="entourage-list" id="groomsmen-list">
+            <li>Bugs Bunny</li>
+            <li>Daffy Duck</li>
+            <li>Porky Pig</li>
+            <li>Shaggy Rogers</li>
+            <li>Fred Jones</li>
+            <li>Bart Simpson</li>
+            <li>Stewie Griffin</li>
+            <li>Bender Rodriguez</li>
+            <li>The Flash (Barry Allen)</li>
+            <li>Gambit (Remy LeBeau)</li>
+            <li>Iceman (Bobby Drake)</li>
+            <li>Krillin</li>
+            <li>Mario</li>
+            <li>Luigi</li>
+            <li>Ken Masters</li>
+            <li>Ryu (Street Fighter)</li>
+            <li>Kirito (Kazuto Kirigaya)</li>
+            <li>Natsu Dragneel (Fairy Tail)</li>
+            <li>Gray Fullbuster (Fairy Tail)</li>
+          </ul>
+        </div>
       </div>
     </section>
 
@@ -288,109 +405,9 @@
 
   </main>
 
-  <!-- Godparents Modal -->
-  <div id="godparents-modal" class="modal hidden">
-    <button class="modal__close" id="closeGodparentsModal">&times;</button>
-    <h3 class="modal__heading">The Godparents</h3>
-    <div class="modal-toggle__wrap">
-      <button class="modal-toggle__btn active" data-target="godmothers-list">Godmothers</button>
-      <button class="modal-toggle__btn" data-target="godfathers-list">Godfathers</button>
-    </div>
-    <ul id="godmothers-list" class="modal-list active">
-      <li>Minnie Mouse</li>
-      <li>Daisy Duck</li>
-      <li>Clarabelle Cow</li>
-      <li>Wilma Flintstone</li>
-      <li>Betty Rubble</li>
-      <li>Marge Simpson</li>
-      <li>Lois Griffin</li>
-      <li>Turanga Leela</li>
-      <li>Wonder Woman (Diana Prince)</li>
-      <li>Storm (Ororo Munroe)</li>
-      <li>Jean Grey</li>
-      <li>Bulma Brief</li>
-      <li>Chi-Chi</li>
-      <li>Android 18</li>
-      <li>Nami (One Piece)</li>
-      <li>Nico Robin</li>
-      <li>Sakura Haruno</li>
-      <li>Hinata Hyuga</li>
-      <li>Queen Serenity</li>
-    </ul>
-    <ul id="godfathers-list" class="modal-list">
-      <li>Mickey Mouse</li>
-      <li>Goofy</li>
-      <li>Donald Duck</li>
-      <li>Fred Flintstone</li>
-      <li>Barney Rubble</li>
-      <li>Homer Simpson</li>
-      <li>Peter Griffin</li>
-      <li>Philip J. Fry</li>
-      <li>Superman (Clark Kent)</li>
-      <li>Cyclops (Scott Summers)</li>
-      <li>Wolverine (Logan)</li>
-      <li>Vegeta</li>
-      <li>Goku</li>
-      <li>Piccolo</li>
-      <li>Monkey D. Luffy</li>
-      <li>Roronoa Zoro</li>
-      <li>Sanji Vinsmoke</li>
-      <li>Kakashi Hatake</li>
-      <li>Naruto Uzumaki</li>
-    </ul>
-  </div>
 
-  <!-- Wedding Squad Modal -->
-  <div id="squad-modal" class="modal hidden">
-    <button class="modal__close" id="closeSquadModal">&times;</button>
-    <h3 class="modal__heading">The Entourage</h3>
-    <div class="modal-toggle__wrap">
-      <button class="modal-toggle__btn active" data-target="bridesmaids-list">Bridesmaids</button>
-      <button class="modal-toggle__btn" data-target="groomsmen-list">Groomsmen</button>
-    </div>
-    <ul id="bridesmaids-list" class="modal-list active">
-      <li>Lola Bunny</li>
-      <li>Petunia Pig</li>
-      <li>Tina Russo Duck</li>
-      <li>Daphne Blake</li>
-      <li>Velma Dinkley</li>
-      <li>Lisa Simpson</li>
-      <li>Meg Griffin</li>
-      <li>Amy Wong</li>
-      <li>Hawkgirl (Shayera Hol)</li>
-      <li>Rogue (Anna Marie)</li>
-      <li>Jubilee (Jubilation Lee)</li>
-      <li>Videl Satan</li>
-      <li>Princess Peach</li>
-      <li>Princess Daisy</li>
-      <li>Chun-Li</li>
-      <li>Cammy White</li>
-      <li>Asuna Yuuki (Sword Art Online)</li>
-      <li>Lucy Heartfilia (Fairy Tail)</li>
-      <li>Erza Scarlet (Fairy Tail)</li>
-    </ul>
-    <ul id="groomsmen-list" class="modal-list">
-      <li>Bugs Bunny</li>
-      <li>Daffy Duck</li>
-      <li>Porky Pig</li>
-      <li>Shaggy Rogers</li>
-      <li>Fred Jones</li>
-      <li>Bart Simpson</li>
-      <li>Stewie Griffin</li>
-      <li>Bender Rodriguez</li>
-      <li>The Flash (Barry Allen)</li>
-      <li>Gambit (Remy LeBeau)</li>
-      <li>Iceman (Bobby Drake)</li>
-      <li>Krillin</li>
-      <li>Mario</li>
-      <li>Luigi</li>
-      <li>Ken Masters</li>
-      <li>Ryu (Street Fighter)</li>
-      <li>Kirito (Kazuto Kirigaya)</li>
-      <li>Natsu Dragneel (Fairy Tail)</li>
-      <li>Gray Fullbuster (Fairy Tail)</li>
-    </ul>
-  </div>
+
+
 
   <!-- RSVP Modal -->
   <div id="overlay" class="overlay hidden"></div>
