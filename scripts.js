@@ -43,7 +43,7 @@ function setupFadeInHeroTitle() {
         current += consumedLength;
     }
 
-    const totalAnimationDuration = 2000; // Target total duration for all letters to appear (e.g., 2 seconds)
+    const totalAnimationDuration = 4500; // Target total duration for all letters to appear (e.g., 4.5 seconds)
     const delayPerUnit = animatableUnits.filter(u => u !== '<br>').length > 0 
         ? totalAnimationDuration / animatableUnits.filter(u => u !== '<br>').length 
         : 0;
