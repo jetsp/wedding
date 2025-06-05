@@ -521,9 +521,29 @@ body {
   .calendar__note{font-style:italic;color:var(--clr-sage);}
   
   /* Location */
-  .location__wrap{display:flex;flex-wrap:wrap;gap:2rem;justify-content:center;margin-top:2rem;}
-  .location__wrap p{flex:1 1 260px;font-size:1.1rem;}
-  .location__map{flex:1 1 300px;border:0;min-height:280px;border-radius:8px;width:100%;}
+  .location__wrap {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+    gap: 2rem;
+    justify-content: center; /* Horizontally center the paragraph and map group */
+    align-items: center;    /* Vertically align paragraph box and map box */
+    margin-top: 2rem;
+  }
+  .location__wrap p {
+    flex: 0 1 260px; /* Do not grow, can shrink, basis 260px */
+    font-size: 1.1rem;
+    display: flex; /* Make <p> a flex container */
+    flex-direction: column; /* Stack text lines normally */
+    justify-content: center; /* Vertically center text within the <p>'s allocated space */
+    text-align: center; /* Center align the text within the paragraph */
+  }
+  .location__map {
+    flex: 0 1 300px; /* Do not grow, can shrink, basis 300px */
+    border: 0;
+    min-height: 280px;
+    border-radius: 8px;
+    /* width: 100%; Removed as flex-basis should handle width in a row */
+  }
   
   /* Favors list */
   .favors__list{list-style:disc;margin:0 auto;max-width:600px;text-align:left;padding-left:1.2rem;font-size:1rem;}
