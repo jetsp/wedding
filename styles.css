@@ -210,6 +210,7 @@ body {
   display: none; /* Hidden by default, JS will show active list */
   max-height: 300px; /* Adjust as needed - max height before scrolling */
   overflow-y: auto; /* Enable vertical scroll if content exceeds max-height */
+  overscroll-behavior-y: contain; /* Prevent scroll chaining on the Y-axis */
   width: 90%; /* Ensure it doesn't touch modal edges, adjust as needed */
   box-sizing: border-box; /* Include padding in width calculation */
 }
@@ -596,6 +597,7 @@ body {
   .modal__form small{display:block;margin-top:.35rem;font-size:.8rem;color:var(--clr-sage);}
   .hidden{opacity:0;pointer-events:none;}
   .show{display:block;opacity:1;}
+  .overlay.show { touch-action: none; /* Prevent touch gestures on active overlay */ }
   .show.modal{transform:translate(-50%,-50%) scale(1);}
   
   /*  ----------  Animations  ----------  */

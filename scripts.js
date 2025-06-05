@@ -160,6 +160,7 @@ const overlay  = document.getElementById('overlay');
 function toggleModal(show = true){
   [modal, overlay].forEach(el => el.classList.toggle('show', show));
   [modal, overlay].forEach(el => el.classList.toggle('hidden', !show));
+  document.documentElement.style.overflow = show ? 'hidden' : ''; // Target <html>
   document.body.style.overflow = show ? 'hidden' : '';
 }
 
@@ -231,6 +232,7 @@ function openWeddingPartyModal(modalElement) {
     modalElement.classList.add('show'); // Assuming 'show' is used for visibility like RSVP modal
     overlay.classList.remove('hidden');
     overlay.classList.add('show');
+    document.documentElement.style.overflow = 'hidden'; // Target <html>
     document.body.style.overflow = 'hidden';
   }
 }
@@ -243,6 +245,7 @@ function closeWeddingPartyModal(modalElement) {
     overlay.classList.remove('show');
     // Only reset body overflow if no other modals are open
     if (!document.querySelector('.modal.show')) {
+      document.documentElement.style.overflow = ''; // Target <html>
       document.body.style.overflow = '';
     }
   }
