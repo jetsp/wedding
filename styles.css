@@ -98,8 +98,6 @@ body {
     display: inline-block;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    /* Add a very subtle transform to potentially improve layer promotion without causing clipping */
-    transform: translateZ(0.1px); 
   }
 
   @keyframes fadeInLetter {
