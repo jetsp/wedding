@@ -239,6 +239,13 @@ body {
   text-align: center; /* Center the subheadings and lists */
 }
 
+.story-intro__name {
+  font-family: var(--ff-script);
+  font-weight: bold; /* Keep it bold or adjust as preferred */
+  /* You might want to adjust font-size slightly for cursive fonts */
+  font-size: 1.2em; /* Make names slightly larger */ 
+}
+
 .section__subheading {
   font-family: var(--ff-script); /* Consistent with section headings */
   font-size: 2rem; /* Slightly smaller than main section heading */
