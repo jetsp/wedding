@@ -36,7 +36,7 @@ body {
   .book{
     max-width:960px;
     margin-inline:auto;
-    background:#fff;
+    background: url('images/white-bg.jpg'); /* Repeating background image */
     box-shadow:0 0 20px rgba(0,0,0,.1);
     padding:2.5rem 1rem;
   }

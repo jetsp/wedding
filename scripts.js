@@ -255,3 +255,8 @@ function setupEntourageToggles() {
 }
 
 window.addEventListener('DOMContentLoaded', setupEntourageToggles);
+
+/*********  Scroll to Top on Page Load  *********/
+window.addEventListener('DOMContentLoaded', () => {
+  window.scrollTo(0, 0);
+});
