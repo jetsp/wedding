@@ -163,7 +163,9 @@ body {
 
 /* Style for party cards without an image */
 .party-card.party-card--no-image {
-  width: 280px; /* Wider - matches default party-card width */
+  width: 592px; /* Width of two cards (280*2) + one gap (32px) */
+  max-width: 90%; /* Ensure it doesn't overflow on very small screens */
+  min-height: 100px; /* Adjust as needed, less height might be fine now */
   padding: 1rem; /* Adjust padding if needed for smaller size */
   /* Inherits border, box-shadow, background from .party-card */
   
@@ -189,10 +191,10 @@ body {
 .party-cards__wrap.party-cards__wrap--stacked {
   display: flex;
   flex-direction: column; /* Stack children vertically */
-  align-items: center;   /* Center children horizontally on their line */
-  gap: 1rem;             /* Space between stacked cards */
-  margin-top: 2rem;      /* Add some space below the Best Man/MOH row */
-  margin-bottom: 2rem;   /* Matches original bottom margin of .party-cards__wrap */
+  align-items: center;   /* Center children horizontally */
+  gap: 1.5rem;           /* Space between stacked wider cards */
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 /* Entourage Toggle Buttons (replaces old modal-toggle styles) */
