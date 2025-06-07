@@ -161,6 +161,40 @@ body {
   color: var(--clr-terracotta);
 }
 
+/* Style for party cards without an image */
+.party-card.party-card--no-image {
+  width: 280px; /* Wider - matches default party-card width */
+  padding: 1rem; /* Adjust padding if needed for smaller size */
+  /* Inherits border, box-shadow, background from .party-card */
+  
+  /* For internal content centering */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center; /* Ensure text inside is centered */
+  min-height: 80px; /* Adjust as looks best */
+  /* margin-bottom is removed from here, will be handled by gap in parent */
+}
+
+.party-card--no-image .party-card__name {
+  font-size: 1.1rem; /* Smaller name text */
+  margin-bottom: 0.25rem; /* Adjust spacing if needed */
+}
+
+.party-card--no-image .party-card__title {
+  font-size: 0.85rem; /* Smaller title text */
+}
+
+
+.party-cards__wrap.party-cards__wrap--stacked {
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
+  align-items: center;   /* Center children horizontally on their line */
+  gap: 1rem;             /* Space between stacked cards */
+  margin-top: 2rem;      /* Add some space below the Best Man/MOH row */
+  margin-bottom: 2rem;   /* Matches original bottom margin of .party-cards__wrap */
+}
+
 /* Entourage Toggle Buttons (replaces old modal-toggle styles) */
 .entourage-toggle__wrap {
   display: flex;

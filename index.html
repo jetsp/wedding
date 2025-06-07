@@ -138,7 +138,7 @@
       <!-- End Parents Section -->
 
       <h2 class="section__heading">Meet the Entourage!</h2>
-      <div class="party-cards__wrap fade">
+      <div class="party-cards__wrap fade"> <!-- Wrapper ONLY for Best Man & Maid of Honor -->
         <div class="party-card">
           <img src="images/mickey.jpg" alt="Photo of Best Man" class="party-card__img">
           <h3 class="party-card__name">Mickey Mouse</h3>
@@ -149,8 +149,42 @@
           <h3 class="party-card__name">Jewel E. San Pedro</h3>
           <p class="party-card__title">Maid of Honor</p>
         </div>
-      </div>
+      </div> <!-- End of wrapper for Best Man & Maid of Honor -->
+
+      <!-- THIS IS THE NEW WRAPPER for the 6 smaller cards -->
+      <div class="party-cards__wrap party-cards__wrap--stacked fade">
+        <div class="party-card party-card--no-image">
+          <h3 class="party-card__name">John Doe</h3>
+          <p class="party-card__title">Groomsman</p>
+        </div>
+        <div class="party-card party-card--no-image">
+          <h3 class="party-card__name">Jane Smith</h3>
+          <p class="party-card__title">Bridesmaid</p>
+        </div>
+        <div class="party-card party-card--no-image">
+          <h3 class="party-card__name">Placeholder Name 1</h3>
+          <p class="party-card__title">Placeholder Role 1</p>
+        </div>
+        <div class="party-card party-card--no-image">
+          <h3 class="party-card__name">Placeholder Name 2</h3>
+          <p class="party-card__title">Placeholder Role 2</p>
+        </div>
+        <div class="party-card party-card--no-image">
+          <h3 class="party-card__name">Placeholder Name 3</h3>
+          <p class="party-card__title">Placeholder Role 3</p>
+        </div>
+        <div class="party-card party-card--no-image">
+          <h3 class="party-card__name">Placeholder Name 4</h3>
+          <p class="party-card__title">Placeholder Role 4</p>
+        </div>
+      </div> <!-- End of new wrapper for the 6 smaller cards -->
       <div class="additional-entourage fade">
+        <h3 class="section__subheading">Little Entourage</h3>
+        <div class="static-entourage-names" style="text-align: center; margin-bottom: 1em;">
+            <p style="margin: 0.2em 0;">Lily Petal | Flower Girl</p>
+            <p style="margin: 0.2em 0;">Max Ringman | Ring Bearer</p>
+        </div>
+
         <h3 class="section__subheading">Principal Sponsors</h3>
         <div class="entourage-toggle__wrap" data-group="principal-sponsors">
           <button class="entourage-toggle__btn active" data-target="godmothers-list">Godmothers</button>
@@ -204,10 +238,6 @@
         </div>
 
         <h3 class="section__subheading">Secondary Sponsors</h3>
-        <div class="static-entourage-names" style="text-align: center; margin-bottom: 1em;">
-            <p style="margin: 0.2em 0;">John Doe | <b>Role/Title</b></p>
-            <p style="margin: 0.2em 0;">Jane Smith | <b>Role/Title</b></p>
-        </div>
         <div class="entourage-toggle__wrap" data-group="secondary-sponsors">
           <button class="entourage-toggle__btn active" data-target="bridesmaids-list">Bridesmaids</button>
           <button class="entourage-toggle__btn" data-target="groomsmen-list">Groomsmen</button>
@@ -259,11 +289,6 @@
           </ul>
         </div>
 
-        <h3 class="section__subheading">Little Entourage</h3>
-        <div class="static-entourage-names" style="text-align: center; margin-bottom: 1em;">
-            <p style="margin: 0.2em 0;">Dora | <b>Flower Girl</b></p>
-            <p style="margin: 0.2em 0;">Diego | <b>Ring Bearer</b></p>
-        </div>
       </div>
     </section>
 
