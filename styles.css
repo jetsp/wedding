@@ -885,4 +885,54 @@ body {
     text-align: left;
   }
 }
+
+.gift-section__content-wrap {
+  display: flex;
+  align-items: center; /* Vertically align items if they have different heights */
+  justify-content: center; /* Center the content block if it's narrower than the section */
+  gap: 2rem; /* Space between image and text */
+  max-width: 800px; /* Max width for the content area */
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left; /* Align text to the left within its container */
+}
+
+.gift-section__image-wrap {
+  flex-shrink: 0; /* Prevent image from shrinking */
+}
+
+.gift-section__image {
+  display: block; /* Remove extra space below inline images */
+  max-width: 150px; /* Adjust size as needed */
+  height: auto;
+  border: none; /* Ensure no border */
+  box-shadow: none; /* Ensure no shadow */
+}
+
+.gift-section__text-wrap {
+  flex-grow: 1; /* Allow text to take remaining space */
+}
+
+.gift-section__text-wrap p {
+  font-size: 1rem; /* Adjust as needed */
+  line-height: 1.7;
+  color: var(--clr-terracotta); /* Using a color from your theme */
+}
+
+/* Responsive adjustments for gift section */
+@media (max-width: 768px) {
+  .gift-section__content-wrap {
+    flex-direction: column; /* Stack image and text vertically */
+    text-align: center; /* Center text when stacked */
+  }
+
+  .gift-section__image-wrap {
+    margin-bottom: 1.5rem; /* Space below image when stacked */
+  }
+  
+  .gift-section__text-wrap {
+    text-align: justify; /* Justify text for better readability in stacked view */
+  }
+}
+
   
