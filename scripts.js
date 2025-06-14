@@ -258,5 +258,98 @@ window.addEventListener('DOMContentLoaded', setupEntourageToggles);
 
 /*********  Scroll to Top on Page Load  *********/
 window.addEventListener('DOMContentLoaded', () => {
+  // Music Player Logic
+  const audio = document.getElementById('audio');
+  const playPauseBtn = document.getElementById('play-pause');
+  const playIcon = document.getElementById('play-icon');
+  const pauseIcon = document.getElementById('pause-icon');
+  const progress = document.getElementById('progress');
+  const currentTimeEl = document.getElementById('current-time');
+  const durationEl = document.getElementById('duration');
+  const volumeSlider = document.getElementById('volume-slider');
+
+  function formatTime(sec) {
+    if (isNaN(sec)) return '0:00';
+    const m = Math.floor(sec / 60);
+    const s = Math.floor(sec % 60);
+    return `${m}:${s.toString().padStart(2, '0')}`;
+  }
+
+  function updateProgress() {
+    if (!audio.duration) return;
+    progress.value = Math.floor((audio.currentTime / audio.duration) * 100);
+    currentTimeEl.textContent = formatTime(audio.currentTime);
+    durationEl.textContent = formatTime(audio.duration);
+  }
+
+  if (audio && playPauseBtn) {
+    audio.muted = false; // Ensure audio is unmuted on load
+    audio.addEventListener('loadedmetadata', updateProgress);
+    audio.addEventListener('timeupdate', updateProgress);
+    audio.addEventListener('ended', () => {
+      playIcon.style.display = '';
+      pauseIcon.style.display = 'none';
+      progress.value = 0;
+    });
+
+    playPauseBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+      } else {
+        audio.pause();
+      }
+    });
+
+    progress.addEventListener('input', () => {
+      if (!audio.duration) return;
+      audio.currentTime = (progress.value / 100) * audio.duration;
+    });
+
+    audio.addEventListener('play', () => {
+      playIcon.style.display = 'none';
+      pauseIcon.style.display = '';
+    });
+
+    audio.addEventListener('pause', () => {
+      playIcon.style.display = '';
+      pauseIcon.style.display = 'none';
+    });
+
+    if (audio.readyState >= 1) {
+      updateProgress();
+    }
+
+    // Volume Control
+    if (volumeSlider) {
+      audio.volume = 0.5;
+      volumeSlider.value = 0.5;
+      volumeSlider.addEventListener('input', (e) => {
+        audio.volume = e.target.value;
+      });
+    }
+
+    
+  }
+
+  // Scroll to top
   window.scrollTo(0, 0);
+
+  // Floating Player Logic
+  const musicPlayer = document.getElementById('music-player-container');
+  const musicSection = document.querySelector('.music-section');
+
+  if (musicPlayer && musicSection) {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // Add 'is-floating' class when the music section is NOT in view
+        musicPlayer.classList.toggle('is-floating', !entry.isIntersecting);
+      },
+      {
+        root: null, // observing intersections relative to the viewport
+        threshold: 0, // callback is run when the element is just entering or leaving the viewport
+      }
+    );
+
+    observer.observe(musicSection);
+  }
 });
