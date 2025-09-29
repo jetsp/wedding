@@ -615,6 +615,7 @@ body {
     max-width: 900px;
     margin: 0 auto;
     border-collapse: collapse;
+    table-layout: fixed; /* Prevent overflow from wide content */
   }
 
   .attire-table th,
@@ -655,7 +656,7 @@ body {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
-    max-width: 700px;
+    max-width: 100%;
     margin: 1rem auto 0;
     padding: 0;
   }
@@ -663,13 +664,13 @@ body {
   /* Two-column variant for Godfather row */
   .attire__grid.attire__grid--two {
     grid-template-columns: repeat(2, 1fr);
-    max-width: 320px;
+    max-width: 100%;
   }
 
   /* Three-column variant for Godfather row when White is added */
   .attire__grid.attire__grid--three {
     grid-template-columns: repeat(3, 1fr);
-    max-width: 540px;
+    max-width: 100%;
   }
 
   .attire__item {
@@ -680,7 +681,7 @@ body {
   }
 
   .attire__item img {
-    width: 120px;
+    width: min(120px, 28vw);
     height: auto; /* maintain aspect */
     border-radius: 0;
     border: none;
@@ -738,12 +739,23 @@ body {
   @media (max-width: 768px) {
     .attire__grid {
       grid-template-columns: repeat(2, 1fr);
-      max-width: 360px;
+      max-width: 100%;
       gap: 0.5rem;
     }
-    .attire__item img { width: 100px; }
+    .attire__item img { width: min(88px, 32vw); }
     .attire__chip { width: 100px; height: 100px; }
-    .attire-table th { width: 120px; padding-right: 0.5rem; }
+    .attire-table { table-layout: auto; }
+    .attire-table th { width: auto; padding-right: 0.5rem; }
+    /* Force 2 columns for the 3-color Godfather row so the 3rd wraps below */
+    .attire__grid.attire__grid--three { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* Very small phones */
+  @media (max-width: 400px) {
+    .attire__grid { gap: 0.4rem; }
+    .attire__item img { width: min(72px, 36vw); }
+    .attire__grid.attire__grid--three { grid-template-columns: repeat(2, 1fr); gap: 0.35rem; }
+    .attire-table th, .attire-table td { padding: 0.5rem; }
   }
 
   /* Hero mobile adjustments */
