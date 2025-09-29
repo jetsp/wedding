@@ -53,7 +53,7 @@ body {
   }
 
   .hero .section__heading {
-    color: var(--clr-blush); /* Keep original color for hero headings */
+    color: var(--clr-brick); /* Keep original color for hero headings */
   }
   
   /* Hero */
@@ -132,12 +132,11 @@ body {
 
 .party-card {
   background: #fff;
-  border: 1px solid var(--clr-sand);
   border-radius: 8px;
   padding: 1.5rem;
   width: 280px; /* Fixed width for cards */
   text-align: center;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Match sponsors-category effect */
 }
 
 .party-card__img {
@@ -181,6 +180,12 @@ body {
 .party-card--no-image .party-card__name {
   font-size: 1.1rem; /* Smaller name text */
   margin-bottom: 0.25rem; /* Adjust spacing if needed */
+}
+
+/* Specific style for groom's father heading */
+.wedding-party .party-card:first-child h2.party-card__name {
+  font-size: 1.2rem; /* Slightly larger than the no-image cards but smaller than default */
+  margin: 0.5rem 0; /* Add some vertical spacing */
 }
 
 .party-card--no-image .party-card__title {
@@ -235,66 +240,200 @@ body {
   background-color: var(--clr-sand);
 }
 
-/* Styles for newly added entourage lists */
+/* Styles for sponsors section */
 .additional-entourage {
   margin-top: 2.5rem; /* Space above the sponsors section */
-  text-align: center; /* Center the subheadings and lists */
+  text-align: center; /* Center the subheadings */
 }
 
 .story-intro__name {
   font-family: var(--ff-script);
-  font-weight: bold; /* Keep it bold or adjust as preferred */
-  /* You might want to adjust font-size slightly for cursive fonts */
-  font-size: 1.2em; /* Make names slightly larger */ 
+  font-weight: bold;
+  font-size: 1.2em;
 }
 
 .section__subheading {
-  font-family: var(--ff-script); /* Consistent with section headings */
-  font-size: 2rem; /* Slightly smaller than main section heading */
-  color: var(--clr-blush); /* Consistent color */
-  margin-top: 2rem; /* Space above each main sponsor type */
+  font-family: var(--ff-script);
+  font-size: 2rem;
+  color: var(--clr-blush);
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.sponsors-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.sponsors-category {
+  flex: 1;
+  min-width: 300px;
+  max-width: 400px;
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.sponsors-category h4 {
+  font-family: var(--ff-script);
+  font-size: 1.5rem;
+  color: var(--clr-brick);
   margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--clr-sand);
 }
 
 .entourage-list {
   list-style: none;
   padding: 0;
-  margin: 0 auto 1.5rem auto; /* Center list and add bottom margin */
-  max-width: 400px; /* Control width of the list */
-  display: none; /* Hidden by default, JS will show active list */
-}
-
-.entourage-list.active {
-  display: block; /* Show active list */
+  margin: 0;
+  text-align: left;
 }
 
 .entourage-list li {
-  padding: 0.3rem 0;
+  padding: 0.5rem 0;
   font-size: 1rem;
   color: var(--clr-terracotta);
-  text-align: center; /* Center names in the list */
-}
-
-.entourage-list li:not(:last-child) {
   border-bottom: 1px dashed var(--clr-sand);
 }
 
-/* Ensure party cards and new lists stack nicely on smaller screens */
+.entourage-list li:last-child {
+  border-bottom: none;
+}
+
+/* Responsive adjustments for sponsors section */
 @media (max-width: 768px) {
   .additional-entourage {
     margin-top: 2rem;
   }
-  .entourage-list {
-    max-width: 90%; /* Allow more width on smaller screens */
+  
+  .sponsors-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  
+  .sponsors-category {
+    width: 100%;
+    max-width: 400px;
   }
 }
 
-/* Timeline Adjustments */
-.timeline__items {
-  display: flex;
-  flex-direction: column; /* Stack timeline events vertically */
-  align-items: center;   /* Center items if they don't take full width */
-  gap: 0.5rem;           /* Space between timeline events */
+/* Timeline - Clean Table Style */
+.timeline-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.timeline-table {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  border-collapse: collapse;
+  font-family: var(--ff-sans);
+  color: var(--clr-terracotta);
+}
+
+.timeline-table th,
+.timeline-table td {
+  padding: 12px 15px;
+  text-align: center;
+  border-bottom: 1px solid var(--clr-sand);
+}
+
+.timeline-table th {
+  background-color: var(--clr-brick);
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}
+
+.timeline-table tr:last-child td {
+  border-bottom: none;
+}
+
+.timeline-table .time {
+  width: 180px;
+  font-weight: 600;
+  color: var(--clr-brick);
+  vertical-align: middle;
+}
+
+.timeline-table .event {
+  text-align: center;
+  padding: 20px;
+}
+
+.timeline-table h4 {
+  margin: 0 0 10px 0;
+  color: var(--clr-brick);
+  font-family: var(--ff-serif);
+  font-size: 1.1rem;
+}
+
+.timeline-table ul {
+  margin: 10px auto 0;
+  padding: 0;
+  list-style: none;
+  max-width: 400px;
+}
+
+.timeline-table li {
+  margin-bottom: 5px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* Program Part Separator */
+.program-separator {
+  text-align: center;
+  margin: 40px 0;
+}
+
+.program-separator span {
+  color: var(--clr-brick);
+  font-family: var(--ff-serif);
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: block;
+  padding: 10px 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .timeline-table {
+    display: block;
+    overflow-x: auto;
+  }
+  
+  .timeline-table th,
+  .timeline-table td {
+    padding: 10px 12px;
+  }
+  
+  .timeline-table .time {
+    width: 120px;
+  }
+  
+  .program-separator {
+    margin: 25px 0;
+  }
+  
+  .program-separator span {
+    padding: 6px 15px;
+    font-size: 0.85rem;
+  }
 }
 
 .timeline__item {
@@ -363,7 +502,7 @@ body {
 }
 
 .countdown .section__heading {
-  color: var(--clr-blush); /* Match other section headings */
+  color: var(--clr-brick); /* Match 'Our Story' title color */
   margin-bottom: 0; /* Remove bottom margin to allow timer to 'hang' directly below */
   padding-top: 2rem; /* Add some padding above heading if needed, since section top padding is 0 */
   position: relative; /* For z-index if needed, and to be a positioning context */
@@ -378,7 +517,7 @@ body {
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
-  background-color: var(--clr-terracotta); /* Timer container background - 'hanging part' */
+  background-color: var(--clr-brick); /* Timer container background - 'hanging part' */
   padding: 2rem 1.5rem 1.5rem; /* Add padding, more at top for rounded effect */
   border-radius: 20px 20px 8px 8px; /* Rounded top corners, less rounded bottom */
   box-shadow: 0 4px 15px rgba(0,0,0,0.2);
@@ -466,70 +605,145 @@ body {
 }
 
 
-/* Galleries */
+  /* Galleries */
   .gallery{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-top:2rem;}
   .gallery img{width:calc(33.333% - .67rem);border-radius:8px;object-fit:cover;}
   
-  /* Attire */
-  .attire__wrap {
-    display: flex;
-    flex-wrap: wrap; /* Allow items to wrap to the next line */
-    justify-content: center;
-    gap: 2rem;
-    max-width: 620px; /* Adjusted max-width to better fit two items (280px*2 + 2rem gap + padding) */
-    margin: 2rem auto;
-    padding: 0 1rem;
+  /* Attire (placeholder swatches) */
+  .attire-table {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    border-collapse: collapse;
   }
-  .attire__men,
-  .attire__women {
+
+  .attire-table th,
+  .attire-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--clr-sand);
+    vertical-align: middle;
+    text-align: center;
+  }
+
+  /* Remove bottom border from the last row */
+  .attire-table tr:last-child th,
+  .attire-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .attire-table th {
+    width: 160px;
+    text-align: center;
+    font-family: var(--ff-serif);
+    color: var(--clr-brick);
+    white-space: normal; /* allow wrapping */
+  }
+
+  .attire__subnote {
+    display: block;
+    font-family: var(--ff-sans);
+    font-size: 0.8rem;
+    line-height: 1.2;
+    color: var(--clr-sage);
+    font-weight: normal;
+    margin-top: 0.2rem;
+    white-space: normal;       /* ensure wrapping */
+    overflow-wrap: anywhere;   /* break long tokens if needed */
+  }
+
+  .attire__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    max-width: 700px;
+    margin: 1rem auto 0;
+    padding: 0;
+  }
+
+  /* Two-column variant for Godfather row */
+  .attire__grid.attire__grid--two {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 320px;
+  }
+
+  /* Three-column variant for Godfather row when White is added */
+  .attire__grid.attire__grid--three {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 540px;
+  }
+
+  .attire__item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.5rem;
-    flex: 0 1 calc(50% - 1rem); /* Flex-grow:0, Flex-shrink:1, Basis: 50% minus half the gap */
-    min-width: 250px; /* Keep a minimum width */
-    max-width: 280px; /* Max width for an individual item */
-    box-sizing: border-box; /* Ensure padding and border are included in the element's total width and height */
-  }
-  .attire__img {
-    width: 100%; /* Image will take full width of its parent */
-    height: 370px; /* Fixed height for uniform size */
-    object-fit: contain; /* Fit within the area, no crop, may letterbox */
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  }
-  .attire__desc {
-    text-align: center;
-    font-size: 1rem;
-    line-height: 1.6;
-    max-width: 250px;
+    gap: 0.5rem;
   }
 
-  /* Responsive adjustments for attire */
+  .attire__item img {
+    width: 120px;
+    height: auto; /* maintain aspect */
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+  }
+
+  .attire__item figcaption {
+    font-family: var(--ff-serif);
+    font-size: 0.95rem;
+    color: var(--clr-terracotta);
+  }
+
+  .attire__role {
+    font-family: var(--ff-serif);
+    font-size: 1.2rem;
+    color: var(--clr-brick);
+    margin-top: 1rem;
+  }
+
+  .attire__note {
+    color: var(--clr-sage);
+    font-size: 0.95rem;
+    margin: 0 auto 0.5rem;
+  }
+
+  /* Additionals block spacing and list formatting */
+  .attire__additionals {
+    margin-top: 1.25rem; /* add space below the Guests row */
+  }
+  .attire__additionals-title {
+    display: inline-block;
+    margin-bottom: 0.25rem;
+  }
+  .attire__additionals-list {
+    list-style: disc inside; /* keep bullets close to text */
+    padding-left: 0;         /* remove extra indent */
+    margin: 0.25rem auto 0;  /* a bit of space above the list */
+  }
+
+  /* Placeholder chips for Godfather row */
+  .attire__chip {
+    display: inline-block;
+    width: 120px;
+    height: 120px;
+    border-radius: 6px;
+  }
+
+  .attire__chip--placeholder {
+    background: repeating-linear-gradient(45deg, #f3f3f3 0 8px, #e6e6e6 8px 16px);
+    border: 1px solid var(--clr-sand);
+  }
+
+  /* Responsive adjustments for attire grid */
   @media (max-width: 768px) {
-    .attire__wrap {
-      flex-direction: column;
-      gap: 1.5rem;
-      padding: 0 0.5rem;
+    .attire__grid {
+      grid-template-columns: repeat(2, 1fr);
+      max-width: 360px;
+      gap: 0.5rem;
     }
-    .attire__men,
-    .attire__women {
-      min-width: 100%;
-      max-width: 100%;
-      gap: 1rem;
-    }
-    .attire__img {
-      max-width: 200px; /* Adjust as needed, e.g., 60% or a fixed px value */
-      height: 280px; /* Fixed height for mobile */
-      /* object-fit: cover; is inherited */
-      margin-left: auto; /* Center the image if its max-width is less than container */
-      margin-right: auto;
-    }
-
-    .attire__desc {
-      font-size: 0.95rem;
-      padding: 0 1rem;
-    }
+    .attire__item img { width: 100px; }
+    .attire__chip { width: 100px; height: 100px; }
+    .attire-table th { width: 120px; padding-right: 0.5rem; }
   }
 
   /* Hero mobile adjustments */
@@ -606,170 +820,6 @@ body {
   .btn--submit:hover{background:var(--clr-terracotta);}
   
   /*  ----------  Modal  ----------  */
-
-/* Music Section */
-.music-section {
-  padding: 2em 0;
-  text-align: center;
-}
-
-.music-section__title {
-  font-family: var(--ff-script);
-  color: var(--clr-terracotta);
-  font-size: 2.5em;
-  margin-bottom: 0.5em;
-}
-
-.music-section__subtitle {
-  font-size: 1rem;
-  color: var(--clr-sage);
-  margin-bottom: 1.5em;
-  font-style: italic;
-}
-
-.music-player {
-  width: 90%;
-  max-width: 500px;
-  background: rgba(255, 255, 255, 0.96);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.13);
-  border-radius: 24px;
-  padding: 0.4em 1.2em;
-  display: flex;
-  align-items: center;
-  gap: 0.6em;
-  margin: 0 auto;
-  transition: all 0.3s ease-in-out;
-}
-
-.music-player.is-floating {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 99;
-  max-width: 420px; /* Narrower floating player */
-}
-
-.music-player {
-  min-width: 210px;
-  max-width: 96vw;
-  font-family: var(--ff-sans);
-  font-size: 1rem;
-  transition: opacity 0.2s;
-}
-
-.music-player__btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: var(--clr-terracotta);
-  font-size: 1.2em; /* Make icon slightly larger */
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: color 0.2s;
-}
-
-.music-player__btn:hover {
-  color: var(--clr-brick);
-}
-.music-player__progress-wrap {
-  flex: 1 1 80px;
-  min-width: 60px;
-  max-width: 120px;
-  margin: 0 0.2em;
-  display: flex;
-  align-items: center;
-}
-/* Custom Slider Styles */
-.music-player__progress, .music-player__volume-slider {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 100%;
-  height: 2px;
-  background: var(--clr-sand);
-  border-radius: 2px;
-  outline: none;
-  cursor: pointer;
-}
-
-.music-player__progress::-webkit-slider-thumb, 
-.music-player__volume-slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 14px;
-  height: 14px;
-  background: var(--clr-terracotta);
-  border-radius: 50%;
-  border: 2px solid #fff;
-  box-shadow: 0 0 2px rgba(0,0,0,0.2);
-  transition: background 0.2s;
-}
-
-.music-player__progress::-moz-range-thumb, 
-.music-player__volume-slider::-moz-range-thumb {
-  width: 14px;
-  height: 14px;
-  background: var(--clr-terracotta);
-  border-radius: 50%;
-  border: 2px solid #fff;
-  box-shadow: 0 0 2px rgba(0,0,0,0.2);
-  transition: background 0.2s;
-}
-
-.music-player__progress::-webkit-slider-thumb:hover, 
-.music-player__volume-slider::-webkit-slider-thumb:hover {
-  background: var(--clr-brick);
-}
-
-.music-player__progress::-moz-range-thumb:hover, 
-.music-player__volume-slider::-moz-range-thumb:hover {
-  background: var(--clr-brick);
-}
-.music-player__time {
-  font-size: 0.95em;
-  color: var(--clr-sage);
-  min-width: 36px;
-  text-align: right;
-}
-
-.music-player__volume-wrap {
-  display: flex;
-  align-items: center;
-  gap: 0.5em;
-  margin-left: 0.8em;
-}
-
-.music-player__volume-icon {
-  font-size: 1.1em;
-}
-
-.music-player__volume-slider {
-  width: 100px;
-}
-@media (max-width: 480px) {
-  .music-player.is-floating {
-    bottom: 10px;
-    width: calc(100% - 20px);
-    border-radius: 18px;
-    padding: 0.5em;
-  }
-  .music-player__btn {
-    width: 1.7em;
-    height: 1.7em;
-    font-size: 1.1em;
-  }
-  .music-player__progress-wrap {
-    min-width: 40px;
-    max-width: 80px;
-  }
-  .music-player__time {
-    font-size: 0.88em;
-    min-width: 26px;
-  }
-}
-
   .overlay{
     position:fixed;inset:0;
     background:rgba(0,0,0,.55);
@@ -863,7 +913,6 @@ body {
   /*  ----------  Responsive tweaks  ----------  */
   @media (max-width:650px){
     .gallery img{width:100%;}
-    .attire__imgs img{width:100%;}
   }
   
   /* Intersection Observer toggles .visible */
@@ -1049,56 +1098,4 @@ body {
     text-align: left;
   }
 }
-
-.gift-section__content-wrap {
-  display: flex;
-  align-items: center; /* Vertically align items if they have different heights */
-  justify-content: center; /* Center the content block if it's narrower than the section */
-  gap: 2rem; /* Space between image and text */
-  max-width: 800px; /* Max width for the content area */
-  margin-left: auto;
-  margin-right: auto;
-  text-align: left; /* Align text to the left within its container */
-}
-
-.gift-section__image-wrap {
-  flex-shrink: 0; /* Prevent image from shrinking */
-}
-
-.gift-section__image {
-  display: block; /* Remove extra space below inline images */
-  max-width: 150px; /* Adjust size as needed */
-  height: auto;
-  border: none; /* Ensure no border */
-  box-shadow: none; /* Ensure no shadow */
-}
-
-.gift-section__text-wrap {
-  flex-grow: 1; /* Allow text to take remaining space */
-}
-
-.gift-section__text-wrap p {
-  font-size: 1rem; /* Adjust as needed */
-  line-height: 1.7;
-  color: var(--clr-terracotta); /* Using a color from your theme */
-}
-
-/* Responsive adjustments for gift section */
-@media (max-width: 768px) {
-  .gift-section__content-wrap {
-    flex-direction: column; /* Stack image and text vertically */
-    text-align: center; /* Center text when stacked */
-  }
-
-  .gift-section__image-wrap {
-    margin-bottom: 1.5rem; /* Space below image when stacked */
-  }
-  
-  .gift-section__text-wrap {
-    text-align: justify; /* Justify text for better readability in stacked view */
-  }
-}
-
-  
-
   
