@@ -67,12 +67,12 @@ body {
     padding-bottom: 5rem; /* Keep original bottom padding or adjust as needed */
     padding-left: 0;
     padding-right: 0;
-    /* Negative margins to counteract .book container's padding */
+    /* Counteract .book container's top padding only */
     margin-top: -2.5rem; /* Counteract .book's padding-top */
-    margin-left: -1rem; /* Corresponds to .book padding-left */
-    margin-right: -1rem; /* Corresponds to .book padding-right */
-    /* To ensure it's visually full-width within the .book's max-width context */
-    box-sizing: content-box; /* Important when using negative margins with padding on parent */
+    /* Full-bleed width without negative side margins (avoids iOS seams) */
+    position: relative;
+    left: -1rem; /* Cancel .book's left padding */
+    width: calc(100% + 2rem); /* Extend to cancel left+right padding of .book */
     /* Single-format background per your preference */
     background-color: var(--clr-sand);
     background-image: url('images/desert.jpeg');
