@@ -70,7 +70,7 @@ body {
     /* To ensure it's visually full-width within the .book's max-width context */
     box-sizing: content-box; /* Important when using negative margins with padding on parent */
     background-image: url('images/desert.jpeg');
-    background-attachment: fixed; /* Parallax-like effect */ /* Path to your hero image */
+    background-attachment: scroll; /* Avoid fixed backgrounds causing seams on mobile */
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -83,6 +83,10 @@ body {
     color: #ffffff; /* White text color for hero content */
     text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Subtle shadow for text readability */
     /* Reverted torn paper effect */
+    overflow: hidden; /* Hide any subpixel seams */
+    -webkit-transform: translateZ(0); /* Reduce painting seams on mobile */
+    transform: translateZ(0);
+    backface-visibility: hidden;
   }
 
   .hero::before {
@@ -91,7 +95,7 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
+    bottom: -3px; /* Overlap by a few pixels to hide any seam at the bottom edge */
     background-color: rgba(0, 0, 0, 0.3); /* Dark overlay; adjust opacity (0.0 to 1.0) */
     z-index: 1; /* Place overlay behind content */
   }
@@ -849,7 +853,8 @@ body {
   /* Hero mobile adjustments */
   @media (max-width: 768px) {
     .hero {
-      background-size: auto 100%; /* Show full height, crop width if necessary */
+      background-size: cover; /* Avoid edges caused by auto height scaling */
+      background-position: center bottom; /* Anchor to bottom to hide potential top/bottom seams */
       background-attachment: scroll; /* Better for mobile performance/compatibility */
       /* Optional: Add a background color if 'contain' leaves empty space */
       /* background-color: var(--clr-sand); */ 
@@ -857,7 +862,23 @@ body {
       min-height: 100vh;  /* Fallback */
       min-height: 100svh; /* iOS 16+ small viewport height */
       min-height: 100dvh; /* Dynamic viewport height */
-      margin-bottom: -1px; /* Nudge to cover potential subpixel seam */
+      margin-bottom: -3px; /* Nudge more to cover potential subpixel seam */
+      background-clip: border-box;
+      -webkit-background-clip: border-box;
+      will-change: transform;
+    }
+
+    /* Extra bottom mask within hero to hide any seam */
+    .hero::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -6px; /* Extend below by a few pixels */
+      height: 8px;   /* Thin mask strip */
+      background-color: rgba(0,0,0,0.15); /* Blend with overlay and image */
+      z-index: 1; /* Same layer as ::before overlay */
+      pointer-events: none;
     }
 
     .hero__subtitle {
