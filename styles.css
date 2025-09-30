@@ -73,7 +73,9 @@ body {
     margin-right: -1rem; /* Corresponds to .book padding-right */
     /* To ensure it's visually full-width within the .book's max-width context */
     box-sizing: content-box; /* Important when using negative margins with padding on parent */
-    background-image: url('images/desert.jpeg?v=3');
+    /* Single-format background per your preference */
+    background-color: var(--clr-sand);
+    background-image: url('images/desert.jpeg');
     background-attachment: fixed;
     background-size: cover;
     background-position: center center;
@@ -91,7 +93,7 @@ body {
   /* Mobile: disable parallax only */
   @media (max-width: 768px) {
     .hero {
-      background-attachment: scroll;
+      background-attachment: scroll; /* Disable parallax on mobile to prevent blank backgrounds */
       min-height: 80vh;
     }
   }
@@ -852,7 +854,7 @@ body {
     .hero {
       background-size: cover; /* Keep cover on mobile */
       background-position: center bottom; /* Anchor to bottom to hide potential top/bottom seams */
-      background-attachment: fixed; /* Parallax on mobile as requested */
+      background-attachment: scroll; /* Fixed is buggy on many mobile browsers */
       /* Optional: Add a background color if 'contain' leaves empty space */
       /* background-color: var(--clr-sand); */ 
       /* Use small/dynamic viewport units to avoid iOS/Android 1px gaps */
