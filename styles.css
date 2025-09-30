@@ -14,28 +14,7 @@ html {
     --ff-sans:'Raleway',sans-serif;
   }
 
-  /* Touch devices: anchor image; remove any overlay to avoid visible lines */
-  @media (pointer: coarse) {
-    .hero {
-      background-position: center top; /* reduce repositioning during UI bar changes */
-    }
-    .hero::after { content: none; }
-  }
-  
-  /* Lock hero height on touch devices to prevent scroll-induced zoom/resizes on iOS/iPadOS */
-  @media (pointer: coarse) {
-    .hero {
-      background-attachment: scroll; /* ensure no parallax on touch */
-      background-position: center center; /* match desktop composition */
-      height: auto;      /* avoid forced viewport locking that can cause zoom */
-      min-height: 70vh;  /* do not force full screen on mobile/tablet */
-      overflow: hidden;  /* clip any overflow to prevent visual zooming */
-      /* Reset full-bleed widening on touch to avoid image overscale */
-      left: 0;
-      width: 100%;
-      background-size: cover; /* preserve initial (pre-scroll) framing */
-    }
-  }
+  /* (moved) Touch overrides placed later in the file to ensure they take effect */
 
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 
@@ -112,6 +91,28 @@ body {
     position: relative;
     color: #ffffff;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+  }
+
+  /* Consolidated: Touch devices (phones/tablets) final overrides
+     Placed AFTER base .hero so they always apply on iOS/Android */
+  @media (pointer: coarse) {
+    .hero {
+      /* No parallax on touch */
+      background-attachment: scroll;
+      /* Avoid full-bleed overscale on touch */
+      left: 0;
+      width: 100%;
+      /* Stable composition similar to desktop initial look */
+      background-size: cover;
+      background-position: center center;
+      /* Do not force full screen: prevents toolbar-induced resize seam */
+      height: auto;
+      min-height: 70vh;
+      overflow: hidden;
+      /* Mask any 1px seam at the bottom edge on iOS/iPadOS */
+      border-bottom: 8px solid var(--clr-sand) !important;
+    }
+    .countdown { margin-top: 0; }
   }
 
   /* Inline image for touch devices (hidden on desktop) */
