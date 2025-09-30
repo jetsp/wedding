@@ -28,19 +28,12 @@ html {
       background-attachment: scroll; /* ensure no parallax on touch */
       background-position: center center; /* match desktop composition */
       height: auto;      /* avoid forced viewport locking that can cause zoom */
-      min-height: 100vh; /* match the pre-scroll look */
+      min-height: 70vh;  /* do not force full screen on mobile/tablet */
       overflow: hidden;  /* clip any overflow to prevent visual zooming */
       /* Reset full-bleed widening on touch to avoid image overscale */
       left: 0;
       width: 100%;
       background-size: cover; /* preserve initial (pre-scroll) framing */
-    }
-    /* If stable large viewport units are supported, lock to 100lvh to prevent height changes on scroll */
-    @supports (height: 100lvh) {
-      .hero {
-        height: 100lvh;
-        min-height: 0;
-      }
     }
   }
 
