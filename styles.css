@@ -43,7 +43,7 @@ body {
   
   /*  ----------  Sections  ----------  */
   .section{padding:5rem 1rem;text-align:center;}
-  .section:not(:last-of-type){border-bottom:1px solid var(--clr-sand);}
+  .section:not(:last-of-type):not(.hero){border-bottom:1px solid var(--clr-sand);}
   
   .section__heading{
     font-family:var(--ff-script);
