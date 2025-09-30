@@ -205,13 +205,20 @@ body {
   box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Match sponsors-category effect */
 }
 
-.party-card__img {
-  width: 120px; /* Or your desired size */
-  height: 120px; /* Or your desired size */
-  border-radius: 50%; /* Makes the image circular */
-  object-fit: cover; /* Ensures the image covers the area, cropping if necessary, without distortion */
-  margin-bottom: 1rem;
-  border: 3px solid var(--clr-sand-dark); /* Optional: adds a border like the placeholder had */
+  .party-card__img {
+    width: 120px; /* Or your desired size */
+    height: 120px; /* Or your desired size */
+    border-radius: 50%; /* Makes the image circular */
+    object-fit: cover; /* Ensures the image covers the area, cropping if necessary, without distortion */
+    margin-bottom: 1rem;
+    border: 3px solid var(--clr-sand-dark); /* Optional: adds a border like the placeholder had */
+  }
+
+/* Parents section (first cards group): slightly larger images with soft shadow */
+.wedding-party .party-cards__wrap.fade:first-of-type .party-card .party-card__img {
+  width: 150px;
+  height: 150px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
 .party-card__name {
