@@ -33,6 +33,14 @@ html {
       /* Reset full-bleed widening on touch to avoid image overscale */
       left: 0;
       width: 100%;
+      background-size: 100% auto; /* scale by width to avoid zoom on toolbar collapse */
+    }
+    /* If stable large viewport units are supported, lock to 100lvh to prevent height changes on scroll */
+    @supports (height: 100lvh) {
+      .hero {
+        height: 100lvh;
+        min-height: 0;
+      }
     }
   }
 
@@ -629,8 +637,8 @@ body {
   /* This might need a more specific rule depending on overall structure */
   border-top: none !important; /* Ensure no top border on countdown section itself */
   box-shadow: none !important; /* Remove inset shadow line for this section */
-  /* Remove overlap to avoid projecting any top line into the hero */
-  margin-top: 0;
+  /* Slight overlap under hero to mask any 1px seam during scroll */
+  margin-top: -8px;
   position: relative;
   z-index: 1;
 }
