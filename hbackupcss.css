@@ -609,7 +609,7 @@ body {
   padding: 2rem 1.5rem 1.5rem; /* Add padding, more at top for rounded effect */
   border-radius: 20px 20px 8px 8px; /* Rounded top corners, less rounded bottom */
   box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-  margin-top: 0; /* Avoid creating a visible seam line on some mobile browsers */
+  margin-top: -1px; /* Pull it up slightly to overlap/connect with heading area, adjust as needed */
   position: relative; /* Needed for z-index and potential pseudo-elements */
   z-index: 0; /* Below heading if heading has z-index */
 }
@@ -853,11 +853,7 @@ body {
       background-attachment: scroll; /* Better for mobile performance/compatibility */
       /* Optional: Add a background color if 'contain' leaves empty space */
       /* background-color: var(--clr-sand); */ 
-      /* Use small/dynamic viewport units to avoid iOS/Android 1px gaps */
-      min-height: 100vh;  /* Fallback */
-      min-height: 100svh; /* iOS 16+ small viewport height */
-      min-height: 100dvh; /* Dynamic viewport height */
-      margin-bottom: -1px; /* Nudge to cover potential subpixel seam */
+      min-height: 100vh; /* Full viewport height */
     }
 
     .hero__subtitle {
