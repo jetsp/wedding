@@ -13,6 +13,14 @@ html {
     --ff-serif:'Playfair Display',serif;
     --ff-sans:'Raleway',sans-serif;
   }
+
+  /* Touch devices: anchor image; remove any overlay to avoid visible lines */
+  @media (pointer: coarse) {
+    .hero {
+      background-position: center top; /* reduce repositioning during UI bar changes */
+    }
+    .hero::after { content: none; }
+  }
   
   /* Lock hero height on touch devices to prevent scroll-induced zoom/resizes on iOS/iPadOS */
   @media (pointer: coarse) {
@@ -50,12 +58,13 @@ body {
     background: url('images/white-bg.jpg'); /* Repeating background image */
     box-shadow:0 0 20px rgba(0,0,0,.1);
     padding:2.5rem 1rem;
+    overflow: hidden; /* Clip subpixel seams at section edges on iOS/iPadOS */
   }
   
   /*  ----------  Sections  ----------  */
   .section{padding:5rem 1rem;text-align:center;}
   /* Use inset shadow instead of border to avoid subpixel seams on mobile */
-  .section:not(:last-of-type):not(.hero){
+  .section:not(:last-of-type):not(.hero):not(.countdown){
     border-bottom: none;
     box-shadow: inset 0 -1px 0 var(--clr-sand);
   }
@@ -101,29 +110,18 @@ body {
     text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
   }
 
-  /* Seam masks (apply on all devices to avoid iOS/iPadOS hairlines) */
-  .hero::after {
-    content: "";
+  /* Inline image for touch devices (hidden on desktop) */
+  .hero__bg {
+    display: none; /* default hidden; desktop uses CSS background */
     position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -8px; /* Extend below by a few pixels */
-    height: 16px;   /* Slightly thicker mask strip */
-    background: url('images/white-bg.jpg') repeat; /* Match .book background to hide seam */
-    z-index: 2; /* Above content */
-    pointer-events: none;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
   }
-  .hero::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: -8px; /* Extend above by a few pixels */
-    height: 16px;
-    background: url('images/white-bg.jpg') repeat; /* Match .book background */
-    z-index: 2;
-    pointer-events: none;
-  }
+
+  /* Removed hero masks to prevent visible lines across the image on iOS */
 
   /* Mobile: disable parallax only */
   @media (max-width: 768px) {
@@ -136,6 +134,9 @@ body {
   /* Disable parallax on touch devices (phones/tablets, including iPadOS Chrome/Safari) */
   @media (pointer: coarse) {
     .hero { background-attachment: scroll; }
+    /* Use inline image instead of CSS background on touch to avoid seams */
+    .hero { background-image: none; }
+    .hero__bg { display: block; }
   }
 
 
@@ -624,8 +625,9 @@ body {
   /* Remove hero's bottom border if it exists and countdown is directly after */
   /* This might need a more specific rule depending on overall structure */
   border-top: none !important; /* Ensure no top border on countdown section itself */
-  /* Slight overlap under the hero to hide any seam/hairline on iOS/iPadOS */
-  margin-top: -6px;
+  box-shadow: none !important; /* Remove inset shadow line for this section */
+  /* Remove overlap to avoid projecting any top line into the hero */
+  margin-top: 0;
   position: relative;
   z-index: 1;
 }
