@@ -82,10 +82,11 @@ body {
     /* To ensure it's visually full-width within the .book's max-width context */
     box-sizing: content-box; /* Important when using negative margins with padding on parent */
     background-image: url('images/desert.jpeg');
-    background-attachment: fixed; /* Parallax-like effect */
+    background-attachment: fixed; /* Parallax on desktop */
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
+    background-color: var(--clr-sand); /* global fallback to avoid blue flashes */
     min-height: 100vh; /* Full viewport height for clear parallax */
     display: flex;
     flex-direction: column;
@@ -95,6 +96,24 @@ body {
     color: #ffffff; /* White text color for hero content */
     text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Subtle shadow for text readability */
     /* Minimal setup for parallax; do not alter text styles */
+  }
+
+  /* Mobile: no parallax, ensure image shows normally */
+  @media (max-width: 768px) {
+    .hero {
+      background-image: url('images/desert.jpeg'); /* ensure image is explicitly set */
+      background-attachment: scroll; /* disable parallax */
+      background-position: center center;
+      background-size: cover;
+      background-color: var(--clr-sand); /* safe fallback */
+      min-height: 80vh; /* comfortable height without vh glitches */
+    }
+  }
+
+  /* Remove divider/shadow directly under hero to eliminate lingering line */
+  .hero + .section {
+    box-shadow: none !important;
+    border-top: none !important;
   }
 
 

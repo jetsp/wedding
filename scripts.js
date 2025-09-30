@@ -64,6 +64,8 @@ function setupFadeInHeroTitle() {
 
 /*** Parallax fallback for mobile (simulate background-attachment: fixed) ***/
 (function setupParallaxHero() {
+  const PARALLAX_MOBILE_ENABLED = false; // disabled per request
+  if (PARALLAX_MOBILE_ENABLED === false) return;
   const hero = document.querySelector('.hero');
   if (!hero) return;
 
