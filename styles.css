@@ -22,54 +22,30 @@ html {
     .hero::after { content: none; }
   }
   
-  /* Lock hero height on touch devices to prevent scroll-induced zoom/resizes on iOS/iPadOS */
+  /* Lock hero behavior on touch devices to prevent iOS scroll-induced zoom/resizes */
   @media (pointer: coarse) {
     .hero {
-      background-attachment: scroll; /* ensure no parallax on touch */
-      background-position: center center; /* match desktop composition */
-      height: auto;      /* avoid forced viewport locking that can cause zoom */
-      min-height: 100svh;  /* stabilize against iOS dynamic toolbar resizing */
-      overflow: hidden;  /* clip any overflow to prevent visual zooming */
-      /* Reset full-bleed widening on touch to avoid image overscale */
+      background-attachment: scroll; /* no parallax on touch */
+      background-position: center top; /* anchor to top to avoid visible shift */
+      height: auto;
+      min-height: 70vh;  /* avoid full-screen to reduce iOS UI bar effects */
+      overflow: hidden;
+      /* Avoid full-bleed width tricks on touch */
       left: 0;
       width: 100%;
-      background-size: cover; /* preserve initial (pre-scroll) framing */
-      background-image: none; /* avoid iOS background repaint seam; use ::before instead */
-      /* Avoid sub-pixel seams on iOS by forcing GPU compositing */
+      /* Remove extra overlaps that can expose seams */
+      margin-bottom: 0;
+      /* Keep rendering simple to reduce artifacts */
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
-      transform: translateZ(0);
-      will-change: transform;
-      /* Slight overlap to mask any 1px gap between sections */
-      margin-bottom: -4px;
-      /* Isolate hero painting to reduce artifacts during toolbar resize */
-      contain: paint;
+      transform: none;
+      will-change: auto;
     }
-    /* Disable previous pseudo-element layer implementation */
-    .hero::before { display: none !important; }
-
-    /* Touch-only image layer: show and overscan to hide seams */
-    .hero__bg {
-      display: block !important;
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: -8px;      /* extend above */
-      bottom: -8px;   /* extend below */
-      width: 100%;
-      height: calc(100% + 16px); /* account for overscan */
-      object-fit: cover;
-      object-position: center bottom;
-      z-index: 1;   /* content uses z-index:2 via .hero > * rule */
-      pointer-events: none; /* ignore touches */
-      -webkit-user-select: none;
-      user-select: none;
-      -webkit-backface-visibility: hidden;
-      backface-visibility: hidden;
-      transform: translateZ(0);
-      will-change: transform;
-    }
+    /* Ensure any inline image layer stays hidden on touch (we use CSS background) */
+    .hero__bg { display: none !important; }
   }
+
+  /* Remove small-screen override that disabled background */
 
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 
@@ -173,8 +149,17 @@ body {
   /* Disable parallax on touch devices (phones/tablets, including iPadOS Chrome/Safari) */
   @media (pointer: coarse) {
     .hero { background-attachment: scroll; }
-    /* Use inline image on touch; background-image is disabled above */
-    .hero__bg { display: block !important; }
+    .hero__bg { display: none !important; }
+  }
+
+  /* Ensure touch rules take precedence over width-based mobile rules */
+  @media (pointer: coarse) {
+    .hero {
+      min-height: 70vh !important; /* prevent iOS zoomy resize */
+      background-position: center top !important;
+      margin-bottom: 0 !important;
+    }
+    .countdown { margin-top: 0 !important; }
   }
 
 
@@ -633,7 +618,7 @@ body {
 */
   .hero > * {
     position: relative;
-    z-index: 2;
+    z-index: 3; /* keep hero content above any overlays */
   }
 
   .hero__title{
