@@ -26,14 +26,14 @@ html {
   @media (pointer: coarse) {
     .hero {
       background-attachment: scroll; /* ensure no parallax on touch */
-      background-position: center top; /* anchor to top to reduce perceived zoom */
+      background-position: center center; /* match desktop composition */
       height: auto;      /* avoid forced viewport locking that can cause zoom */
-      min-height: 80vh;  /* still provide a tall hero */
+      min-height: 100vh; /* match the pre-scroll look */
       overflow: hidden;  /* clip any overflow to prevent visual zooming */
       /* Reset full-bleed widening on touch to avoid image overscale */
       left: 0;
       width: 100%;
-      background-size: 100% auto; /* scale by width to avoid zoom on toolbar collapse */
+      background-size: cover; /* preserve initial (pre-scroll) framing */
     }
     /* If stable large viewport units are supported, lock to 100lvh to prevent height changes on scroll */
     @supports (height: 100lvh) {
