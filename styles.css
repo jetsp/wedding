@@ -90,12 +90,41 @@ body {
     text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
   }
 
+  /* Seam masks (apply on all devices to avoid iOS/iPadOS hairlines) */
+  .hero::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -8px; /* Extend below by a few pixels */
+    height: 16px;   /* Slightly thicker mask strip */
+    background: url('images/white-bg.jpg') repeat; /* Match .book background to hide seam */
+    z-index: 2; /* Above content */
+    pointer-events: none;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -8px; /* Extend above by a few pixels */
+    height: 16px;
+    background: url('images/white-bg.jpg') repeat; /* Match .book background */
+    z-index: 2;
+    pointer-events: none;
+  }
+
   /* Mobile: disable parallax only */
   @media (max-width: 768px) {
     .hero {
       background-attachment: scroll; /* Disable parallax on mobile to prevent blank backgrounds */
       min-height: 80vh;
     }
+  }
+
+  /* Disable parallax on touch devices (phones/tablets, including iPadOS Chrome/Safari) */
+  @media (pointer: coarse) {
+    .hero { background-attachment: scroll; }
   }
 
 
@@ -864,21 +893,10 @@ body {
       margin-bottom: -3px; /* Nudge more to cover potential subpixel seam */
       background-clip: border-box;
       -webkit-background-clip: border-box;
-      will-change: transform;
+      /* Avoid forcing layer promotion that can create hairline seams on iOS */
+      /* will-change: transform; */
     }
 
-    /* Extra bottom mask within hero to hide any seam */
-    .hero::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: -8px; /* Extend below by a few pixels */
-      height: 12px;   /* Slightly thicker mask strip */
-      background: url('images/white-bg.jpg') repeat; /* Match .book background to hide seam */
-      z-index: 2; /* Above ::before overlay for effective masking */
-      pointer-events: none;
-    }
 
     .hero__subtitle {
       max-width: 85%; /* Constrain width to encourage wrapping */
