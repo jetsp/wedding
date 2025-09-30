@@ -13,6 +13,17 @@ html {
     --ff-serif:'Playfair Display',serif;
     --ff-sans:'Raleway',sans-serif;
   }
+  
+  /* Lock hero height on touch devices to prevent scroll-induced zoom/resizes on iOS/iPadOS */
+  @media (pointer: coarse) {
+    .hero {
+      background-attachment: scroll; /* ensure no parallax on touch */
+      background-position: center center; /* stable anchoring */
+      height: 100svh;   /* lock to small viewport height */
+      min-height: 0;    /* override earlier min-heights */
+      overflow: hidden; /* avoid subpixel bleed while bars show/hide */
+    }
+  }
 
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 
