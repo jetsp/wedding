@@ -623,7 +623,11 @@ body {
   padding-right: 1rem;
   /* Remove hero's bottom border if it exists and countdown is directly after */
   /* This might need a more specific rule depending on overall structure */
-  border-top: none; /* Ensure no top border on countdown section itself */
+  border-top: none !important; /* Ensure no top border on countdown section itself */
+  /* Slight overlap under the hero to hide any seam/hairline on iOS/iPadOS */
+  margin-top: -6px;
+  position: relative;
+  z-index: 1;
 }
 
 /* Ensure hero section does not have a bottom border if countdown follows */
