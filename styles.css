@@ -14,14 +14,6 @@ html {
     --ff-sans:'Raleway',sans-serif;
   }
 
-  /* Desktop: make hero full viewport to accentuate parallax */
-  @media (min-width: 769px) {
-    .hero {
-      min-height: 100vh;
-      background-position: center center;
-    }
-  }
-  
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 
 html,
@@ -81,7 +73,7 @@ body {
     margin-right: -1rem; /* Corresponds to .book padding-right */
     /* To ensure it's visually full-width within the .book's max-width context */
     box-sizing: content-box; /* Important when using negative margins with padding on parent */
-    background-image: url('images/desert.jpeg');
+    background-image: url('images/desert.jpeg?v=3');
     background-attachment: fixed;
     background-size: cover;
     background-position: center center;
