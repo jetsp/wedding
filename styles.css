@@ -41,21 +41,29 @@ html {
       transform: translateZ(0);
       will-change: transform;
       /* Slight overlap to mask any 1px gap between sections */
-      margin-bottom: -1px;
+      margin-bottom: -4px;
+      /* Isolate hero painting to reduce artifacts during toolbar resize */
+      contain: paint;
     }
-    /* Render the hero image with a dedicated layer, slightly oversized to mask seams */
-    .hero::before {
-      content: "";
+    /* Disable previous pseudo-element layer implementation */
+    .hero::before { display: none !important; }
+
+    /* Touch-only image layer: show and overscan to hide seams */
+    .hero__bg {
+      display: block !important;
       position: absolute;
       left: 0;
       right: 0;
-      top: -2px;      /* extend above */
-      bottom: -2px;   /* extend below */
-      background-image: url('images/desert.jpeg');
-      background-size: cover;
-      background-position: center bottom;
-      background-repeat: no-repeat;
-      z-index: 1;     /* sits behind content; content is z-index:2 below */
+      top: -8px;      /* extend above */
+      bottom: -8px;   /* extend below */
+      width: 100%;
+      height: calc(100% + 16px); /* account for overscan */
+      object-fit: cover;
+      object-position: center bottom;
+      z-index: 1;   /* content uses z-index:2 via .hero > * rule */
+      pointer-events: none; /* ignore touches */
+      -webkit-user-select: none;
+      user-select: none;
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
       transform: translateZ(0);
@@ -165,8 +173,8 @@ body {
   /* Disable parallax on touch devices (phones/tablets, including iPadOS Chrome/Safari) */
   @media (pointer: coarse) {
     .hero { background-attachment: scroll; }
-    /* Use CSS background on touch as well; inline image stays hidden */
-    .hero__bg { display: none !important; }
+    /* Use inline image on touch; background-image is disabled above */
+    .hero__bg { display: block !important; }
   }
 
 
