@@ -26,10 +26,13 @@ html {
   @media (pointer: coarse) {
     .hero {
       background-attachment: scroll; /* ensure no parallax on touch */
-      background-position: center center; /* stable anchoring */
-      height: 100svh;   /* lock to small viewport height */
-      min-height: 0;    /* override earlier min-heights */
-      overflow: hidden; /* avoid subpixel bleed while bars show/hide */
+      background-position: center top; /* anchor to top to reduce perceived zoom */
+      height: auto;      /* avoid forced viewport locking that can cause zoom */
+      min-height: 80vh;  /* still provide a tall hero */
+      overflow: hidden;  /* clip any overflow to prevent visual zooming */
+      /* Reset full-bleed widening on touch to avoid image overscale */
+      left: 0;
+      width: 100%;
     }
   }
 
@@ -118,6 +121,7 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center top; /* show more of the upper part on mobile */
     z-index: 0;
   }
 
@@ -134,9 +138,8 @@ body {
   /* Disable parallax on touch devices (phones/tablets, including iPadOS Chrome/Safari) */
   @media (pointer: coarse) {
     .hero { background-attachment: scroll; }
-    /* Use inline image instead of CSS background on touch to avoid seams */
-    .hero { background-image: none; }
-    .hero__bg { display: block; }
+    /* Use CSS background on touch as well; inline image stays hidden */
+    .hero__bg { display: none !important; }
   }
 
 
