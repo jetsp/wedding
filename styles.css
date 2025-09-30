@@ -70,7 +70,7 @@ body {
     /* To ensure it's visually full-width within the .book's max-width context */
     box-sizing: content-box; /* Important when using negative margins with padding on parent */
     background-image: url('images/desert.jpeg');
-    background-attachment: scroll; /* Avoid fixed backgrounds causing seams on mobile */
+    background-attachment: fixed; /* Parallax-like effect restored */
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -853,9 +853,9 @@ body {
   /* Hero mobile adjustments */
   @media (max-width: 768px) {
     .hero {
-      background-size: cover; /* Avoid edges caused by auto height scaling */
+      background-size: cover; /* Keep cover on mobile */
       background-position: center bottom; /* Anchor to bottom to hide potential top/bottom seams */
-      background-attachment: scroll; /* Better for mobile performance/compatibility */
+      background-attachment: fixed; /* Parallax on mobile as requested */
       /* Optional: Add a background color if 'contain' leaves empty space */
       /* background-color: var(--clr-sand); */ 
       /* Use small/dynamic viewport units to avoid iOS/Android 1px gaps */
@@ -874,10 +874,10 @@ body {
       position: absolute;
       left: 0;
       right: 0;
-      bottom: -6px; /* Extend below by a few pixels */
-      height: 8px;   /* Thin mask strip */
-      background-color: rgba(0,0,0,0.15); /* Blend with overlay and image */
-      z-index: 1; /* Same layer as ::before overlay */
+      bottom: -8px; /* Extend below by a few pixels */
+      height: 12px;   /* Slightly thicker mask strip */
+      background: url('images/white-bg.jpg') repeat; /* Match .book background to hide seam */
+      z-index: 2; /* Above ::before overlay for effective masking */
       pointer-events: none;
     }
 
