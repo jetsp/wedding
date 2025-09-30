@@ -28,12 +28,19 @@ html {
       background-attachment: scroll; /* ensure no parallax on touch */
       background-position: center center; /* match desktop composition */
       height: auto;      /* avoid forced viewport locking that can cause zoom */
-      min-height: 70vh;  /* do not force full screen on mobile/tablet */
+      min-height: 100svh;  /* stabilize against iOS dynamic toolbar resizing */
       overflow: hidden;  /* clip any overflow to prevent visual zooming */
       /* Reset full-bleed widening on touch to avoid image overscale */
       left: 0;
       width: 100%;
       background-size: cover; /* preserve initial (pre-scroll) framing */
+      /* Avoid sub-pixel seams on iOS by forcing GPU compositing */
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      transform: translateZ(0);
+      will-change: transform;
+      /* Slight overlap to mask any 1px gap between sections */
+      margin-bottom: -1px;
     }
   }
 
@@ -132,7 +139,7 @@ body {
   @media (max-width: 768px) {
     .hero {
       background-attachment: scroll; /* Disable parallax on mobile to prevent blank backgrounds */
-      min-height: 80vh;
+      min-height: 100svh; /* Lock to visual viewport height on mobile */
     }
   }
 
