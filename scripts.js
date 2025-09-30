@@ -61,6 +61,57 @@ function setupFadeInHeroTitle() {
         }
         typingTarget.appendChild(span);
     });
+
+/*** Parallax fallback for mobile (simulate background-attachment: fixed) ***/
+(function setupParallaxHero() {
+  const hero = document.querySelector('.hero');
+  if (!hero) return;
+
+  // Only apply on mobile/tablet where fixed backgrounds are often ignored
+  const mq = window.matchMedia('(max-width: 768px)');
+
+  let ticking = false;
+  const speed = 0.4; // Adjust parallax speed
+
+  function updateParallax() {
+    const y = window.scrollY || window.pageYOffset || 0;
+    // Move background opposite to scroll for parallax feel
+    hero.style.backgroundPosition = `center ${-y * speed}px`;
+    ticking = false;
+  }
+
+  function onScroll() {
+    if (!ticking) {
+      window.requestAnimationFrame(updateParallax);
+      ticking = true;
+    }
+  }
+
+  function enable() {
+    // Ensure base position
+    hero.style.backgroundPosition = 'center 0px';
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', updateParallax);
+    updateParallax();
+  }
+
+  function disable() {
+    window.removeEventListener('scroll', onScroll);
+    window.removeEventListener('resize', updateParallax);
+    hero.style.backgroundPosition = ''; // revert to CSS
+  }
+
+  function apply() {
+    if (mq.matches) enable(); else disable();
+  }
+
+  if (document.readyState === 'loading') {
+    window.addEventListener('DOMContentLoaded', apply);
+  } else {
+    apply();
+  }
+  mq.addEventListener('change', apply);
+})();
 }
 
 window.addEventListener('DOMContentLoaded', setupFadeInHeroTitle);

@@ -13,6 +13,14 @@ html {
     --ff-serif:'Playfair Display',serif;
     --ff-sans:'Raleway',sans-serif;
   }
+
+  /* Desktop: make hero full viewport to accentuate parallax */
+  @media (min-width: 769px) {
+    .hero {
+      min-height: 100vh;
+      background-position: center center;
+    }
+  }
   
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 
@@ -43,7 +51,11 @@ body {
   
   /*  ----------  Sections  ----------  */
   .section{padding:5rem 1rem;text-align:center;}
-  .section:not(:last-of-type):not(.hero){border-bottom:1px solid var(--clr-sand);}
+  /* Use inset shadow instead of border to avoid subpixel seams on mobile */
+  .section:not(:last-of-type):not(.hero){
+    border-bottom: none;
+    box-shadow: inset 0 -1px 0 var(--clr-sand);
+  }
   
   .section__heading{
     font-family:var(--ff-script);
@@ -70,11 +82,11 @@ body {
     /* To ensure it's visually full-width within the .book's max-width context */
     box-sizing: content-box; /* Important when using negative margins with padding on parent */
     background-image: url('images/desert.jpeg');
-    background-attachment: fixed; /* Parallax-like effect restored */
+    background-attachment: fixed; /* Parallax-like effect */
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-    min-height: 80vh; /* Adjust height as desired, e.g., 100vh for full viewport */
+    min-height: 100vh; /* Full viewport height for clear parallax */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -82,23 +94,9 @@ body {
     position: relative; /* For the overlay */
     color: #ffffff; /* White text color for hero content */
     text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Subtle shadow for text readability */
-    /* Reverted torn paper effect */
-    overflow: hidden; /* Hide any subpixel seams */
-    -webkit-transform: translateZ(0); /* Reduce painting seams on mobile */
-    transform: translateZ(0);
-    backface-visibility: hidden;
+    /* Minimal setup for parallax; do not alter text styles */
   }
 
-  .hero::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: -3px; /* Overlap by a few pixels to hide any seam at the bottom edge */
-    background-color: rgba(0, 0, 0, 0.3); /* Dark overlay; adjust opacity (0.0 to 1.0) */
-    z-index: 1; /* Place overlay behind content */
-  }
 
   /* Hero Title Fade-in Animation */
   .hero-title-fade-char {
