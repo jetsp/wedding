@@ -1009,6 +1009,30 @@ body {
     /* width: 100%; Removed as flex-basis should handle width in a row */
   }
   
+  /* Prenup Video */
+  .video .section__heading {
+    margin-bottom: 0.75rem;
+  }
+  .video-frame {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid var(--clr-sand);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    padding: 0.75rem;
+  }
+  .video-player {
+    width: 100%;
+    height: auto;
+    display: block;
+    background: #000; /* pleasant letterboxing */
+    border-radius: 8px;
+  }
+  @media (max-width: 768px) {
+    .video-frame { padding: 0.5rem; }
+  }
+  
   /* Favors list */
   .favors__list{list-style:disc;margin:0 auto;max-width:600px;text-align:left;padding-left:1.2rem;font-size:1rem;}
   .favors__list li+li{margin-top:.6rem;}
