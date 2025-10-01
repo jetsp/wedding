@@ -963,7 +963,7 @@ body {
     flex-wrap:wrap; /* allow wrapping if space is tight */
   }
   .calendar__image{
-    width: min(50%, 360px);
+    width: min(55%, 420px);
     height: auto;
     object-fit: contain;
   }
@@ -979,7 +979,7 @@ body {
   .calendar__note{font-style:italic;color:var(--clr-sage);}
   @media (max-width: 768px) {
     .calendar__wrap{flex-direction: row; gap: 0.5rem;}
-    .calendar__image{width: min(48%, 200px);}  
+    .calendar__image{width: min(52%, 240px);}  
     .cal { font-size: .8rem; }
     .cal th,.cal td{ width: 1.8rem; height: 1.8rem; padding: .25rem; }
   }

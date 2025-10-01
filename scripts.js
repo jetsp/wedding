@@ -266,6 +266,63 @@ if (attendanceSelect && plusOneSection && rsvpPlusOneSelect && rsvpGuestNameFiel
   rsvpPlusOneSelect.addEventListener('change', updateGuestField);
 } // End of RSVP conditional fields logic
 
+// Invitation Code Gate for RSVP button (does not change modal logic)
+window.addEventListener('DOMContentLoaded', () => {
+  const codeInput = document.getElementById('inviteCode');
+  const verifyBtn = document.getElementById('verifyCodeBtn');
+  const msgEl = document.getElementById('inviteCodeMsg');
+  const gateWrap = document.getElementById('rsvpGateWrap');
+  const rsvpBtn = document.getElementById('openRsvp');
+
+  if (!codeInput || !verifyBtn || !rsvpBtn) return; // Gate not present
+
+  // NOTE: Set your actual invitation code(s) here. Keep numeric for simplicity.
+  // You can also change this to an array like ["1234","5678"].
+  const VALID_CODES = ["1234"]; // TODO: replace with your real code(s)
+
+  function showMessage(text, isError = true) {
+    if (!msgEl) return;
+    msgEl.textContent = text || '';
+    msgEl.style.color = isError ? 'var(--clr-blush)' : 'var(--clr-sage)';
+  }
+
+  function revealRsvpButton() {
+    // Hide gate UI and show the RSVP trigger button
+    if (gateWrap) gateWrap.style.display = 'none';
+    rsvpBtn.style.display = '';
+    rsvpBtn.focus({ preventScroll: true });
+  }
+
+  verifyBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    const raw = (codeInput.value || '').trim();
+    // Allow only digits
+    const digits = raw.replace(/\D+/g, '');
+    if (!digits) {
+      showMessage('Please enter your numeric invitation code.', true);
+      codeInput.focus();
+      return;
+    }
+
+    if (VALID_CODES.includes(digits)) {
+      showMessage('Code verified. Thank you!', false);
+      revealRsvpButton();
+    } else {
+      showMessage('Invalid code. Please check your invitation and try again.', true);
+      codeInput.focus();
+      codeInput.select?.();
+    }
+  });
+
+  // Also allow pressing Enter inside the input to verify
+  codeInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      verifyBtn.click();
+    }
+  });
+});
+
 /*********  Entourage List Toggles  *********/
 function setupEntourageToggles() {
     const toggleWraps = document.querySelectorAll('.entourage-toggle__wrap');

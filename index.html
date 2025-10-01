@@ -211,12 +211,16 @@
           <p class="party-card__title">Matron of Honor:</p>
         </div>
         <div class="party-card party-card--no-image">
-          <h3 class="party-card__name">Jane Smith &amp; Placeholder Name 2</h3>
-          <p class="party-card__title">Bridesmaids</p>
+          <h3 class="party-card__name">Mr. Jet Roe San Pedro &amp; Ms. Jena Andrea Casuga</h3>
+          <p class="party-card__title">Candle: To light our Path</p>
         </div>
         <div class="party-card party-card--no-image">
-          <h3 class="party-card__name">Placeholder Name 3 &amp; Placeholder Name 4</h3>
-          <p class="party-card__title">Wedding Party</p>
+          <h3 class="party-card__name">Mr. Nick John &amp; Ms. Zara Cruz</h3>
+          <p class="party-card__title">Veil: To clothe us as one</p>
+        </div>
+        <div class="party-card party-card--no-image">
+          <h3 class="party-card__name">Mr. Jhommel Mataro &amp; Ms. Genica Gonzales</h3>
+          <p class="party-card__title">Cord: To bind us together</p>
         </div>
       </div> <!-- End of new wrapper for the 6 smaller cards -->
       <div class="additional-entourage fade">
@@ -496,7 +500,26 @@
       <p class="fade">
         Let us know if you’ll be sharing our special day.
       </p>
-      <button id="openRsvp" class="btn fade">Send RSVP</button>
+      <div id="rsvpGateWrap" class="fade" style="margin-top: 0.75rem;">
+        <label for="inviteCode" style="display:block; margin-bottom: 0.5rem; color: var(--clr-sage);">
+          Enter your invitation code
+        </label>
+        <div style="display:flex; gap:0.5rem; justify-content:center; align-items:center; flex-wrap:wrap;">
+          <input
+            id="inviteCode"
+            name="inviteCode"
+            type="text"
+            inputmode="numeric"
+            pattern="[0-9]*"
+            placeholder="e.g. 1234"
+            style="padding:0.6rem 0.75rem; border:1px solid var(--clr-sand); border-radius:6px; min-width: 180px;"
+            aria-label="Invitation code"
+          />
+          <button id="verifyCodeBtn" class="btn">Verify Code</button>
+        </div>
+        <small id="inviteCodeMsg" aria-live="polite" style="display:block; margin-top:0.5rem; color: var(--clr-blush);"></small>
+      </div>
+      <button id="openRsvp" class="btn fade" style="display:none;">Send RSVP</button>
     </section>
 
   </main>
