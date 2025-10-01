@@ -309,6 +309,33 @@ function setupEntourageToggles() {
 
 window.addEventListener('DOMContentLoaded', setupEntourageToggles);
 
+/*********  Collage Album: click thumbnail to swap main image  *********/
+function setupCollageAlbum() {
+  const mainImg = document.querySelector('.collage__image');
+  const thumbs = document.querySelectorAll('.collage__thumbs .collage__thumb');
+  if (!mainImg || !thumbs.length) return;
+
+  // Initialize active state if a thumb matches the main image file name
+  const mainFile = (mainImg.currentSrc || mainImg.src).split('/').pop();
+  thumbs.forEach(t => {
+    t.style.cursor = 'pointer';
+    const tFile = (t.currentSrc || t.src).split('/').pop();
+    if (tFile === mainFile) t.classList.add('is-active');
+
+    t.addEventListener('click', () => {
+      // Update the main image to the clicked thumb
+      mainImg.src = t.src;
+      if (t.alt) mainImg.alt = t.alt;
+
+      // Active state
+      thumbs.forEach(x => x.classList.remove('is-active'));
+      t.classList.add('is-active');
+    });
+  });
+}
+
+window.addEventListener('DOMContentLoaded', setupCollageAlbum);
+
 /*********  Scroll to Top on Page Load  *********/
 window.addEventListener('DOMContentLoaded', () => {
   // Music Player Logic
