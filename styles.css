@@ -976,7 +976,7 @@ body {
   .cal caption{font-family:var(--ff-serif);font-weight:700;font-size:1.2rem;margin-bottom:.5rem;color:var(--clr-terracotta);}
   .cal th,.cal td{border:1px solid var(--clr-sand);padding:.35rem;width:2.2rem;height:2.2rem;text-align:center;}
   .cal__day--mark{background:var(--clr-terracotta);color:#fff;font-weight:700;border-color:var(--clr-terracotta);}
-  .calendar__note{font-style:italic;color:var(--clr-sage);}
+  .calendar__note{font-style:italic;color:var(--clr-sage);margin-top:0.35rem;}
   @media (max-width: 768px) {
     .calendar__wrap{flex-direction: row; gap: 0.5rem;}
     .calendar__image{width: min(52%, 240px);}  
