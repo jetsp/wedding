@@ -1110,6 +1110,9 @@ body {
     grid-template-columns: 1fr;
     align-items: center;
     gap: 0.5rem; /* space between buttons and list */
+    position: relative; /* for indicator chevrons */
+    padding-top: 0;  /* no indicator spacing */
+    padding-bottom: 0; /* no indicator spacing */
   }
   .collage__thumbs {
     display: grid;
@@ -1119,28 +1122,19 @@ body {
     max-height: 560px; /* vertical area height */
     padding: 0.25rem 6px 0.25rem 0; /* gutter for scrollbar */
     scroll-snap-type: y mandatory;
+    justify-items: center; /* center thumbnails horizontally in column */
   }
-  .collage__thumbs-btn {
-    appearance: none;
-    border: 1px solid var(--clr-sand);
-    background: #fff;
-    color: var(--clr-terracotta);
-    border-radius: 6px;
-    width: 100%;
-    padding: 0.4rem 0.25rem;
-    cursor: pointer;
-    transition: background 0.2s ease, color 0.2s ease;
-  }
-  .collage__thumbs-btn:hover { background: var(--clr-sand); }
-  .collage__thumbs-mobile-ctrls { display: none; gap: 0.5rem; justify-content: center; margin: 0.25rem 0; }
+  /* Hide interactive buttons; keep scrollbars */
+  .collage__thumbs-btn,
+  .collage__thumbs-mobile-ctrls { display: none !important; }
   .collage__thumb {
     width: 100%;
     aspect-ratio: 1 / 1; /* squares in 140px column */
     object-fit: cover;
     display: block;
     background: #fff;
-    border: 1px solid var(--clr-sand);
-    border-radius: 8px;
+    border: 2px solid var(--clr-brick); /* brick outline */
+    border-radius: 50%; /* make circular */
     box-shadow: 0 2px 6px rgba(0,0,0,0.06);
     transition: transform 0.2s ease;
     scroll-snap-align: start;
@@ -1184,12 +1178,11 @@ body {
       scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
     }
-    .collage__thumb { flex: 0 0 72px; width: 72px; height: 72px; aspect-ratio: auto; }
-    /* Hide vertical buttons, show horizontal controls */
-    .collage__thumbs-btn--up,
-    .collage__thumbs-btn--down { display: none !important; }
-    .collage__thumbs-mobile-ctrls { display: flex; }
+    .collage__thumb { flex: 0 0 72px; width: 72px; height: 72px; aspect-ratio: auto; border-radius: 50%; }
+    /* No mobile indicators */
   }
+
+  /* No desktop indicators */
 
   /* Favors list */
   .favors__list{list-style:disc;margin:0 auto;max-width:600px;text-align:left;padding-left:1.2rem;font-size:1rem;}
