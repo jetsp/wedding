@@ -593,29 +593,52 @@ function setupRsvpAjaxSubmit() {
     result.textContent = 'Please wait…';
     if (submitBtn) submitBtn.disabled = true;
 
-    fetch('https://api.web3forms.com/submit', {
+    // Prepare Web3Forms request (primary)
+    const web3Req = fetch('https://api.web3forms.com/submit', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
       },
       body: json
-    })
-      .then(async (response) => {
-        const data = await response.json().catch(() => ({ message: 'Unexpected response' }));
-        if (response.status === 200) {
-          result.style.color = 'var(--clr-sage)';
-          result.textContent = data.message || 'Thank you! Your RSVP was sent.';
-        } else {
-          console.log('Web3Forms error:', response, data);
+    });
+
+    // Prepare Google Apps Script request (secondary, URL-encoded so e.parameter is populated)
+    const appsScriptUrl = 'https://script.google.com/macros/s/AKfycbyjp_tfMYTXwfHfzL7P738IdylPz74INbm0Ds5GlRw5EZBhduLz7LMIFmsknlGMIqz3/exec';
+    const urlParams = new URLSearchParams();
+    ['name', 'attendance', 'classification', 'plusone', 'guestName', 'message'].forEach((k) => {
+      urlParams.append(k, (object[k] ?? ''));
+    });
+    const gasReq = fetch(appsScriptUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+      },
+      body: urlParams.toString()
+    }).catch((err) => {
+      // Do not block UX if Apps Script fails
+      console.log('Apps Script submit error:', err);
+    });
+
+    // Run both requests in parallel but drive UI based on Web3Forms result only
+    Promise.allSettled([web3Req, gasReq])
+      .then(async ([web3ResSettle]) => {
+        try {
+          const response = web3ResSettle.value;
+          const data = await response.json().catch(() => ({ message: 'Unexpected response' }));
+          if (response && response.status === 200) {
+            result.style.color = 'var(--clr-sage)';
+            result.textContent = data.message || 'Thank you! Your RSVP was sent.';
+          } else {
+            console.log('Web3Forms error:', response, data);
+            result.style.color = 'var(--clr-blush)';
+            result.textContent = (data && data.message) || 'Something went wrong. Please try again.';
+          }
+        } catch (err) {
+          console.log('Web3Forms handling error:', err);
           result.style.color = 'var(--clr-blush)';
-          result.textContent = data.message || 'Something went wrong. Please try again.';
+          result.textContent = 'Network error. Please try again.';
         }
-      })
-      .catch((error) => {
-        console.log('Web3Forms network error:', error);
-        result.style.color = 'var(--clr-blush)';
-        result.textContent = 'Network error. Please try again.';
       })
       .finally(() => {
         form.reset();
