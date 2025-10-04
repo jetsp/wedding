@@ -226,43 +226,70 @@ document.addEventListener('keydown', e => {
 
 // Conditional RSVP Fields Logic
 const attendanceSelect = document.getElementById('attendanceSelect');
+const classificationField = document.getElementById('classificationField');
+const classificationSelect = document.getElementById('classificationSelect');
 const plusOneSection = document.getElementById('plusOneSection');
 const rsvpPlusOneSelect = document.getElementById('plusOneSelect');
 const rsvpGuestNameField = document.getElementById('guestNameField');
-const rsvpGuestNameInput = rsvpGuestNameField.querySelector('input[name="guestName"]');
+const rsvpGuestNameInput = rsvpGuestNameField?.querySelector('input[name="guestName"]');
 
-if (attendanceSelect && plusOneSection && rsvpPlusOneSelect && rsvpGuestNameField && rsvpGuestNameInput) {
+if (
+  attendanceSelect && classificationField && classificationSelect &&
+  plusOneSection && rsvpPlusOneSelect && rsvpGuestNameField && rsvpGuestNameInput
+) {
   function updateGuestField() {
-    // Check if 'Bringing a guest?' is 'yes'
+    // Show guest name only if a plus-one is selected
     if (rsvpPlusOneSelect.value === 'yes') {
       rsvpGuestNameField.style.display = 'block';
       rsvpGuestNameInput.required = true;
+      // Ensure field ready for user input
+      if (!rsvpGuestNameInput.value || rsvpGuestNameInput.value === '-') rsvpGuestNameInput.value = '';
     } else {
       rsvpGuestNameField.style.display = 'none';
       rsvpGuestNameInput.required = false;
+      // Clear when not applicable
       rsvpGuestNameInput.value = '';
     }
   }
 
-  function updatePlusOneSectionVisibility() {
-    // Check if 'Will you attend?' is 'yes'
-    if (attendanceSelect.value === 'yes') {
+  function updatePlusOneVisibility() {
+    const isAttending = attendanceSelect.value === 'yes';
+    const cls = classificationSelect.value;
+    const sponsors = cls === 'principal' || cls === 'secondary';
+
+    if (isAttending && sponsors) {
       plusOneSection.style.display = 'block';
       rsvpPlusOneSelect.required = true;
-      updateGuestField(); // Update guest name field based on current 'Bringing a guest?' selection
+      // keep current selection behavior
+      updateGuestField();
     } else {
       plusOneSection.style.display = 'none';
       rsvpPlusOneSelect.required = false;
-      rsvpPlusOneSelect.value = ''; // Reset 'Bringing a guest?' select
-      updateGuestField(); // This will hide guest name field as rsvpPlusOneSelect is now empty
+      // Clear when not applicable
+      rsvpPlusOneSelect.value = '';
+      updateGuestField(); // clears guest name if needed
     }
   }
 
+  function updateClassificationVisibility() {
+    if (attendanceSelect.value === 'yes') {
+      classificationField.style.display = 'block';
+      classificationSelect.required = true;
+    } else {
+      classificationField.style.display = 'none';
+      classificationSelect.required = false;
+      // Clear when not applicable
+      classificationSelect.value = '';
+    }
+    updatePlusOneVisibility();
+  }
+
   // Initial setup on page load
-  updatePlusOneSectionVisibility();
+  updateClassificationVisibility();
 
   // Event listeners
-  attendanceSelect.addEventListener('change', updatePlusOneSectionVisibility);
+  attendanceSelect.addEventListener('change', updateClassificationVisibility);
+  classificationSelect.addEventListener('change', updatePlusOneVisibility);
   rsvpPlusOneSelect.addEventListener('change', updateGuestField);
 } // End of RSVP conditional fields logic
 
