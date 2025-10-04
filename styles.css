@@ -1284,11 +1284,14 @@ body {
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     padding: 1rem;
   }
+  /* QR image: preserve sharp edges and proportions for better scanning */
   .gift-card__img img {
-    width: 140px;
-    height: 140px;
-    object-fit: cover;
-    border-radius: 8px;
+    width: 220px;
+    height: 220px;
+    object-fit: contain; /* avoid cropping/distortion of QR modules */
+    image-rendering: pixelated; /* preserve contrast on some browsers */
+    image-rendering: crisp-edges; /* fallback hint for others */
+    border-radius: 0; /* keep square corners for finder patterns */
     border: 1px solid var(--clr-sand);
     display: block;
   }
@@ -1309,6 +1312,7 @@ body {
   @media (max-width: 640px) {
     .gift-card { flex-direction: column; text-align: center; }
     .gift-card__content { text-align: center; }
+    .gift-card__img img { width: 200px; height: 200px; }
   }
 
   /* Favors list */

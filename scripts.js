@@ -59,6 +59,9 @@ function setupFadeInHeroTitle() {
   });
 }
 
+// Render hero names on load
+window.addEventListener('DOMContentLoaded', setupFadeInHeroTitle);
+
 function setupFaqAccordion() {
   const questions = document.querySelectorAll('.faq__question');
   if (!questions.length) return;
