@@ -580,8 +580,13 @@
     <button id="closeRsvp" class="modal__close">&times;</button>
     <h3 class="modal__heading">RSVP</h3>
 
-    <!--  Replace the action URL with your Formspree endpoint -->
-    <form action="https://formspree.io/f/mqabablb" method="POST" class="modal__form">
+    <!--  Web3Forms integration -->
+    <form action="https://api.web3forms.com/submit" method="POST" class="modal__form" id="rsvpForm">
+      <input type="hidden" name="access_key" value="de238963-2f69-44d9-83e2-ebd6485dc9c0" />
+      <input type="hidden" name="subject" value="New RSVP from Wedding Site" />
+      <input type="hidden" name="from_name" value="Wedding RSVP Form" />
+      <!-- Honeypot field to prevent spam -->
+      <input type="checkbox" name="botcheck" class="hidden" style="display:none;" />
       <label>
         Full Name
         <input type="text" name="name" required />
@@ -631,7 +636,8 @@
         <textarea name="message" rows="3" placeholder="Add a note…"></textarea>
       </label>
 
-      <button type="submit" class="btn btn--submit">Submit</button>
+      <button type="submit" class="btn btn--submit" id="rsvpSubmitBtn">Submit</button>
+      <div id="rsvpResult" aria-live="polite" style="margin-top:0.75rem; color: var(--clr-sage);"></div>
     </form>
   </div>
 

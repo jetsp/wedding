@@ -558,3 +558,71 @@ window.addEventListener('DOMContentLoaded', () => {
     observer.observe(musicSection);
   }
 });
+
+/*********  Web3Forms AJAX Submit for RSVP (stay on page)  *********/
+function setupRsvpAjaxSubmit() {
+  const form = document.getElementById('rsvpForm');
+  const result = document.getElementById('rsvpResult');
+  const submitBtn = document.getElementById('rsvpSubmitBtn');
+  if (!form || !result) return;
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    // Basic guard: ensure access_key exists
+    const accessKeyEl = form.querySelector('input[name="access_key"]');
+    if (!accessKeyEl || !accessKeyEl.value) {
+      result.style.color = 'var(--clr-blush)';
+      result.textContent = 'Missing Web3Forms access key.';
+      return;
+    }
+
+    const formData = new FormData(form);
+    // Optional: append current page/source info
+    if (!formData.has('source')) formData.append('source', window.location.href);
+
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
+
+    result.style.display = '';
+    result.style.color = 'var(--clr-sage)';
+    result.textContent = 'Please wait…';
+    if (submitBtn) submitBtn.disabled = true;
+
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: json
+    })
+      .then(async (response) => {
+        const data = await response.json().catch(() => ({ message: 'Unexpected response' }));
+        if (response.status === 200) {
+          result.style.color = 'var(--clr-sage)';
+          result.textContent = data.message || 'Thank you! Your RSVP was sent.';
+        } else {
+          console.log('Web3Forms error:', response, data);
+          result.style.color = 'var(--clr-blush)';
+          result.textContent = data.message || 'Something went wrong. Please try again.';
+        }
+      })
+      .catch((error) => {
+        console.log('Web3Forms network error:', error);
+        result.style.color = 'var(--clr-blush)';
+        result.textContent = 'Network error. Please try again.';
+      })
+      .finally(() => {
+        form.reset();
+        if (submitBtn) submitBtn.disabled = false;
+        // Keep message visible for a bit
+        setTimeout(() => {
+          result.style.display = 'none';
+          result.textContent = '';
+        }, 3000);
+      });
+  });
+}
+
+window.addEventListener('DOMContentLoaded', setupRsvpAjaxSubmit);
