@@ -1635,24 +1635,27 @@ body {
     text-align: left;
   }
   .vertical-timeline > .timeline-item::after { /* Dot positioning for mobile */
-    left: 15px; /* Position dot relative to the new line position */
-    transform: translateX(-50%);
+    left: 6px; /* Visual fine-tune for device rounding */
+    transform: none;
     right: auto; /* Reset right positioning from desktop */
   }
   .vertical-timeline > .timeline-item:nth-child(odd)::after,
   .vertical-timeline > .timeline-item:nth-child(even)::after {
-    left: 5px; /* Position dot on the line (which is now at 15px - 10px half dot) */
+    left: 6px; /* Keep nth-child variants consistent with main mobile dot rule */
+    transform: none;
+    right: auto;
+  }
+  /* Ensure the vertical line shifts to the left on mobile */
+  .vertical-timeline::before {
+    left: 15px;
     transform: translateX(0);
   }
 }
-
 /* Venue section */
 .venue__figure {
   max-width: 960px;
   margin: 0 auto;
-  background: #fff;
   border: 1px solid var(--clr-sand);
-  border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
