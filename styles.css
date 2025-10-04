@@ -1184,6 +1184,71 @@ body {
 
   /* No desktop indicators */
 
+  /* Gifts Section */
+  .gifts__wrap {
+    max-width: 860px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  .gifts__icon {
+    width: 120px;
+    height: auto;
+    display: block;
+    margin: 0 auto 0.5rem;
+  }
+  .gifts__bullets {
+    list-style: disc;
+    list-style-position: inside; /* keep bullets but remove hanging indent */
+    color: var(--clr-terracotta);
+    margin: 0 auto 1rem; /* center block, no extra left indent */
+    padding-left: 0; /* remove default ul padding */
+    max-width: 700px;
+    text-align: left; /* left-align text inside centered container */
+  }
+  .gifts__bullets li { text-indent: 0; }
+  .gifts__bullets li + li { margin-top: 0.4rem; }
+
+  .gift-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    background: #fff;
+    border: 1px solid var(--clr-sand);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    padding: 1rem;
+  }
+  .gift-card__img img {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid var(--clr-sand);
+    display: block;
+  }
+  .gift-card__content { text-align: left; }
+  .gift-card__title {
+    font-family: var(--ff-script);
+    color: var(--clr-brick);
+    font-size: 1.6rem;
+    margin: 0 0 0.25rem;
+  }
+  .gift-card__desc {
+    font-family: var(--ff-serif);
+    color: var(--clr-terracotta);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 640px) {
+    .gift-card { flex-direction: column; text-align: center; }
+    .gift-card__content { text-align: center; }
+  }
+
   /* Favors list */
   .favors__list{list-style:disc;margin:0 auto;max-width:600px;text-align:left;padding-left:1.2rem;font-size:1rem;}
   .favors__list li+li{margin-top:.6rem;}
