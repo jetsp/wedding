@@ -165,7 +165,7 @@ body {
   /* Hero Title Fade-in Animation */
   .hero-title-fade-char {
     opacity: 0;
-    animation: fadeInLetter 0.3s ease-out forwards; /* Adjusted timing and easing */
+    animation: fadeInLetter 0.3s ease-out forwards;
     display: inline-block;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -183,18 +183,81 @@ body {
     }
   }
 
-/* Wedding Party Section */
-.wedding-party .section__heading {
-  margin-bottom: 2rem; /* More space after heading */
-}
+  .party-cards__wrap {
+    display: flex;
+    justify-content: center;
+    gap: 2rem; /* Space between Best Man and Maid of Honor cards */
+    margin-bottom: 2rem;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens if needed */
+  }
 
-.party-cards__wrap {
-  display: flex;
-  justify-content: center;
-  gap: 2rem; /* Space between Best Man and Maid of Honor cards */
-  margin-bottom: 2rem;
-  flex-wrap: wrap; /* Allow wrapping on smaller screens if needed */
-}
+  /* Officiant Card */
+  .officiant-card {
+    display: flex;
+    align-items: stretch;
+    gap: 1rem;
+    max-width: 900px;
+    margin: 0 auto 2rem; /* space below before Parents */
+    background: #fff;
+    border: 1px solid var(--clr-sand);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+
+  .officiant-card__image {
+    flex: 0 0 42%;
+    min-height: 180px;
+    background-image: url('images/hands.jpg');
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+  }
+
+  /* Fade the right side of the image into the white card background */
+  .officiant-card__image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(255,255,255,0) 55%, #ffffff 100%);
+    pointer-events: none;
+  }
+
+  .officiant-card__content {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem 1.25rem;
+    text-align: left;
+  }
+
+  .officiant-card__title {
+    font-family: var(--ff-script);
+    color: var(--clr-brick);
+    font-size: 1.6rem;
+    line-height: 1.2;
+    margin: 0 0 0.35rem;
+  }
+
+  .officiant-card__name {
+    font-family: var(--ff-serif);
+    color: var(--clr-terracotta);
+    font-size: 1.1rem;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .officiant-card { gap: 0.75rem; }
+    .officiant-card__image { flex-basis: 48%; min-height: 160px; }
+    .officiant-card__title { font-size: 1.4rem; }
+  }
+
+  @media (max-width: 520px) {
+    .officiant-card { flex-direction: column; }
+    .officiant-card__image { width: 100%; flex: none; min-height: 180px; }
+    .officiant-card__title { font-size: 1.35rem; }
+  }
 
 .party-card {
   background: #fff;
@@ -204,7 +267,6 @@ body {
   text-align: center;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Match sponsors-category effect */
 }
-
   .party-card__img {
     width: 120px; /* Or your desired size */
     height: 120px; /* Or your desired size */
