@@ -1,192 +1,191 @@
-/*********  Fade-in Letter Animation for Hero Title  *********/
+/***  Fade-in Letter Animation for Hero Title  ***/
 function setupFadeInHeroTitle() {
-    const typingTarget = document.getElementById('typing');
-    if (!typingTarget) {
-        console.error('Typing target element not found for fade-in effect.');
-        return;
-    }
-
-    const name1 = 'Jerome'; // Corrected name
-    const name2 = 'Juvelyn'; // Corrected name
-    let textToDisplay = '';
-
-    // Responsive text layout
-    if (window.innerWidth <= 768) {
-        textToDisplay = `${name1}<br>&<br>${name2}`;
-    } else {
-        // Using more non-breaking spaces for better visual separation on wider screens
-        textToDisplay = `${name1}&nbsp;&nbsp;&nbsp;&nbsp;&&nbsp;&nbsp;&nbsp;&nbsp;${name2}`;
-    }
-
-    typingTarget.innerHTML = ''; // Clear previous content to prevent duplication on resize/reload
-
-    // Create an array of units to animate (characters, <br>, &nbsp;)
-    const animatableUnits = [];
-    let current = 0;
-    while (current < textToDisplay.length) {
-        let unit = '';
-        let consumedLength = 0;
-        // Check for <br> tag
-        if (textToDisplay.substring(current, current + 4).toLowerCase() === '<br>') {
-            unit = '<br>';
-            consumedLength = 4;
-        // Check for &nbsp; entity (case-insensitive for robustness, though typically lowercase)
-        } else if (textToDisplay.substring(current, current + 6).toLowerCase() === '&nbsp;') {
-            unit = '&nbsp;';
-            consumedLength = 6;
-        // Regular character
-        } else {
-            unit = textToDisplay[current];
-            consumedLength = 1;
-        }
-        animatableUnits.push(unit);
-        current += consumedLength;
-    }
-
-    const totalAnimationDuration = 3500; // Target total duration for all letters to appear (e.g., 3.5 seconds)
-    const delayPerUnit = animatableUnits.filter(u => u !== '<br>').length > 0 
-        ? totalAnimationDuration / animatableUnits.filter(u => u !== '<br>').length 
-        : 0;
-
-    let currentDelay = 0;
-    animatableUnits.forEach((unit) => {
-        const span = document.createElement('span');
-        span.innerHTML = unit; // Use innerHTML to correctly render <br> and &nbsp;
-        
-        // Only apply animation class and delay to actual characters/entities, not <br>
-        if (unit !== '<br>') {
-            span.classList.add('hero-title-fade-char');
-            span.style.animationDelay = `${currentDelay}ms`;
-            currentDelay += delayPerUnit;
-        }
-        typingTarget.appendChild(span);
-    });
-
-/*** Parallax fallback for mobile (simulate background-attachment: fixed) ***/
-(function setupParallaxHero() {
-  const PARALLAX_MOBILE_ENABLED = false; // disabled per request
-  if (PARALLAX_MOBILE_ENABLED === false) return;
-  const hero = document.querySelector('.hero');
-  if (!hero) return;
-
-  // Only apply on mobile/tablet where fixed backgrounds are often ignored
-  const mq = window.matchMedia('(max-width: 768px)');
-
-  let ticking = false;
-  const speed = 0.4; // Adjust parallax speed
-
-  function updateParallax() {
-    const y = window.scrollY || window.pageYOffset || 0;
-    // Move background opposite to scroll for parallax feel
-    hero.style.backgroundPosition = `center ${-y * speed}px`;
-    ticking = false;
+  const typingTarget = document.getElementById('typing');
+  if (!typingTarget) {
+    console.error('Typing target element not found for fade-in effect.');
+    return;
   }
 
-  function onScroll() {
-    if (!ticking) {
-      window.requestAnimationFrame(updateParallax);
-      ticking = true;
-    }
-  }
+  const name1 = 'Jerome';
+  const name2 = 'Juvelyn';
+  let textToDisplay = '';
 
-  function enable() {
-    // Ensure base position
-    hero.style.backgroundPosition = 'center 0px';
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', updateParallax);
-    updateParallax();
-  }
-
-  function disable() {
-    window.removeEventListener('scroll', onScroll);
-    window.removeEventListener('resize', updateParallax);
-    hero.style.backgroundPosition = ''; // revert to CSS
-  }
-
-  function apply() {
-    if (mq.matches) enable(); else disable();
-  }
-
-  if (document.readyState === 'loading') {
-    window.addEventListener('DOMContentLoaded', apply);
+  // Responsive text layout
+  if (window.innerWidth <= 768) {
+    textToDisplay = `${name1}<br>&<br>${name2}`;
   } else {
-    apply();
+    // Use non-breaking spaces for separation on wider screens
+    textToDisplay = `${name1}&nbsp;&nbsp;&nbsp;&nbsp;&&nbsp;&nbsp;&nbsp;&nbsp;${name2}`;
   }
-  mq.addEventListener('change', apply);
-})();
+
+  typingTarget.innerHTML = '';
+
+  // Build animatable units (characters, <br>, &nbsp;)
+  const animatableUnits = [];
+  let current = 0;
+  while (current < textToDisplay.length) {
+    let unit = '';
+    let consumedLength = 0;
+    if (textToDisplay.substring(current, current + 4).toLowerCase() === '<br>') {
+      unit = '<br>';
+      consumedLength = 4;
+    } else if (textToDisplay.substring(current, current + 6).toLowerCase() === '&nbsp;') {
+      unit = '&nbsp;';
+      consumedLength = 6;
+    } else {
+      unit = textToDisplay[current];
+      consumedLength = 1;
+    }
+    animatableUnits.push(unit);
+    current += consumedLength;
+  }
+
+  const totalAnimationDuration = 3500;
+  const delayPerUnitSource = animatableUnits.filter(u => u !== '<br>');
+  const delayPerUnit = delayPerUnitSource.length > 0
+    ? totalAnimationDuration / delayPerUnitSource.length
+    : 0;
+
+  let currentDelay = 0;
+  animatableUnits.forEach((unit) => {
+    const span = document.createElement('span');
+    span.innerHTML = unit; // render <br> and &nbsp;
+    if (unit !== '<br>') {
+      span.classList.add('hero-title-fade-char');
+      span.style.animationDelay = `${currentDelay}ms`;
+      currentDelay += delayPerUnit;
+    }
+    typingTarget.appendChild(span);
+  });
 }
 
-window.addEventListener('DOMContentLoaded', setupFadeInHeroTitle);
-// Consider resize events if the text should change dynamically without a page reload
-// window.addEventListener('resize', setupFadeInHeroTitle); // Could be added but might be too frequent
+function setupFaqAccordion() {
+  const questions = document.querySelectorAll('.faq__question');
+  if (!questions.length) return;
 
+  questions.forEach((btn) => {
+    const answerId = btn.getAttribute('aria-controls');
+    const answerEl = document.getElementById(answerId);
+    if (!answerEl) return;
+
+    btn.addEventListener('click', () => {
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      const newExpanded = !expanded;
+      // Collapse other open items within the same list
+      const group = btn.closest('.faq__list');
+      if (group) {
+        group.querySelectorAll('.faq__question[aria-expanded="true"]').forEach(other => {
+          if (other !== btn) {
+            other.setAttribute('aria-expanded', 'false');
+            const otherAns = document.getElementById(other.getAttribute('aria-controls'));
+            if (otherAns) otherAns.hidden = true;
+          }
+        });
+      }
+
+      btn.setAttribute('aria-expanded', newExpanded ? 'true' : 'false');
+      answerEl.hidden = !newExpanded;
+    });
+  });
+}
+
+window.addEventListener('DOMContentLoaded', setupFaqAccordion);
 
 /*********  Wedding Countdown Timer  *********/
 function initializeCountdown() {
-    const countdownDate = new Date("November 23, 2025 00:00:00").getTime();
+  const countdownDate = new Date('November 23, 2025 00:00:00').getTime();
 
-    const monthsEl = document.getElementById('months');
-    const daysEl = document.getElementById('days');
-    const hoursEl = document.getElementById('hours');
-    const minutesEl = document.getElementById('minutes');
-    const secondsEl = document.getElementById('seconds');
+  const monthsEl = document.getElementById('months');
+  const daysEl = document.getElementById('days');
+  const hoursEl = document.getElementById('hours');
+  const minutesEl = document.getElementById('minutes');
+  const secondsEl = document.getElementById('seconds');
 
-    if (!monthsEl || !daysEl || !hoursEl || !minutesEl || !secondsEl) {
-        console.error('One or more countdown elements not found.');
-        return;
+  if (!monthsEl || !daysEl || !hoursEl || !minutesEl || !secondsEl) {
+    // Elements not present on this page
+    return;
+  }
+
+  const updateCountdown = () => {
+    const now = Date.now();
+    const distance = countdownDate - now;
+
+    if (distance < 0) {
+      const timer = document.querySelector('.countdown__timer');
+      if (timer) timer.innerHTML = "<p style='font-size: 1.5rem; color: var(--clr-terracotta);'>The big day has arrived!</p>";
+      clearInterval(interval);
+      return;
     }
 
-    const updateCountdown = () => {
-        const now = new Date().getTime();
-        const distance = countdownDate - now;
+    let remainingDistance = distance;
+    const approxMonths = Math.floor(remainingDistance / (1000 * 60 * 60 * 24 * 30.4375));
+    remainingDistance -= approxMonths * (1000 * 60 * 60 * 24 * 30.4375);
 
-        if (distance < 0) {
-            // Optional: Handle what happens when the date is passed
-            document.querySelector('.countdown__timer').innerHTML = "<p style='font-size: 1.5rem; color: var(--clr-terracotta);'>The big day has arrived!</p>";
-            clearInterval(interval);
-            return;
-        }
+    const days = Math.floor(remainingDistance / (1000 * 60 * 60 * 24));
+    remainingDistance %= (1000 * 60 * 60 * 24);
 
-        // Time calculations for months, days, hours, minutes and seconds
-        // Note: Month calculation is an approximation as month lengths vary.
-        // For a more precise month countdown, a library might be better, or a more complex logic.
-        let remainingDistance = distance;
+    const hours = Math.floor(remainingDistance / (1000 * 60 * 60));
+    remainingDistance %= (1000 * 60 * 60);
 
-        const approxMonths = Math.floor(remainingDistance / (1000 * 60 * 60 * 24 * 30.4375)); // Average days in month
-        remainingDistance -= approxMonths * (1000 * 60 * 60 * 24 * 30.4375);
-        
-        const days = Math.floor(remainingDistance / (1000 * 60 * 60 * 24));
-        remainingDistance %= (1000 * 60 * 60 * 24);
-        
-        const hours = Math.floor(remainingDistance / (1000 * 60 * 60));
-        remainingDistance %= (1000 * 60 * 60);
-        
-        const minutes = Math.floor(remainingDistance / (1000 * 60));
-        remainingDistance %= (1000 * 60);
-        
-        const seconds = Math.floor(remainingDistance / 1000);
+    const minutes = Math.floor(remainingDistance / (1000 * 60));
+    remainingDistance %= (1000 * 60);
 
-        // Display the result in the elements
-        monthsEl.textContent = String(approxMonths).padStart(2, '0');
-        daysEl.textContent = String(days).padStart(2, '0');
-        hoursEl.textContent = String(hours).padStart(2, '0');
-        minutesEl.textContent = String(minutes).padStart(2, '0');
-        secondsEl.textContent = String(seconds).padStart(2, '0');
-    };
+    const seconds = Math.floor(remainingDistance / 1000);
 
-    updateCountdown(); // Initial call to display immediately
-    const interval = setInterval(updateCountdown, 1000); // Update every second
+    monthsEl.textContent = String(approxMonths).padStart(2, '0');
+    daysEl.textContent = String(days).padStart(2, '0');
+    hoursEl.textContent = String(hours).padStart(2, '0');
+    minutesEl.textContent = String(minutes).padStart(2, '0');
+    secondsEl.textContent = String(seconds).padStart(2, '0');
+  };
+
+  updateCountdown();
+  const interval = setInterval(updateCountdown, 1000);
 }
 
-// Add to DOMContentLoaded if not already there, or call directly if DOM is ready
-// Assuming setupFadeInHeroTitle is also in DOMContentLoaded, we can add it there.
-// For safety, let's ensure it's called after the DOM is loaded.
-if (document.readyState === 'loading') { // DOM not yet ready
-    window.addEventListener('DOMContentLoaded', initializeCountdown);
-} else { // DOM is already ready
-    initializeCountdown();
+if (document.readyState === 'loading') {
+  window.addEventListener('DOMContentLoaded', initializeCountdown);
+} else {
+  initializeCountdown();
 }
 
+
+/*********  RSVP Deadline Countdown (to Oct 31, 2025)  *********/
+function initializeRsvpCountdown() {
+  const el = document.getElementById('rsvpCountdown');
+  if (!el) return;
+
+  const deadline = new Date('October 31, 2025 23:59:59').getTime();
+
+  function format(n) { return String(n).padStart(2, '0'); }
+
+  function update() {
+    const now = Date.now();
+    const dist = deadline - now;
+
+    if (dist <= 0) {
+      el.textContent = 'RSVP period has ended.';
+      clearInterval(timer);
+      return;
+    }
+
+    const days = Math.floor(dist / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((dist % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const mins = Math.floor((dist % (1000 * 60 * 60)) / (1000 * 60));
+    const secs = Math.floor((dist % (1000 * 60)) / 1000);
+
+    el.textContent = `${days}d ${format(hours)}h ${format(mins)}m ${format(secs)}s remaining to submit your RSVP`;
+  }
+
+  update();
+  const timer = setInterval(update, 1000);
+}
+
+if (document.readyState === 'loading') {
+  window.addEventListener('DOMContentLoaded', initializeRsvpCountdown);
+} else {
+  initializeRsvpCountdown();
+}
 
 /*********  Fade-in on scroll  *********/
 const faders   = document.querySelectorAll('.fade');
