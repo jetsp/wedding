@@ -565,6 +565,46 @@ function setupRsvpAjaxSubmit() {
   const result = document.getElementById('rsvpResult');
   const submitBtn = document.getElementById('rsvpSubmitBtn');
   if (!form || !result) return;
+  const modalEl = document.getElementById('modal');
+  const openRsvpBtn = document.getElementById('openRsvp');
+
+  function showSuccessView() {
+    if (!modalEl) return;
+    // Hide the form and show a temporary success view
+    form.style.display = 'none';
+    let successView = document.getElementById('rsvpSuccessView');
+    if (!successView) {
+      successView = document.createElement('div');
+      successView.id = 'rsvpSuccessView';
+      successView.className = 'modal__success';
+      successView.innerHTML = `
+        <p style="margin: 1rem 0; color: var(--clr-sage); font-weight: 600;">Successfully sent!</p>
+        <button id="closeRsvpSuccessBtn" class="btn">Close</button>
+      `;
+      modalEl.appendChild(successView);
+      const closeBtn = successView.querySelector('#closeRsvpSuccessBtn');
+      closeBtn.addEventListener('click', () => {
+        // Clean up success view and close modal
+        successView.remove();
+        form.style.display = '';
+        if (typeof toggleModal === 'function') toggleModal(false);
+      });
+    } else {
+      successView.style.display = '';
+    }
+  }
+
+  // When reopening the modal, ensure the form is visible again and success view removed
+  if (openRsvpBtn) {
+    openRsvpBtn.addEventListener('click', () => {
+      const successView = document.getElementById('rsvpSuccessView');
+      if (successView) successView.remove();
+      form.style.display = '';
+      result.textContent = '';
+      result.style.display = 'none';
+      try { form.reset(); } catch {}
+    });
+  }
   // Belt & suspenders: blank the action to avoid native navigation even if handler fails
   try { form.setAttribute('action', ''); } catch {}
   console.log('RSVP AJAX submit bound');
@@ -627,8 +667,8 @@ function setupRsvpAjaxSubmit() {
           const response = web3ResSettle.value;
           const data = await response.json().catch(() => ({ message: 'Unexpected response' }));
           if (response && response.status === 200) {
-            result.style.color = 'var(--clr-sage)';
-            result.textContent = data.message || 'Thank you! Your RSVP was sent.';
+            // Show inline success view with a Close button instead of just text
+            showSuccessView();
           } else {
             console.log('Web3Forms error:', response, data);
             result.style.color = 'var(--clr-blush)';
