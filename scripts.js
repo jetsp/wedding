@@ -190,20 +190,17 @@ if (document.readyState === 'loading') {
   initializeRsvpCountdown();
 }
 
-/*********  Fade-in on scroll  *********/
-const faders   = document.querySelectorAll('.fade');
-const options  = {threshold:0.15};
+/***  Fade-in on scroll (robust, mobile-friendly)  ***/
+// Disable fade-on-scroll entirely; reveal all .fade elements immediately
+function disableFadeOnScroll() {
+  document.querySelectorAll('.fade').forEach(el => el.classList.add('visible'));
+}
 
-const appearOnScroll = new IntersectionObserver((entries, obs) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting){
-      entry.target.classList.add('visible');
-      obs.unobserve(entry.target);
-    }
-  });
-}, options);
-
-faders.forEach(el => appearOnScroll.observe(el));
+if (document.readyState === 'loading') {
+  window.addEventListener('DOMContentLoaded', disableFadeOnScroll);
+} else {
+  disableFadeOnScroll();
+}
 
 
 /*********  RSVP modal  *********/

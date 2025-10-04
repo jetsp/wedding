@@ -1319,6 +1319,64 @@ body {
   .favors__list{list-style:disc;margin:0 auto;max-width:600px;text-align:left;padding-left:1.2rem;font-size:1rem;}
   .favors__list li+li{margin-top:.6rem;}
   
+  /* FAQ: question button base */
+  .faq__question {
+    width: 100%;
+    text-align: left;
+    background: #fff;
+    color: var(--clr-terracotta);
+    border: 1px solid var(--clr-sand);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    font-family: var(--ff-sans);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  /* Space between FAQ items */
+  .faq__item { margin-bottom: 0.75rem; }
+
+  .faq__question:hover {
+    background: #f8f1ea; /* subtle hover */
+  }
+
+  .faq__question:focus-visible {
+    outline: 2px solid var(--clr-brick);
+    outline-offset: 2px;
+  }
+
+  /* Highlight selected (expanded) question */
+  .faq__question[aria-expanded="true"] {
+    background: var(--clr-brick);
+    color: #fff;
+    border-color: var(--clr-brick);
+    box-shadow: none;
+    /* Visually connect with its answer */
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  /* FAQ answer panel */
+  .faq__answer {
+    margin-top: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: #f3e7dc; /* a bit darker than white for contrast */
+    border: 1px solid var(--clr-sand);
+    border-radius: 8px;
+    text-align: left;
+    color: var(--clr-brick);
+  }
+
+  /* When the question is expanded, remove the seam and connect borders */
+  .faq__question[aria-expanded="true"] + .faq__answer {
+    margin-top: 0;            /* no gap between question and answer */
+    border-top: none;         /* remove double border line */
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-color: var(--clr-brick); /* match the active question border */
+  }
+  
   /* Buttons */
   .btn{
     display:inline-block;
@@ -1392,7 +1450,9 @@ body {
   
   /*  ----------  Animations  ----------  */
   @keyframes fadeInUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:none;}}
-  .fade{opacity:0;}
+  /* Disable fade-in on scroll globally */
+  .fade { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .fade.visible { opacity: 1 !important; transform: none !important; }
 
   /* Timeline */
   .timeline__wrap {display: flex;flex-direction: column;align-items: center;gap: 2rem;}
