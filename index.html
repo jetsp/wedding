@@ -59,10 +59,12 @@
               <tr><th>Su</th><th>Mo</th><th>Tu</th><th>We</th><th>Th</th><th>Fr</th><th>Sa</th></tr>
             </thead>
             <tbody>
-              <tr><td></td><td class="cal__day">1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td></tr>
-              <tr><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td></tr>
-              <tr><td>21</td><td>22</td><td class="cal__day--mark">23</td><td>24</td><td>25</td><td>26</td><td>27</td></tr>
-              <tr><td>28</td><td>29</td><td>30</td></tr>
+              <tr><td></td><td></td><td></td><td></td><td></td><td></td><td>1</td></tr>
+              <tr><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td></tr>
+              <tr><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>15</td></tr>
+              <tr><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td><td>22</td></tr>
+              <tr><td class="cal__day--mark">23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td><td>29</td></tr>
+              <tr><td>30</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
             </tbody>
           </table>
           <p class="calendar__note">Ceremony • 3:30 PM</p>
@@ -85,12 +87,24 @@
     <section class="section collage" id="album">
       <h2 class="section__heading">Photo Album</h2>
       <div class="collage__wrap fade">
-        <div class="collage__thumbs">
-          <img src="images/bite.jpg" alt="Holding hands" loading="lazy" class="collage__thumb" />
-          <img src="images/bite2.jpg" alt="She said yes" loading="lazy" class="collage__thumb" />
-          <img src="images/milk.jpg" alt="Sweet moment" loading="lazy" class="collage__thumb" />
-          <img src="images/patrick.jpg" alt="Looking ahead" loading="lazy" class="collage__thumb" />
-          <img src="images/images.jpg" alt="First date" loading="lazy" class="collage__thumb" />
+        <div class="collage__thumbs-wrap">
+          <button class="collage__thumbs-btn collage__thumbs-btn--up" aria-label="Scroll thumbnails up">&#9650;</button>
+          <div class="collage__thumbs" id="collageThumbs">
+            <img src="images/bite.jpg" alt="Holding hands" loading="lazy" class="collage__thumb" />
+            <img src="images/bite2.jpg" alt="She said yes" loading="lazy" class="collage__thumb" />
+            <img src="images/milk.jpg" alt="Sweet moment" loading="lazy" class="collage__thumb" />
+            <img src="images/patrick.jpg" alt="Looking ahead" loading="lazy" class="collage__thumb" />
+            <img src="images/images.jpg" alt="First date" loading="lazy" class="collage__thumb" />
+            <img src="images/couple.jpg" alt="Couple portrait" loading="lazy" class="collage__thumb" />
+            <img src="images/chomper.jpg" alt="Our first encounter" loading="lazy" class="collage__thumb" />
+            <img src="images/car.jpg" alt="Family ride" loading="lazy" class="collage__thumb" />
+            <img src="images/seal.jpg" alt="A special moment" loading="lazy" class="collage__thumb" />
+          </div>
+          <div class="collage__thumbs-mobile-ctrls">
+            <button class="collage__thumbs-btn collage__thumbs-btn--prev" aria-label="Scroll thumbnails left">&#9664;</button>
+            <button class="collage__thumbs-btn collage__thumbs-btn--next" aria-label="Scroll thumbnails right">&#9654;</button>
+          </div>
+          <button class="collage__thumbs-btn collage__thumbs-btn--down" aria-label="Scroll thumbnails down">&#9660;</button>
         </div>
         <figure class="collage__main">
           <img src="images/couple.jpg" alt="Couple portrait" loading="lazy" class="collage__image" />
@@ -187,13 +201,11 @@
       <h2 class="section__heading fade">With Grateful Hearts, Our Parents</h2>
       <div class="party-cards__wrap fade">
         <div class="party-card">
-          <img src="images/car.jpg" alt="Parents of the Groom" class="party-card__img">
           <h3 class="party-card__name">Mr. Ponciano G. Gallardo Jr. ♱<br>&amp;<br>Mrs. Ma. Elena D. Casuga</h3>
           <h2 class="party-card__name">Mr. Abelardo Alfredo G. Casuga Jr.</h2>
           <p class="party-card__title">Parents of the Groom</p>
         </div>
         <div class="party-card">
-          <img src="images/seal.jpg" alt="Parents of the Bride" class="party-card__img">
           <h3 class="party-card__name">Mr. Alfredo C. San Pedro Jr.<br>&amp;<br>Mrs. Evelyn E. San Pedro</h3>
           <p class="party-card__title">Parents of the Bride</p>
         </div>
@@ -214,7 +226,7 @@
       <div class="party-cards__wrap party-cards__wrap--stacked fade">
         <div class="party-card party-card--no-image">
           <h3 class="party-card__name">Ms. Jaylyn E. San Pedro</h3>
-          <p class="party-card__title">Matron of Honor:</p>
+          <p class="party-card__title">Maid of Honor</p>
         </div>
         <div class="party-card party-card--no-image">
           <h3 class="party-card__name">Mr. Jet Roe San Pedro &amp; Ms. Jena Andrea Casuga</h3>
@@ -369,6 +381,12 @@
             </tr>
           </thead>
           <tbody>
+            <tr>
+              <td class="time">3:30 - 5:00 PM</td>
+              <td class="event">
+                <h4>Ceremony </h4>
+              </td>
+            </tr>
             <tr>
               <td class="time">5:00 - 6:30 PM</td>
               <td class="event">

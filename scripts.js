@@ -393,6 +393,47 @@ function setupCollageAlbum() {
 
 window.addEventListener('DOMContentLoaded', setupCollageAlbum);
 
+/*** Collage thumbnails scroll controls (desktop vertical, mobile horizontal) ***/
+function setupCollageThumbScroll() {
+  const container = document.getElementById('collageThumbs');
+  if (!container) return;
+
+  const btnUp = document.querySelector('.collage__thumbs-btn--up');
+  const btnDown = document.querySelector('.collage__thumbs-btn--down');
+  const btnPrev = document.querySelector('.collage__thumbs-btn--prev');
+  const btnNext = document.querySelector('.collage__thumbs-btn--next');
+
+  const mqMobile = window.matchMedia('(max-width: 768px)');
+
+  function scrollAmount() {
+    // Scroll by approx one viewport of the thumbnail strip
+    return mqMobile.matches ? container.clientWidth * 0.8 : container.clientHeight * 0.8;
+  }
+
+  function bindDesktop() {
+    if (btnUp) btnUp.onclick = () => container.scrollBy({ top: -scrollAmount(), behavior: 'smooth' });
+    if (btnDown) btnDown.onclick = () => container.scrollBy({ top: scrollAmount(), behavior: 'smooth' });
+    if (btnPrev) btnPrev.onclick = null;
+    if (btnNext) btnNext.onclick = null;
+  }
+
+  function bindMobile() {
+    if (btnPrev) btnPrev.onclick = () => container.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
+    if (btnNext) btnNext.onclick = () => container.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
+    if (btnUp) btnUp.onclick = null;
+    if (btnDown) btnDown.onclick = null;
+  }
+
+  function applyBindings() {
+    if (mqMobile.matches) bindMobile(); else bindDesktop();
+  }
+
+  applyBindings();
+  mqMobile.addEventListener('change', applyBindings);
+}
+
+window.addEventListener('DOMContentLoaded', setupCollageThumbScroll);
+
 /*********  Scroll to Top on Page Load  *********/
 window.addEventListener('DOMContentLoaded', () => {
   // Music Player Logic
