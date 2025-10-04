@@ -6,9 +6,14 @@
   <title>Our Wedding</title>
   <link rel="icon" href="icon/flower.ico" type="image/x-icon" />
   <!--  Google Fonts  -->
+  <!-- Performance hints: preconnect to font hosts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
   <!--  Main Styles  -->
   <link rel="stylesheet" href="styles.css" />
+  <!-- Preload hero background image to improve first paint, no visual changes -->
+  <link rel="preload" as="image" href="images/desert.jpeg">
 </head>
 <body>
   <main class="book">
@@ -50,7 +55,7 @@
     <section class="section calendar" id="calendar">
       <h2 class="section__heading">Save the Date</h2>
       <div class="calendar__wrap fade">
-        <img src="images/newspaper_sh.png" alt="Save the date newspaper" class="calendar__image">
+        <img src="images/newspaper_sh.png" alt="Save the date newspaper" class="calendar__image" decoding="async">
         <div class="calendar__content">
           <!-- simple handcrafted calendar -->
           <table class="cal">
@@ -90,15 +95,15 @@
         <div class="collage__thumbs-wrap">
           <button class="collage__thumbs-btn collage__thumbs-btn--up" aria-label="Scroll thumbnails up">&#9650;</button>
           <div class="collage__thumbs" id="collageThumbs">
-            <img src="images/album/1.jpeg" alt="Album photo 1" loading="lazy" class="collage__thumb" />
-            <img src="images/album/2.jpeg" alt="Album photo 2" loading="lazy" class="collage__thumb" />
-            <img src="images/album/3.jpeg" alt="Album photo 3" loading="lazy" class="collage__thumb" />
-            <img src="images/album/4.jpeg" alt="Album photo 4" loading="lazy" class="collage__thumb" />
-            <img src="images/album/5.jpeg" alt="Album photo 5" loading="lazy" class="collage__thumb" />
-            <img src="images/album/6.jpeg" alt="Album photo 6" loading="lazy" class="collage__thumb" />
-            <img src="images/album/7.jpg" alt="Album photo 7" loading="lazy" class="collage__thumb" />
-            <img src="images/album/8.jpg" alt="Album photo 8" loading="lazy" class="collage__thumb" />
-            <img src="images/album/9.jpg" alt="Album photo 9" loading="lazy" class="collage__thumb" />
+            <img src="images/album/1.jpeg" alt="Album photo 1" loading="lazy" decoding="async" class="collage__thumb" />
+            <img src="images/album/2.jpeg" alt="Album photo 2" loading="lazy" decoding="async" class="collage__thumb" />
+            <img src="images/album/3.jpeg" alt="Album photo 3" loading="lazy" decoding="async" class="collage__thumb" />
+            <img src="images/album/4.jpeg" alt="Album photo 4" loading="lazy" decoding="async" class="collage__thumb" />
+            <img src="images/album/5.jpeg" alt="Album photo 5" loading="lazy" decoding="async" class="collage__thumb" />
+            <img src="images/album/6.jpeg" alt="Album photo 6" loading="lazy" decoding="async" class="collage__thumb" />
+            <img src="images/album/7.jpg" alt="Album photo 7" loading="lazy" decoding="async" class="collage__thumb" />
+            <img src="images/album/8.jpg" alt="Album photo 8" loading="lazy" decoding="async" class="collage__thumb" />
+            <img src="images/album/9.jpg" alt="Album photo 9" loading="lazy" decoding="async" class="collage__thumb" />
           </div>
           <div class="collage__thumbs-mobile-ctrls">
             <button class="collage__thumbs-btn collage__thumbs-btn--prev" aria-label="Scroll thumbnails left">&#9664;</button>
@@ -107,7 +112,7 @@
           <button class="collage__thumbs-btn collage__thumbs-btn--down" aria-label="Scroll thumbnails down">&#9660;</button>
         </div>
         <figure class="collage__main">
-          <img src="images/album/1.jpeg" alt="Album photo 1" loading="lazy" class="collage__image" />
+          <img src="images/album/1.jpeg" alt="Album photo 1" loading="lazy" decoding="async" class="collage__image" />
         </figure>
       </div>
     </section>
@@ -121,7 +126,7 @@
         <!-- Timeline Item 1 -->
         <div class="timeline-item">
           <div class="timeline-item__image">
-            <img src="images/story/1st.png" alt="Our first encounter">
+            <img src="images/story/1st.png" alt="Our first encounter" loading="lazy" decoding="async">
           </div>
           <div class="timeline-item__content">
             <h3 class="timeline-item__title">Where it all Started</h3>
@@ -132,7 +137,7 @@
         <!-- Timeline Item 2 -->
         <div class="timeline-item">
           <div class="timeline-item__image">
-            <img src="images/story/2nd.jpg" alt="Our first date">
+            <img src="images/story/2nd.jpg" alt="Our first date" loading="lazy" decoding="async">
           </div>
           <div class="timeline-item__content">
             <h3 class="timeline-item__title">Our connection grew deeper than we ever expected.</h3>
@@ -143,7 +148,7 @@
         <!-- Timeline Item 3 (Previously Proposal Item 1) -->
         <div class="timeline-item">
           <div class="timeline-item__image">
-            <img src="images/story/3rd.jpg" alt="christmas">
+            <img src="images/story/3rd.jpg" alt="christmas" loading="lazy" decoding="async">
           </div>
           <div class="timeline-item__content">
             <h3 class="timeline-item__title">First Christmas Together</h3>
@@ -154,7 +159,7 @@
         <!-- Timeline Item 4 (Previously Proposal Item 2) -->
         <div class="timeline-item">
           <div class="timeline-item__image">
-            <img src="images/story/4th.jpg" alt="new year!">
+            <img src="images/story/4th.jpg" alt="new year!" loading="lazy" decoding="async">
           </div>
           <div class="timeline-item__content">
             <h3 class="timeline-item__title">First New Year Together</h3>
@@ -165,7 +170,7 @@
         <!-- Timeline Item 5 -->
         <div class="timeline-item">
           <div class="timeline-item__image">
-            <img src="images/story/5th.jpg" alt="proposal">
+            <img src="images/story/5th.jpg" alt="proposal" loading="lazy" decoding="async">
           </div>
           <div class="timeline-item__content">
             <h3 class="timeline-item__title">The Proposal</h3>
@@ -176,7 +181,7 @@
         <!-- Timeline Item 6 -->
         <div class="timeline-item">
           <div class="timeline-item__image">
-            <img src="images/story/6th.jpg" alt="Looking to the future">
+            <img src="images/story/6th.jpg" alt="Looking to the future" loading="lazy" decoding="async">
           </div>
           <div class="timeline-item__content">
             <h3 class="timeline-item__title">Our Current Journey</h3>
@@ -186,7 +191,7 @@
         </div>
         <div class="timeline-item">
           <div class="timeline-item__image">
-            <img src="images/story/7th.jpg" alt="Looking to the future">
+            <img src="images/story/7th.jpg" alt="Looking to the future" loading="lazy" decoding="async">
           </div>
           <div class="timeline-item__content">
             <h3 class="timeline-item__title">Our Future</h3>
@@ -346,10 +351,10 @@
             <th scope="row">Godmother<div class="attire__subnote">(Gown or something similar)</div></th>
             <td>
               <div class="attire__grid fade">
-                <div class="attire__item"><img src="images/palette/CHAI.svg" alt="Chai" /></div>
-                <div class="attire__item"><img src="images/palette/CREAM.svg" alt="Cream" /></div>
-                <div class="attire__item"><img src="images/palette/STONE.svg" alt="Stone" /></div>
-                <div class="attire__item"><img src="images/palette/TOBACCO.svg" alt="Tobacco" /></div>
+                <div class="attire__item"><img src="images/palette/CHAI.svg" alt="Chai" decoding="async" /></div>
+                <div class="attire__item"><img src="images/palette/CREAM.svg" alt="Cream" decoding="async" /></div>
+                <div class="attire__item"><img src="images/palette/STONE.svg" alt="Stone" decoding="async" /></div>
+                <div class="attire__item"><img src="images/palette/TOBACCO.svg" alt="Tobacco" decoding="async" /></div>
               </div>
             </td>
           </tr>
@@ -357,9 +362,9 @@
             <th scope="row">Godfather<div class="attire__subnote">(Black Coat & Slacks, White inner long sleeves, Dark green neckties)</div></th>
             <td>
               <div class="attire__grid attire__grid--three">
-                <div class="attire__item"><img src="images/palette/Dark Green.svg" alt="Dark Green" /></div>
-                <div class="attire__item"><img src="images/palette/Black.svg" alt="Black" /></div>
-                <div class="attire__item"><img src="images/palette/White.svg" alt="White" /></div>
+                <div class="attire__item"><img src="images/palette/Dark Green.svg" alt="Dark Green" decoding="async" /></div>
+                <div class="attire__item"><img src="images/palette/Black.svg" alt="Black" decoding="async" /></div>
+                <div class="attire__item"><img src="images/palette/White.svg" alt="White" decoding="async" /></div>
               </div>
             </td>
           </tr>
@@ -367,10 +372,10 @@
             <th scope="row">Guests<div class="attire__subnote">(Gentemen may wear black slacks)</div></th>
             <td>
               <div class="attire__grid">
-                <div class="attire__item"><img src="images/palette/Caramel.svg" alt="Caramel" /></div>
-                <div class="attire__item"><img src="images/palette/Coffee.svg" alt="Coffee" /></div>
-                <div class="attire__item"><img src="images/palette/Espresso.svg" alt="Espresso" /></div>
-                <div class="attire__item"><img src="images/palette/Vanilla.svg" alt="Vanilla" /></div>
+                <div class="attire__item"><img src="images/palette/Caramel.svg" alt="Caramel" decoding="async" /></div>
+                <div class="attire__item"><img src="images/palette/Coffee.svg" alt="Coffee" decoding="async" /></div>
+                <div class="attire__item"><img src="images/palette/Espresso.svg" alt="Espresso" decoding="async" /></div>
+                <div class="attire__item"><img src="images/palette/Vanilla.svg" alt="Vanilla" decoding="async" /></div>
               </div>
             </td>
           </tr>
