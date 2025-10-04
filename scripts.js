@@ -278,7 +278,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // NOTE: Set your actual invitation code(s) here. Keep numeric for simplicity.
   // You can also change this to an array like ["1234","5678"].
-  const VALID_CODES = ["1234"]; // TODO: replace with your real code(s)
+  const VALID_CODES = ["1226"]; // TODO: replace with your real code(s)
 
   function showMessage(text, isError = true) {
     if (!msgEl) return;
