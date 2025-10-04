@@ -565,9 +565,13 @@ function setupRsvpAjaxSubmit() {
   const result = document.getElementById('rsvpResult');
   const submitBtn = document.getElementById('rsvpSubmitBtn');
   if (!form || !result) return;
+  // Belt & suspenders: blank the action to avoid native navigation even if handler fails
+  try { form.setAttribute('action', ''); } catch {}
+  console.log('RSVP AJAX submit bound');
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
+    e.stopPropagation();
 
     // Basic guard: ensure access_key exists
     const accessKeyEl = form.querySelector('input[name="access_key"]');
@@ -622,6 +626,8 @@ function setupRsvpAjaxSubmit() {
           result.textContent = '';
         }, 3000);
       });
+
+    return false; // Extra guard to prevent any default submission
   });
 }
 
