@@ -760,29 +760,32 @@
           </select>
         </label>
       </div>
+      <!-- Guest-only notice (shown when Classification = Guest) -->
+      <div id="guestNotice" class="guest-notice" style="display:none; margin: 0.5rem 0 0.25rem; color: var(--clr-sage); font-size: 0.95rem; border: 1px solid var(--clr-sand); border-radius: 8px; padding: 0.75rem 1rem; background: #fff; text-align: left;">
+        Due to limited seating and to prioritize our entourage, plus-ones are reserved for Principal and Secondary Sponsors. We kindly ask our Guests to RSVP for themselves only.
+      </div>
 
       <div id="plusOneSection" class="plus-one-section">
         <label>
           Bringing a guest?
-        <select name="plusone" id="plusOneSelect" required>
-          <option value="">— Choose —</option>
-          <option value="yes">Yes</option>
-          <option value="no">No</option>
-        </select>
-        <small>(One additional guest max.)</small>
-      </label>
+          <select name="plusone" id="plusOneSelect" required>
+            <option value="">— Choose —</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+          <small>(One additional guest max.)</small>
+        </label>
 
-      <label id="guestNameField" class="guest-name-field">
-        Guest's Full Name
-        <input type="text" name="guestName" />
-      </label>
+        <label id="guestNameField" class="guest-name-field">
+          Guest's Full Name
+          <input type="text" name="guestName" />
+        </label>
       </div>
 
       <label>
         Message <em>(optional)</em>
         <textarea name="message" rows="3" placeholder="Add a note…"></textarea>
       </label>
-
       <button type="submit" class="btn btn--submit" id="rsvpSubmitBtn">Submit</button>
       <div id="rsvpResult" aria-live="polite" style="margin-top:0.75rem; color: var(--clr-sage);"></div>
     </form>

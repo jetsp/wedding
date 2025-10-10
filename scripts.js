@@ -223,19 +223,20 @@ document.addEventListener('keydown', e => {
   if(e.key === 'Escape' && modal.classList.contains('show')) toggleModal(false);
 });
 
-// Conditional RSVP Fields Logic
-const attendanceSelect = document.getElementById('attendanceSelect');
-const classificationField = document.getElementById('classificationField');
-const classificationSelect = document.getElementById('classificationSelect');
-const plusOneSection = document.getElementById('plusOneSection');
-const rsvpPlusOneSelect = document.getElementById('plusOneSelect');
-const rsvpGuestNameField = document.getElementById('guestNameField');
-const rsvpGuestNameInput = rsvpGuestNameField?.querySelector('input[name="guestName"]');
+  // Conditional RSVP Fields Logic
+  const attendanceSelect = document.getElementById('attendanceSelect');
+  const classificationField = document.getElementById('classificationField');
+  const classificationSelect = document.getElementById('classificationSelect');
+  const plusOneSection = document.getElementById('plusOneSection');
+  const rsvpPlusOneSelect = document.getElementById('plusOneSelect');
+  const rsvpGuestNameField = document.getElementById('guestNameField');
+  const rsvpGuestNameInput = rsvpGuestNameField?.querySelector('input[name="guestName"]');
+  const guestNotice = document.getElementById('guestNotice');
 
-if (
-  attendanceSelect && classificationField && classificationSelect &&
-  plusOneSection && rsvpPlusOneSelect && rsvpGuestNameField && rsvpGuestNameInput
-) {
+  if (
+    attendanceSelect && classificationField && classificationSelect &&
+    plusOneSection && rsvpPlusOneSelect && rsvpGuestNameField && rsvpGuestNameInput
+  ) {
   function updateGuestField() {
     // Show guest name only if a plus-one is selected
     if (rsvpPlusOneSelect.value === 'yes') {
@@ -254,19 +255,29 @@ if (
   function updatePlusOneVisibility() {
     const isAttending = attendanceSelect.value === 'yes';
     const cls = classificationSelect.value;
-    const sponsors = cls === 'principal' || cls === 'secondary';
+    const isSponsor = cls === 'principal' || cls === 'secondary';
+    const isGuest = cls === 'guest';
 
-    if (isAttending && sponsors) {
+    if (isAttending && isSponsor) {
+      // Sponsors: show plus-one controls, hide guest notice
       plusOneSection.style.display = 'block';
       rsvpPlusOneSelect.required = true;
-      // keep current selection behavior
+      if (guestNotice) guestNotice.style.display = 'none';
       updateGuestField();
-    } else {
+    } else if (isAttending && isGuest) {
+      // Guests: hide plus-one controls, show notice
       plusOneSection.style.display = 'none';
       rsvpPlusOneSelect.required = false;
-      // Clear when not applicable
       rsvpPlusOneSelect.value = '';
       updateGuestField(); // clears guest name if needed
+      if (guestNotice) guestNotice.style.display = '';
+    } else {
+      // Not attending or no classification yet: hide both
+      plusOneSection.style.display = 'none';
+      rsvpPlusOneSelect.required = false;
+      rsvpPlusOneSelect.value = '';
+      updateGuestField();
+      if (guestNotice) guestNotice.style.display = 'none';
     }
   }
 
@@ -279,6 +290,7 @@ if (
       classificationSelect.required = false;
       // Clear when not applicable
       classificationSelect.value = '';
+      if (guestNotice) guestNotice.style.display = 'none';
     }
     updatePlusOneVisibility();
   }
